@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Family Travel Jun 2026</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #f97316; /* Warm Orange */
+            --primary-dark: #ea580c;
+            --accent: #0ea5e9; /* Sky Blue */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #311042 100%);
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Ambient light effects */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+            bottom: 10%;
+            right: 10%;
+            pointer-events: none;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            z-index: 10;
+        }
+
+        /* Glassmorphism Card base */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-lg);
+            padding: 40px 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Login Screen Styles */
+        .logo-area {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            background: linear-gradient(to right, #ffffff, #f97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            color: var(--text-main);
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+
+        .input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(249, 115, 22, 0.25);
+            background: rgba(15, 23, 42, 0.8);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            border-radius: var(--radius-md);
+            color: white;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(234, 88, 12, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(234, 88, 12, 0.5);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: #ef4444;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Shake animation for errors */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-6px); }
+            20%, 40%, 60%, 80% { transform: translateX(6px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* Dashboard Screen Styles (Hidden initially) */
+        #dashboard {
+            display: none;
+            max-width: 600px;
+        }
+
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+
+        .planner-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 480px) {
+            .planner-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .plan-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius-md);
+            padding: 30px 20px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .plan-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .plan-card.accent::before {
+            background: var(--accent);
+        }
+
+        .icon-box {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .plan-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .plan-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="login-screen">
+        <div class="glass-card" id="login-card">
+            <span class="logo-area">✈️</span>
+            <h1>Family Travel Jun 2026</h1>
+            <p class="subtitle">Vui lòng nhập mật khẩu của gia đình để truy cập các lịch trình du lịch.</p>
+            
+            <div class="input-group">
+                <input type="password" id="password-input" class="input-field" placeholder="Mật khẩu" autofocus>
+            </div>
+            
+            <button class="btn" onclick="handleLogin()">Mở Khóa Lịch Trình</button>
+            <div class="error-message" id="error-msg">Mật khẩu không chính xác, vui lòng thử lại!</div>
+        </div>
+    </div>
+
+    <div class="container" id="dashboard">
+        <div class="glass-card">
+            <div class="dashboard-header">
+                <span class="logo-area" style="animation-delay: 0.5s;">🗺️</span>
+                <h1>Chào Cả Nhà!</h1>
+                <p class="subtitle">Kế hoạch du lịch Tháng 6/2026. Chọn điểm đến dưới đây để xem chi tiết:</p>
+            </div>
+            
+            <div class="planner-grid">
+                <a href="PhanThiet_Trip_Planner.html" class="plan-card">
+                    <span class="icon-box">🏖️</span>
+                    <h3>Phan Thiết</h3>
+                    <p>3 Ngày 2 Đêm • Resort nghỉ dưỡng & Ẩm thực hải sản</p>
+                </a>
+                
+                <a href="MuiNe_Trip_Planner.html" class="plan-card accent">
+                    <span class="icon-box">🌅</span>
+                    <h3>Mũi Né</h3>
+                    <p>3 Ngày 2 Đêm • Trải nghiệm đồi cát & Làng chài</p>
+                </a>
+            </div>
+            
+            <button class="logout-btn" onclick="handleLogout()">Đăng xuất thiết bị</button>
+        </div>
+    </div>
+
+    <script>
+        const correctHash = 'f57df4fcbd098f97178520cb1ba094f678e1dca0e953930e88671684fb081a16'; // Hash SHA-256 of '3conmeo'
+        const loginKey = 'family_travel_jun_2026_auth';
+
+        // Helper function to calculate SHA-256 hash in browser
+        async function sha256(str) {
+            const buffer = new TextEncoder().encode(str);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', buffer);
+            return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Check if already authenticated on load
+        function checkAuth() {
+            const savedHash = localStorage.getItem(loginKey);
+            if (savedHash === correctHash) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            }
+        }
+
+        // Handle login submission
+        async function handleLogin() {
+            const inputField = document.getElementById('password-input');
+            const loginCard = document.getElementById('login-card');
+            const errorMsg = document.getElementById('error-msg');
+            const password = inputField.value;
+
+            // Basic validation
+            if (!password) {
+                shakeCard(loginCard);
+                return;
+            }
+
+            const hash = await sha256(password);
+            if (hash === correctHash) {
+                localStorage.setItem(loginKey, hash);
+                
+                // Transition effect
+                loginCard.style.opacity = '0';
+                loginCard.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    document.getElementById('login-screen').style.display = 'none';
+                    document.getElementById('dashboard').style.display = 'block';
+                    document.getElementById('dashboard').style.opacity = '0';
+                    document.getElementById('dashboard').style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        document.getElementById('dashboard').style.opacity = '1';
+                        document.getElementById('dashboard').style.transform = 'scale(1)';
+                    }, 50);
+                }, 400);
+            } else {
+                shakeCard(loginCard);
+                errorMsg.style.display = 'block';
+                inputField.value = '';
+                inputField.focus();
+            }
+        }
+
+        // Shake card effect for errors
+        function shakeCard(card) {
+            card.classList.remove('shake');
+            void card.offsetWidth; // Trigger reflow to restart animation
+            card.classList.add('shake');
+        }
+
+        // Handle logout
+        function handleLogout() {
+            localStorage.removeItem(loginKey);
+            location.reload();
+        }
+
+        // Allow Enter key to submit password
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleLogin();
+            }
+        });
+
+        // Initialize check
+        checkAuth();
+    </script>
+</body>
+</html>
