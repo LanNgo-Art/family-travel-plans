@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cẩm Nang Ninh Thuận 3N2Đ - Bản Đã Verify</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Cẩm Nang & Kế Hoạch Trip Ninh Thuận 3N2Đ</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary: #0f766e;
-            --primary-dark: #115e59;
+            --primary-dark: #0d5f58;
+            --primary-light: #e6f4f2;
             --accent: #f59e0b;
-            --bg: #f4fbfa;
-            --card: #ffffff;
-            --text: #134e4a;
-            --muted: #64748b;
-            --line: #cfe8e4;
-            --soft: #e9f7f5;
-            --warn: #fff7ed;
-            --warn-line: #fed7aa;
-            --ok: #ecfdf5;
-            --ok-line: #a7f3d0;
-            --shadow: 0 14px 40px rgba(15, 118, 110, 0.08);
-            --radius: 22px;
-            --radius-sm: 14px;
+            --accent-light: #fef3c7;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --bg-body: #f0fdfa;
+            --card-bg: #ffffff;
+            --text-main: #134e4a;
+            --text-muted: #64748b;
+            --border-color: #d1fae5;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(15,118,110,0.05), 0 2px 4px -1px rgba(15,118,110,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(15,118,110,0.05), 0 4px 6px -2px rgba(15,118,110,0.02);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
         * {
@@ -32,396 +38,712 @@
         }
 
         body {
-            font-family: "Plus Jakarta Sans", sans-serif;
-            background: linear-gradient(180deg, #ebf8f7 0%, #f8fafc 24%, #f4fbfa 100%);
-            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             line-height: 1.6;
-        }
-
-        a {
-            color: inherit;
+            -webkit-font-smoothing: antialiased;
         }
 
         .hero {
-            min-height: 340px;
-            padding: 56px 20px 92px;
-            color: #fff;
-            background:
-                linear-gradient(135deg, rgba(15, 118, 110, 0.82), rgba(8, 47, 73, 0.86)),
-                url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80") center/cover;
-        }
-
-        .hero-inner {
-            max-width: 1120px;
-            margin: 0 auto;
-        }
-
-        .badge {
-            display: inline-flex;
+            position: relative;
+            height: 350px;
+            background: linear-gradient(rgba(15, 118, 110, 0.45), rgba(15, 23, 42, 0.85)),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.16);
-            border: 1px solid rgba(255, 255, 255, 0.22);
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
-            margin-bottom: 16px;
-        }
-
-        h1 {
-            font-size: clamp(2rem, 4vw, 3.4rem);
-            line-height: 1.08;
-            max-width: 760px;
-            margin-bottom: 14px;
-        }
-
-        .hero p {
-            max-width: 760px;
-            opacity: 0.95;
-            font-size: 1rem;
-        }
-
-        .shell {
-            max-width: 1120px;
-            margin: -58px auto 64px;
+            justify-content: center;
+            text-align: center;
+            color: white;
             padding: 0 20px;
         }
 
-        .tabs {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.86);
-            backdrop-filter: blur(14px);
-            border: 1px solid rgba(207, 232, 228, 0.9);
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 24px;
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
         }
 
-        .tabs::-webkit-scrollbar {
+        .badge-trip {
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .hero h1 {
+            font-size: 2.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -60px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .tab-nav {
+            display: flex;
+            background-color: white;
+            padding: 8px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 30px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none;
+            border: 1px solid var(--border-color);
+        }
+
+        .tab-nav::-webkit-scrollbar {
             display: none;
         }
 
         .tab-btn {
-            border: 0;
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border: none;
+            background: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            background: transparent;
-            color: var(--muted);
-            font: inherit;
-            font-weight: 700;
-            padding: 12px 16px;
-            border-radius: 12px;
-            white-space: nowrap;
+            transition: all 0.2s ease;
         }
 
         .tab-btn.active {
-            color: #fff;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
         }
 
-        .tab-panel {
+        .tab-content {
             display: none;
+            animation: fadeIn 0.4s ease forwards;
         }
 
-        .tab-panel.active {
+        .tab-content.active {
             display: block;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .card,
-        .fact,
-        .spot,
-        .stay,
-        .transport,
-        .source-item,
-        .check-item {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .info-card.accent .info-icon-wrapper {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .info-card.success .info-icon-wrapper {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        .info-card-text span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .info-card-text h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-top: 2px;
         }
 
         .card {
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-
-        .section-title {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 16px;
-            margin-bottom: 18px;
-        }
-
-        .section-title h2 {
-            font-size: 1.28rem;
-        }
-
-        .section-title p {
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .fact {
-            padding: 18px;
-        }
-
-        .fact span {
-            display: block;
-            color: var(--muted);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            margin-bottom: 6px;
-        }
-
-        .fact strong {
-            font-size: 1.12rem;
-        }
-
-        .note {
-            padding: 16px 18px;
-            border-radius: 18px;
-            margin-top: 18px;
-            font-size: 0.95rem;
-        }
-
-        .note.warn {
-            background: var(--warn);
-            border: 1px solid var(--warn-line);
-        }
-
-        .note.ok {
-            background: var(--ok);
-            border: 1px solid var(--ok-line);
-        }
-
-        .stack {
-            display: grid;
-            gap: 16px;
-        }
-
-        .transport,
-        .stay,
-        .spot,
-        .source-item,
-        .check-item {
-            padding: 20px;
-        }
-
-        .kicker {
-            display: inline-flex;
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: var(--soft);
-            color: var(--primary);
-            font-size: 0.78rem;
-            font-weight: 800;
-            letter-spacing: 0.03em;
-            margin-bottom: 10px;
-        }
-
-        .title-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: start;
-            margin-bottom: 10px;
-        }
-
-        .title-row h3 {
-            font-size: 1.05rem;
-            line-height: 1.35;
-        }
-
-        .pill {
-            flex: none;
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            background: #eff6ff;
-            color: #1d4ed8;
-        }
-
-        .meta {
-            color: var(--muted);
-            font-size: 0.9rem;
-            margin-bottom: 10px;
-        }
-
-        .desc {
-            font-size: 0.95rem;
-            margin-bottom: 14px;
-        }
-
-        .chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 14px;
-        }
-
-        .chip {
-            padding: 6px 10px;
-            border-radius: 999px;
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            color: #334155;
-            font-size: 0.78rem;
-            font-weight: 700;
-        }
-
-        .actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 14px;
-            border-radius: 12px;
-            font-size: 0.88rem;
-            font-weight: 800;
-            text-decoration: none;
-            border: 1px solid var(--line);
-            background: #fff;
-        }
-
-        .action.primary {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff;
-            border-color: transparent;
-        }
-
-        .filters {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 16px;
-        }
-
-        .filter-btn {
-            border: 1px solid var(--line);
-            background: #fff;
-            color: var(--muted);
-            border-radius: 999px;
-            padding: 10px 14px;
-            font: inherit;
-            font-size: 0.88rem;
-            font-weight: 800;
-            cursor: pointer;
-        }
-
-        .filter-btn.active {
-            background: var(--primary);
-            color: #fff;
-            border-color: var(--primary);
-        }
-
-        .timeline {
-            display: grid;
-            gap: 16px;
-        }
-
-        .day {
-            background: #fff;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
+            background: white;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            margin-bottom: 30px;
             overflow: hidden;
         }
 
-        .day-head {
-            padding: 16px 20px;
-            background: linear-gradient(135deg, rgba(15, 118, 110, 0.09), rgba(245, 158, 11, 0.1));
-            border-bottom: 1px solid var(--line);
-            font-weight: 800;
-        }
-
-        .day-body {
-            padding: 16px 20px;
-            display: grid;
-            gap: 12px;
-        }
-
-        .step {
-            padding-left: 16px;
-            border-left: 3px solid #99f6e4;
-        }
-
-        .step strong {
-            display: block;
-            margin-bottom: 3px;
-        }
-
-        .step span {
-            color: var(--muted);
-            font-size: 0.92rem;
-        }
-
-        .source-item a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 800;
-        }
-
-        .check-item {
+        .card-header-styled {
             display: flex;
-            gap: 12px;
-            align-items: flex-start;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        .check-badge {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: var(--soft);
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .budget-split {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .budget-split {
+                grid-template-columns: 1.2fr 0.8fr;
+            }
+        }
+
+        .summary-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 16px;
+            background: var(--bg-body);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            gap: 4px;
+        }
+
+        .summary-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-item-title {
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .summary-item-price {
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .places-summary-list {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding-left: 0;
+            margin-top: 5px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 5px;
+            line-height: 1.4;
+        }
+
+        .calc-box {
+            background-color: var(--bg-body);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .calc-total {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .calc-total span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .calc-total h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
             color: var(--primary);
+            margin-top: 5px;
+        }
+
+        .budget-alert-box {
+            padding: 12px 15px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 600;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 900;
-            flex: none;
+            gap: 8px;
+        }
+
+        .budget-safe {
+            background-color: var(--success-light);
+            color: var(--success);
+        }
+
+        .budget-danger {
+            background-color: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        @media(min-width: 768px) {
+            .transport-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .transport-card {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 2px solid var(--border-color);
+            padding: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .transport-card.selected {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .transport-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .select-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .transport-card.selected .select-indicator {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .transport-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--success);
+            margin: 8px 0;
+        }
+
+        .spec-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .spec-list li {
+            margin-bottom: 8px;
+        }
+
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background-color: white;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .hotel-grid,
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .hotel-card,
+        .place-card {
+            background: white;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all 0.25s ease;
+        }
+
+        .hotel-card.selected,
+        .place-card.selected {
+            border-color: var(--success);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hotel-card:hover,
+        .place-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hotel-img-wrapper,
+        .place-img-wrapper {
+            position: relative;
+            height: 190px;
+            overflow: hidden;
+        }
+
+        .hotel-img-wrapper img,
+        .place-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hotel-tag,
+        .place-category {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(19, 78, 74, 0.9);
+            color: white;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+
+        .hotel-tag.recommend {
+            background-color: var(--success);
+        }
+
+        .place-category.fun {
+            background-color: var(--accent);
+        }
+
+        .hotel-info,
+        .place-info {
+            padding: 18px;
+        }
+
+        .hotel-stars {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .hotel-name,
+        .place-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 8px;
+        }
+
+        .hotel-meta-row,
+        .place-meta div {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .hotel-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 14px 0 10px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .hotel-price span {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .hotel-price {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .place-desc {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-top: 10px;
+        }
+
+        .verify-note {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            background: var(--primary-light);
+            color: var(--text-main);
+            font-size: 0.82rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn-map {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .action-btn-book {
+            background-color: var(--accent-light);
+            color: #b45309;
+        }
+
+        .action-btn-select {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-day-header {
+            background: linear-gradient(135deg, var(--primary-light), #ffffff);
+            color: var(--primary-dark);
+            font-weight: 800;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin: 25px 0 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 18px;
+            border-left: 2px solid var(--border-color);
+            margin-left: 8px;
+            padding-bottom: 10px;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            left: -7px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .timeline-time {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
+        .checklist-group {
+            margin-bottom: 25px;
+        }
+
+        .checklist-group h4 {
+            font-size: 1rem;
+            margin-bottom: 14px;
+            color: var(--text-main);
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 16px;
+            background: var(--bg-body);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .task-checkbox {
+            margin-top: 3px;
+        }
+
+        .task-text {
+            font-weight: 600;
+        }
+
+        .task-note {
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .share-banner {
+            margin-top: 35px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            border-radius: var(--radius-lg);
+            padding: 28px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .share-banner h3 {
+            font-size: 1.35rem;
+            margin-bottom: 10px;
+        }
+
+        .share-banner p {
+            opacity: 0.95;
+            max-width: 780px;
+            margin: 0 auto 16px;
+        }
+
+        .share-btn {
+            background: white;
+            color: var(--primary-dark);
+            border: none;
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 800;
+            cursor: pointer;
         }
 
         footer {
             text-align: center;
-            color: var(--muted);
-            padding: 28px 20px 56px;
-            font-size: 0.88rem;
+            padding: 40px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .hero {
-                min-height: 300px;
-                padding-top: 44px;
+                height: 320px;
             }
 
-            .shell {
-                margin-top: -44px;
+            .hero h1 {
+                font-size: 1.9rem;
             }
 
-            .section-title {
-                display: block;
-            }
-
-            .section-title p {
-                margin-top: 8px;
+            .tab-btn {
+                flex: none;
             }
         }
     </style>
@@ -429,539 +751,493 @@
         body { display: none !important; }
     </style>
     <script>
-        (function () {
-            const correctHash = "f57df4fcbd098f97178520cb1ba094f678e1dca0e953930e88671684fb081a16";
-            const loginKey = "family_travel_jun_2026_auth";
+        (function() {
+            const correctHash = 'f57df4fcbd098f97178520cb1ba094f678e1dca0e953930e88671684fb081a16';
+            const loginKey = 'family_travel_jun_2026_auth';
             if (localStorage.getItem(loginKey) === correctHash) {
-                document.write("<style>body { display: block !important; }</style>");
+                document.write('<style>body { display: block !important; }</style>');
             } else {
-                window.location.href = "index.html";
+                window.location.href = 'index.html';
             }
         })();
     </script>
 </head>
 <body>
-    <header class="hero">
-        <div class="hero-inner">
-            <div class="badge">Ninh Thuận Hub • Bản rà soát lại toàn bộ</div>
-            <h1>Kế hoạch Ninh Thuận 3N2Đ đã sửa theo thông tin verify</h1>
-            <p>Ngày kiểm tra lại dữ liệu: 24/06/2026. Tôi đã bỏ các mục không xác minh được, sửa link sai, và chuyển các giá dễ biến động sang dạng “xem live” thay vì giữ số cứng dễ gây hiểu nhầm.</p>
-        </div>
-    </header>
 
-    <main class="shell">
-        <nav class="tabs">
-            <button class="tab-btn active" data-tab="overview">Tổng quan</button>
-            <button class="tab-btn" data-tab="transport">Di chuyển</button>
-            <button class="tab-btn" data-tab="stays">Lưu trú</button>
-            <button class="tab-btn" data-tab="spots">Điểm đi / ăn</button>
-            <button class="tab-btn" data-tab="itinerary">Lịch trình</button>
-            <button class="tab-btn" data-tab="sources">Nguồn verify</button>
-            <button class="tab-btn" data-tab="checklist">Checklist</button>
+    <div class="hero">
+        <div class="hero-content">
+            <span class="badge-trip">🏝️ Trip Planner • Ninh Thuận Hub</span>
+            <h1>Kế hoạch Ninh Thuận 3N2Đ</h1>
+            <p>10/07/2026 – 12/07/2026 • Giao diện đồng bộ với Phan Thiết, dữ liệu đã giữ theo bản verify</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <nav class="tab-nav">
+            <button class="tab-btn active" onclick="switchTab('overview')">🏠 Tổng quan</button>
+            <button class="tab-btn" onclick="switchTab('transport')">🚐 Di chuyển</button>
+            <button class="tab-btn" onclick="switchTab('lodging')">🏨 Resort & Villa</button>
+            <button class="tab-btn" onclick="switchTab('places')">🦞 Ăn uống & Vui chơi</button>
+            <button class="tab-btn" onclick="switchTab('itinerary')">📅 Lịch trình</button>
+            <button class="tab-btn" onclick="switchTab('checklist')">📝 Chuẩn bị</button>
         </nav>
 
-        <section id="overview" class="tab-panel active">
-            <div class="grid">
-                <div class="fact">
-                    <span>Trục nghỉ chính</span>
-                    <strong>Ninh Chữ - Phan Rang</strong>
+        <div id="overview" class="tab-content active">
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-icon-wrapper">💰</div>
+                    <div class="info-card-text">
+                        <span>Tổng budget mục tiêu</span>
+                        <h3>26.000.000đ - 32.000.000đ</h3>
+                    </div>
                 </div>
-                <div class="fact">
-                    <span>Nhóm điểm đẹp nhất</span>
-                    <strong>Vĩnh Hy - Hang Rái - Núi Chúa</strong>
+                <div class="info-card success">
+                    <div class="info-icon-wrapper">🏨</div>
+                    <div class="info-card-text">
+                        <span>Nguyên tắc chốt phòng</span>
+                        <h3>Xem giá live, không khóa số cứng</h3>
+                    </div>
                 </div>
-                <div class="fact">
-                    <span>Điểm văn hóa chắc tay</span>
-                    <strong>Po Klong Garai - Bàu Trúc - Mỹ Nghiệp</strong>
+                <div class="info-card accent">
+                    <div class="info-icon-wrapper">🌊</div>
+                    <div class="info-card-text">
+                        <span>Trục đẹp nhất</span>
+                        <h3>Ninh Chữ • Vĩnh Hy • Hang Rái</h3>
+                    </div>
                 </div>
-                <div class="fact">
-                    <span>Nguyên tắc sửa trang</span>
-                    <strong>Chỉ giữ điểm có thể mở link đúng</strong>
+                <div class="info-card">
+                    <div class="info-icon-wrapper">👥</div>
+                    <div class="info-card-text">
+                        <span>Thành viên</span>
+                        <h3>6 Người lớn</h3>
+                    </div>
                 </div>
             </div>
 
             <div class="card">
-                <div class="section-title">
-                    <h2>Tôi đã sửa những gì</h2>
-                    <p>Không chỉ sửa link; toàn bộ logic nội dung đã được siết lại để bớt gây sai.</p>
+                <div class="card-header-styled">
+                    <h3 class="card-title">📊 Bản Này Đã Sửa Gì</h3>
+                    <span class="text-muted">Giữ style giống Phan Thiết nhưng không mang dữ liệu sai quay lại</span>
                 </div>
-                <div class="stack">
-                    <div class="note ok">Đã bỏ danh sách resort, quán ăn và nhà xe có dấu hiệu dựng tay hoặc không kiểm chứng được bằng trang chính thức / Booking / Agoda / Tripadvisor / Google Maps.</div>
-                    <div class="note ok">Đã thay bằng điểm lưu trú và điểm tham quan thực sự tồn tại, kèm link chính thức hoặc link xem phòng / xem review / mở Maps đúng tên.</div>
-                    <div class="note warn">Giá phòng, availability và giá tour biển ở Ninh Thuận thay đổi theo ngày và theo cuối tuần. Vì vậy bản mới không dùng các con số “2 đêm = X đồng” như file cũ nữa; tất cả phần dễ biến động đã chuyển sang “kiểm tra live”.</div>
-                    <div class="note warn">Các claims kiểu “miễn phí vào cửa”, “quán nổi tiếng nhất”, “tôm hùm baby giá mềm hơn Sài Gòn”, “cưỡi lạc đà Nam Cương” đã bị loại bỏ nếu không có nguồn đủ chắc.</div>
-                </div>
-            </div>
-        </section>
 
-        <section id="transport" class="tab-panel">
-            <div class="card">
-                <div class="section-title">
-                    <h2>Di chuyển nên dùng dữ liệu live</h2>
-                    <p>Phần cũ liệt kê nhiều đơn vị xe hợp đồng nhưng không đủ căn cứ để giữ lại.</p>
-                </div>
-                <div class="grid">
-                    <div class="transport">
-                        <div class="kicker">Tự lái</div>
-                        <div class="title-row">
-                            <h3>Phù hợp nhất nếu đi gia đình 6 người</h3>
-                            <span class="pill">Chủ động</span>
-                        </div>
-                        <p class="desc">Đi theo trục TP.HCM - Phan Rang - Ninh Chữ rồi tách nhánh ra Vĩnh Hy/Hang Rái sẽ linh hoạt hơn nhiều so với xe tuyến cố định.</p>
-                        <div class="chips">
-                            <span class="chip">Nên chốt xe sớm</span>
-                            <span class="chip">Kiểm tra giới hạn km</span>
-                            <span class="chip">Ưu tiên nhận xe tối hôm trước</span>
-                        </div>
-                        <div class="actions">
-                            <a class="action primary" href="https://www.mioto.vn/" target="_blank" rel="noopener noreferrer">Mở Mioto</a>
-                            <a class="action" href="https://www.google.com/maps/dir/Qu%E1%BA%ADn+8,+H%E1%BB%93+Ch%C3%AD+Minh/Ninh+Ch%E1%BB%AF+Beach,+Kh%C3%A1nh+H%E1%BA%A3i/" target="_blank" rel="noopener noreferrer">Xem route Maps</a>
+                <div class="budget-split">
+                    <div>
+                        <div class="summary-list">
+                            <div class="summary-item">
+                                <div class="summary-item-row">
+                                    <span class="summary-item-title">✅ Resort & điểm đi đã verify</span>
+                                    <span class="summary-item-price">Đã làm lại</span>
+                                </div>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">Chỉ giữ nơi ở, điểm tham quan và khu ăn có thể mở đúng link nguồn hoặc Maps.</div>
+                            </div>
+
+                            <div class="summary-item">
+                                <div class="summary-item-row">
+                                    <span class="summary-item-title">⚠️ Giá động đã bỏ số cứng</span>
+                                    <span class="summary-item-price">An toàn hơn</span>
+                                </div>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">Giá phòng, tour biển, hải sản và availability được chuyển thành hướng dẫn kiểm tra live.</div>
+                            </div>
+
+                            <div class="summary-item">
+                                <div class="summary-item-row">
+                                    <span class="summary-item-title">🔗 Link sai / link mơ hồ</span>
+                                    <span class="summary-item-price">Đã thay</span>
+                                </div>
+                                <div class="places-summary-list">
+                                    • Trang chính thức / Booking / Agoda / Tripadvisor khi có<br>
+                                    • Google Maps search đúng tên thật của địa điểm<br>
+                                    • Không dùng link mô tả chung chung như bản cũ
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="transport">
-                        <div class="kicker">Xe tuyến / ghép</div>
-                        <div class="title-row">
-                            <h3>Dùng được nếu muốn tiết kiệm</h3>
-                            <span class="pill">Ít linh hoạt</span>
+                    <div class="calc-box">
+                        <div class="calc-total">
+                            <span>Trạng thái dữ liệu</span>
+                            <h2>Verified</h2>
                         </div>
-                        <p class="desc">Nên chỉ dùng khi chốt nghỉ hẳn ở Ninh Chữ hoặc trung tâm Phan Rang. Nếu còn đi Vĩnh Hy, Hang Rái, Bàu Trúc thì vẫn sẽ phải thuê xe chặng trong ngày.</p>
-                        <div class="chips">
-                            <span class="chip">Check giờ thật trước ngày đi</span>
-                            <span class="chip">So sánh điểm trả khách</span>
-                            <span class="chip">Tính thêm taxi nội vùng</span>
+                        <div id="budget-status" class="budget-alert-box budget-safe">
+                            ✅ Ưu tiên tính đúng hơn là nhìn nhiều nhưng sai
                         </div>
-                        <div class="actions">
-                            <a class="action primary" href="https://www.vexere.com/vi-VN/" target="_blank" rel="noopener noreferrer">Mở Vexere</a>
+                        <button class="action-btn action-btn-map" style="display:block; width:100%; margin-top:15px; border-radius: var(--radius-sm); font-weight:700;" onclick="switchTab('lodging')">🏨 Xem nơi ở đã verify</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="transport" class="tab-content">
+            <div class="transport-grid">
+                <div class="transport-card selected">
+                    <div>
+                        <div class="transport-card-header">
+                            <h3 style="font-weight:700; margin:0;">Option 1: Tự lái 3N2Đ</h3>
+                            <span class="select-indicator">✓</span>
                         </div>
+                        <p class="text-muted">Phù hợp nhất nếu muốn linh hoạt giữa Ninh Chữ, Vĩnh Hy, Hang Rái và nhóm điểm văn hóa.</p>
+                        <div class="transport-price">Nên ưu tiên <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">(xem giá live khi đặt)</span></div>
+                        <ul class="spec-list">
+                            <li>Chủ động giờ xuất phát và dừng nghỉ cho gia đình.</li>
+                            <li>Dễ ghép lịch Ninh Chữ - Vĩnh Hy - Bàu Trúc hơn xe tuyến.</li>
+                            <li>Cần kiểm tra giới hạn km, giờ nhận xe và phí phụ thu.</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                        <a href="https://www.mioto.vn/" target="_blank" class="action-btn action-btn-book" style="display:inline-block; font-size:0.85rem; width:100%; text-align:center;">🔗 Mở Mioto</a>
                     </div>
                 </div>
 
-                <div class="note warn">Bản cũ dùng giá thuê xe trọn gói và bảng nhà xe như số cố định. Tôi đã bỏ vì đây là nhóm dữ liệu thay đổi mạnh theo ngày đi, loại xe, giờ nhận xe và chính sách phụ phí.</div>
+                <div class="transport-card">
+                    <div>
+                        <div class="transport-card-header">
+                            <h3 style="font-weight:700; margin:0;">Option 2: Xe tuyến / xe ghép</h3>
+                            <span class="select-indicator">i</span>
+                        </div>
+                        <p class="text-muted">Dùng được nếu ở hẳn Ninh Chữ hoặc trung tâm Phan Rang, nhưng kém linh hoạt hơn khi đi nhánh biển.</p>
+                        <div class="transport-price">Tiết kiệm hơn <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">(cần cộng taxi nội vùng)</span></div>
+                        <ul class="spec-list">
+                            <li>Phù hợp nếu chỉ ghé ít điểm ngoài trung tâm.</li>
+                            <li>Phải kiểm tra live giờ xe và điểm trả khách thật.</li>
+                            <li>Ngày đi Vĩnh Hy/Hang Rái có thể vẫn phát sinh thuê xe riêng.</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                        <a href="https://www.vexere.com/vi-VN/" target="_blank" class="action-btn action-btn-book" style="display:inline-block; font-size:0.85rem; width:100%; text-align:center;">🔗 Mở Vexere</a>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <section id="stays" class="tab-panel">
             <div class="card">
-                <div class="section-title">
-                    <h2>Lưu trú đã thay bằng các điểm xác minh được</h2>
-                    <p>Mỗi mục đều có link đúng để xem phòng hoặc xem trang chính thức.</p>
+                <div class="card-header-styled">
+                    <h3 class="card-title">🔍 Ghi chú cho phần di chuyển</h3>
+                    <span class="text-muted">Bỏ bảng nhà xe dày đặc của bản cũ vì không đủ chắc để giữ</span>
                 </div>
-                <div class="filters" id="stay-filters">
-                    <button class="filter-btn active" data-filter="all">Tất cả</button>
-                    <button class="filter-btn" data-filter="ninhchu">Ninh Chữ</button>
-                    <button class="filter-btn" data-filter="vinhhy">Vĩnh Hy / Núi Chúa</button>
+                <div class="verify-note" style="font-size:0.92rem;">
+                    Bản cũ liệt kê nhiều đơn vị limousine/thuê xe kèm giá như số cố định. Phần đó đã bị loại bỏ để tránh tạo cảm giác “đã verify” trong khi thực tế thay đổi theo ngày đi, loại xe, giờ nhận và quãng đường.
                 </div>
-                <div class="stack" id="stay-list"></div>
-                <div class="note warn">Giá phòng cũ trong file đã bị loại bỏ vì không thể đảm bảo đúng cho ngày 10-12/07/2026. Khi cần chốt, nên mở trực tiếp link “Xem phòng” ở từng resort.</div>
             </div>
-        </section>
+        </div>
 
-        <section id="spots" class="tab-panel">
+        <div id="lodging" class="tab-content">
             <div class="card">
-                <div class="section-title">
-                    <h2>Điểm nên đi và khu ăn nên ghé</h2>
-                    <p>Phân tách rõ giữa điểm tham quan thực và khu ăn uống nên tra review live.</p>
+                <div class="card-header-styled">
+                    <h3 class="card-title">🏨 Danh Sách Nơi Ở Đã Verify</h3>
+                    <span class="text-muted">Giữ khung giống Phan Thiết, nhưng toàn bộ dữ liệu là bản đã rà soát lại</span>
                 </div>
-                <div class="filters" id="spot-filters">
-                    <button class="filter-btn active" data-filter="all">Tất cả</button>
-                    <button class="filter-btn" data-filter="visit">Tham quan</button>
-                    <button class="filter-btn" data-filter="food">Ăn uống</button>
+
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="filterHotels('all')">Tất cả</button>
+                    <button class="filter-btn" onclick="filterHotels('ninhchu')">Resort Ninh Chữ</button>
+                    <button class="filter-btn" onclick="filterHotels('vinhhy')">Vĩnh Hy / Núi Chúa</button>
+                    <button class="filter-btn" onclick="filterHotels('special')">Điểm nổi bật</button>
                 </div>
-                <div class="stack" id="spot-list"></div>
+
+                <div class="hotel-grid" id="hotel-cards-container"></div>
             </div>
-        </section>
+        </div>
 
-        <section id="itinerary" class="tab-panel">
+        <div id="places" class="tab-content">
             <div class="card">
-                <div class="section-title">
-                    <h2>Lịch trình 3N2Đ đã sửa logic</h2>
-                    <p>Ưu tiên lịch dễ chạy, ít vòng lại, và không ép quá nhiều điểm mơ hồ trong một ngày.</p>
+                <div class="card-header-styled">
+                    <h3 class="card-title">🦞 Địa Điểm Ăn Uống & Vui Chơi Nổi Tiếng</h3>
+                    <span class="text-muted">Tách rõ điểm tham quan thật và khu ăn nên xem review live</span>
                 </div>
+
+                <div class="filter-container">
+                    <button class="filter-btn active" onclick="filterPlaces('all')">Tất cả</button>
+                    <button class="filter-btn" onclick="filterPlaces('food')">🍔 Ăn uống</button>
+                    <button class="filter-btn" onclick="filterPlaces('visit')">🎡 Vui chơi / Tham quan</button>
+                </div>
+
+                <div class="places-grid" id="places-container"></div>
+            </div>
+        </div>
+
+        <div id="itinerary" class="tab-content">
+            <div class="card">
+                <div class="card-header-styled">
+                    <h3 class="card-title">📅 Lịch Trình Chi Tiết 3 Ngày 2 Đêm</h3>
+                    <span class="text-muted">Phiên bản đã rút bớt claim quá tự tin và sắp lại logic chạy điểm</span>
+                </div>
+
                 <div class="timeline">
-                    <article class="day">
-                        <div class="day-head">Ngày 1: TP.HCM → Ninh Chữ → Po Klong Garai</div>
-                        <div class="day-body">
-                            <div class="step">
-                                <strong>Sáng</strong>
-                                <span>Xuất phát sớm từ TP.HCM, đi thẳng về trục Phan Rang - Ninh Chữ. Nếu tự lái, nên tính các điểm dừng nghỉ và nhận phòng sau 13:00 để đỡ mệt.</span>
-                            </div>
-                            <div class="step">
-                                <strong>Chiều</strong>
-                                <span>Nhận phòng, tắm biển Ninh Chữ hoặc dạo khu Bình Sơn. Nếu còn sức, ghé Po Klong Garai vì điểm này gần trung tâm và đi nhẹ.</span>
-                            </div>
-                            <div class="step">
-                                <strong>Tối</strong>
-                                <span>Ăn hải sản ở khu Ninh Chữ hoặc vào trung tâm Phan Rang ăn bánh căn / cơm gà. Chọn quán theo review live trên Google Maps thay vì tin danh sách cứng.</span>
-                            </div>
-                        </div>
-                    </article>
+                    <div class="timeline-day-header">☀️ Ngày 1 (10/07): Di chuyển đến Ninh Chữ & làm quen Phan Rang</div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Sáng</div>
+                        <div class="timeline-title">Xuất phát từ TP.HCM</div>
+                        <div class="timeline-desc">Nếu tự lái, nên đi sớm để tới Ninh Chữ/Phan Rang vào đầu chiều. Không khóa cứng giờ vì còn phụ thuộc điểm nhận xe và thời gian dừng nghỉ.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Chiều</div>
+                        <div class="timeline-title">Nhận phòng, nghỉ biển Ninh Chữ</div>
+                        <div class="timeline-desc">Ưu tiên nhận phòng trước, rồi dạo biển hoặc công viên biển Bình Sơn. Đây là cách vào nhịp nhẹ hơn so với nhồi nhiều điểm trong ngày đầu.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Chiều muộn</div>
+                        <div class="timeline-title">Tháp Po Klong Garai</div>
+                        <div class="timeline-desc">Điểm văn hóa Chăm gần trung tâm, hợp để ghé ngắn mà không làm ngày đầu quá mệt.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Tối</div>
+                        <div class="timeline-title">Ăn tối khu Ninh Chữ hoặc trung tâm Phan Rang</div>
+                        <div class="timeline-desc">Chọn quán theo review live trên Google Maps thay vì bám mức giá cứng của file cũ.</div>
+                    </div>
 
-                    <article class="day">
-                        <div class="day-head">Ngày 2: Vĩnh Hy → Hang Rái → vườn nho Thái An</div>
-                        <div class="day-body">
-                            <div class="step">
-                                <strong>Sáng</strong>
-                                <span>Đi Vĩnh Hy sớm để có biển êm hơn. Nếu muốn đi tàu đáy kính / snorkeling, nên hỏi trực tiếp tại bến hoặc qua resort trước một ngày.</span>
-                            </div>
-                            <div class="step">
-                                <strong>Trưa</strong>
-                                <span>Ăn trưa ở khu nhà bè / nhà hàng quanh Vĩnh Hy. Đây là nhóm giá biến động theo mùa và loại hải sản, nên không nên tin mức giá cứng từ file cũ.</span>
-                            </div>
-                            <div class="step">
-                                <strong>Chiều</strong>
-                                <span>Ghé Hang Rái rồi về khu Thái An nếu muốn trải nghiệm nho và mua đặc sản. Bộ 3 điểm này nằm cùng một nhánh nên hợp lý hơn nhiều so với lịch cũ.</span>
-                            </div>
-                        </div>
-                    </article>
+                    <div class="timeline-day-header">🌊 Ngày 2 (11/07): Vĩnh Hy • Hang Rái • Thái An</div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Sáng</div>
+                        <div class="timeline-title">Đi Vĩnh Hy sớm</div>
+                        <div class="timeline-desc">Nếu muốn tàu đáy kính hoặc snorkeling, nên hỏi trước 1 ngày. Đây là nhóm dịch vụ biến động theo gió và lượng khách.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Trưa</div>
+                        <div class="timeline-title">Ăn ở khu nhà bè / nhà hàng quanh Vĩnh Hy</div>
+                        <div class="timeline-desc">Không giữ claim “lẩu tôm hùm giá X” như bản cũ. Nên chọn theo review mới và hỏi giá trước khi gọi món.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Chiều</div>
+                        <div class="timeline-title">Hang Rái & Vườn nho Thái An</div>
+                        <div class="timeline-desc">Hai điểm này nằm hợp tuyến hơn cho ngày 2 so với việc vòng quá nhiều nhánh khác nhau.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Tối</div>
+                        <div class="timeline-title">Về lại Ninh Chữ / Phan Rang nghỉ ngơi</div>
+                        <div class="timeline-desc">Ưu tiên tối nhẹ sau ngày biển dài. Có thể ăn đặc sản địa phương trong trung tâm thành phố.</div>
+                    </div>
 
-                    <article class="day">
-                        <div class="day-head">Ngày 3: Bàu Trúc / Mỹ Nghiệp → về TP.HCM</div>
-                        <div class="day-body">
-                            <div class="step">
-                                <strong>Sáng</strong>
-                                <span>Check-out sớm, chọn 1-2 điểm văn hóa ở Ninh Phước như Bàu Trúc và Mỹ Nghiệp nếu cả nhà thích đồ thủ công Chăm.</span>
-                            </div>
-                            <div class="step">
-                                <strong>Trưa</strong>
-                                <span>Ăn trưa nhẹ ở Phan Rang hoặc dọc QL1A rồi chạy về TP.HCM. Nếu muốn ghé Cà Ná thì chỉ nên xem như điểm dừng ngắn chụp hình, không nhồi thêm quá nhiều hoạt động.</span>
-                            </div>
-                            <div class="step">
-                                <strong>Lưu ý</strong>
-                                <span>Lịch cũ có nhiều mô tả tuyệt đối như “vé miễn phí”, “chắc chắn có lạc đà”, “chi phí bàn ăn cố định”. Tôi đã bỏ các khẳng định đó để tránh làm kế hoạch lệch thực tế.</span>
-                            </div>
-                        </div>
-                    </article>
+                    <div class="timeline-day-header">🏺 Ngày 3 (12/07): Bàu Trúc • Mỹ Nghiệp • Về lại TP.HCM</div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Sáng</div>
+                        <div class="timeline-title">Check-out & ghé cụm làng nghề Chăm</div>
+                        <div class="timeline-desc">Bàu Trúc và Mỹ Nghiệp nằm gần nhau, hợp làm chặng cuối trước khi rời Ninh Thuận.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Trưa</div>
+                        <div class="timeline-title">Ăn nhẹ rồi lên đường về</div>
+                        <div class="timeline-desc">Có thể ăn ở Phan Rang hoặc dọc QL1A. Nếu ghé Cà Ná thì chỉ nên xem như điểm dừng chụp ảnh ngắn.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Lưu ý</div>
+                        <div class="timeline-title">Không dùng claim tuyệt đối</div>
+                        <div class="timeline-desc">Các câu kiểu “vé miễn phí”, “chắc chắn có lạc đà”, “chi phí bàn ăn cố định” đã bị loại bỏ để tránh dẫn sai kế hoạch thực tế.</div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section id="sources" class="tab-panel">
+        <div id="checklist" class="tab-content">
             <div class="card">
-                <div class="section-title">
-                    <h2>Nguồn đã dùng để verify lại trang</h2>
-                    <p>Danh sách này là phần căn cứ cho bản sửa, để sau này cần rà lại vẫn lần được.</p>
+                <div class="card-header-styled">
+                    <h3 class="card-title">📝 Checklist Công Việc Cần Hoàn Thành</h3>
+                    <span class="text-muted">Các đầu việc giữ lại sau khi làm sạch thông tin sai / link sai</span>
                 </div>
-                <div class="stack" id="source-list"></div>
-            </div>
-        </section>
 
-        <section id="checklist" class="tab-panel">
-            <div class="card">
-                <div class="section-title">
-                    <h2>Checklist chốt trước khi đi</h2>
-                    <p>Giữ lại những mục còn thực dụng sau khi loại bỏ thông tin thiếu căn cứ.</p>
+                <div class="checklist-group">
+                    <h4>🚀 Đầu việc ưu tiên</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <div class="task-content">
+                            <span class="task-text">Chốt nơi ở bằng link chính thức hoặc OTA thật</span>
+                            <div class="task-note">Ưu tiên xác nhận số người tối đa, extra bed, giờ check-in và chính sách hủy.</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <div class="task-content">
+                            <span class="task-text">Kiểm tra dịch vụ biển ở Vĩnh Hy trước 1 ngày</span>
+                            <div class="task-note">Hỏi trực tiếp tình hình gió, tàu đáy kính, snorkeling và chi phí thực tế.</div>
+                        </div>
+                    </div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <div class="task-content">
+                            <span class="task-text">Không khóa cứng budget ăn uống</span>
+                            <div class="task-note">Hải sản và nhà bè là hai nhóm giá dễ lệch nhất nếu chỉ nhìn file kế hoạch.</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="stack">
-                    <div class="check-item">
-                        <div class="check-badge">1</div>
-                        <div>
-                            <strong>Chốt nơi ở trước</strong>
-                            <div class="meta">Ưu tiên xác nhận phòng family / extra bed / số người tối đa qua link chính thức hoặc Booking/Agoda.</div>
+
+                <div class="checklist-group">
+                    <h4>🎒 Chuẩn bị cho gia đình</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <div class="task-content">
+                            <span class="task-text">Đồ đi biển, nón rộng vành, kính mát</span>
                         </div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-badge">2</div>
-                        <div>
-                            <strong>Gọi trước nếu định đi biển Vĩnh Hy</strong>
-                            <div class="meta">Hỏi tình hình gió, cano/tàu đáy kính, thời điểm đẹp và phí phát sinh ngay trước ngày đi.</div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <div class="task-content">
+                            <span class="task-text">Kem chống nắng SPF 50+ và nước uống cá nhân</span>
                         </div>
                     </div>
-                    <div class="check-item">
-                        <div class="check-badge">3</div>
-                        <div>
-                            <strong>Không khóa cứng ngân sách ăn uống</strong>
-                            <div class="meta">Hải sản và tour biển là hai nhóm lệch giá nhiều nhất; xem review và giá live trong ngày sẽ chính xác hơn file cũ rất nhiều.</div>
-                        </div>
-                    </div>
-                    <div class="check-item">
-                        <div class="check-badge">4</div>
-                        <div>
-                            <strong>Mang đồ chống nắng và đồ biển</strong>
-                            <div class="meta">Ninh Thuận nắng gắt, nên chuẩn bị mũ, kính, kem chống nắng, dép bám tốt và nước uống cho các chặng ngoài trời.</div>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
+                        <div class="task-content">
+                            <span class="task-text">Thuốc thông dụng cho say xe, tiêu hóa, cảm sốt</span>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <div class="share-banner">
+            <h3>🔗 Chia Sẻ Kế Hoạch Cho Cả Nhà</h3>
+            <p>Trang Ninh Thuận đã được dựng lại cùng phong cách với Phan Thiết. Bạn có thể copy link này để gửi cho các thành viên trong gia đình cùng xem.</p>
+            <button class="share-btn" onclick="copyTripLink()">📋 Sao chép Link Kế hoạch</button>
+        </div>
+    </div>
 
     <footer>
-        Cẩm nang Ninh Thuận 3N2Đ • Bản đã verify và chỉnh link ngày 24/06/2026
+        <p>Cẩm nang Trip Ninh Thuận 3N2Đ dành cho gia đình 6 người • Bản trình bày đồng bộ với Phan Thiết • 2026</p>
     </footer>
 
     <script>
-        const stays = [
-            {
-                category: "ninhchu",
-                name: "TTC Resort - Ninh Thuận",
-                area: "Bãi biển Ninh Chữ",
-                label: "Trang chính thức",
-                note: "Khu nghỉ dưỡng do TTC Hospitality vận hành, nằm trên trục Ninh Chữ; phù hợp gia đình muốn ở sát biển và tiện chạy về trung tâm Phan Rang.",
-                tags: ["Sát biển", "Có trang chính thức", "Nên xem giá live"],
-                sourceUrl: "https://ttchospitality.vn/ttc-hotel/ttc-resort-ninh-thuan",
-                bookUrl: "https://www.agoda.com/vi-vn/ttc-resort-premium-ninh-thuan/hotel/phan-rang-thap-cham-ninh-thuan-vn.html",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=TTC+Resort+Ninh+Thu%E1%BA%ADn"
-            },
-            {
-                category: "ninhchu",
-                name: "Long Thuận Hotel & Resort",
-                area: "01 Yên Ninh, Bình Sơn - Ninh Chữ",
-                label: "Website chính thức",
-                note: "Resort/hotel thật có website riêng, gần biển và gần trục trung tâm nên hợp nếu muốn kết hợp nghỉ biển với chạy xe đi các điểm trong ngày.",
-                tags: ["Website chính thức", "Gần biển", "Thuận đường"],
-                sourceUrl: "https://longthuanhotelresort.com/",
-                bookUrl: "https://www.ivivu.com/khach-san-ninh-thuan/long-thuan-hotel-resort-ninh-thuan",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Long+Thu%E1%BA%ADn+Hotel+%26+Resort"
-            },
-            {
-                category: "ninhchu",
-                name: "Sài Gòn - Ninh Chữ Hotel & Resort",
-                area: "Khánh Hải / Ninh Chữ",
-                label: "Booking + Tripadvisor",
-                note: "Điểm lưu trú lâu năm trên trục Ninh Chữ. Không giữ link mơ hồ như bản cũ nữa; bản mới dẫn thẳng sang trang xem phòng và review.",
-                tags: ["Có review thật", "Trục Ninh Chữ", "Kiểm tra giá live"],
-                sourceUrl: "https://www.booking.com/hotel/vn/saigon-ninh-chu-resort.vi.html",
-                bookUrl: "https://www.tripadvisor.com.vn/Hotel_Review-g13821331-d952424-Reviews-Saigon_Ninh_Chu_Hotel_Resort-Khanh_Hai_Ninh_Thuan_Province.html",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Saigon+Ninh+Chu+Hotel+%26+Resort"
-            },
-            {
-                category: "ninhchu",
-                name: "Aniise Villa Resort",
-                area: "Trục Phan Rang - Ninh Chữ",
-                label: "Agoda",
-                note: "Bản cũ có đúng tên nhưng gắn dữ liệu cứng về giá và tiện ích. Bản mới chỉ giữ tên thật, link xem phòng thật và link Maps đúng tên.",
-                tags: ["Có trang đặt phòng", "Phù hợp nhóm nhỏ", "Xem review live"],
-                sourceUrl: "https://www.agoda.com/aniise-villa-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html",
-                bookUrl: "https://www.agoda.com/aniise-villa-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Aniise+Villa+Resort"
-            },
-            {
-                category: "vinhhy",
-                name: "Vĩnh Hy Resort",
-                area: "Vịnh Vĩnh Hy",
-                label: "Website chính thức",
-                note: "Nếu muốn ngủ gần vịnh thay vì ở Ninh Chữ, đây là một điểm lưu trú thật có website riêng. Hợp với kế hoạch ưu tiên biển và Núi Chúa.",
-                tags: ["Ở sát Vĩnh Hy", "Có website chính thức", "Ít chạy xe hơn ngày 2"],
-                sourceUrl: "https://resortvinhhy.com/",
-                bookUrl: "https://www.agoda.com/vi-vn/vinh-hy-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=V%C4%A9nh+Hy+Resort"
-            },
-            {
-                category: "vinhhy",
-                name: "Amanoi",
-                area: "Khu Vĩnh Hy - Núi Chúa",
-                label: "Aman chính thức",
-                note: "Điểm cao cấp thật ở khu Vĩnh Hy/Núi Chúa. Không phù hợp mọi ngân sách, nhưng là lựa chọn xác minh được và là mốc tham chiếu tốt nếu muốn ở hẳn khu thiên nhiên.",
-                tags: ["Rất cao cấp", "Trang chính thức", "Ở gần Núi Chúa"],
-                sourceUrl: "https://www.aman.com/vi-vn/resorts/amanoi",
-                bookUrl: "https://www.tripadvisor.com.vn/Hotel_Review-g12622782-d5784629-Reviews-Amanoi-Vinh_Hai_Ninh_Thuan_Province.html",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Amanoi+V%C4%A9nh+Hy"
+        const hotels = [
+            { id: "ttc-ninh-thuan", name: "TTC Resort - Ninh Thuận", category: "ninhchu", stars: 4, priceNum: 7800000, price: "Xem giá live", location: "Bãi biển Ninh Chữ", features: "Trang chính thức rõ ràng • Nằm trên trục nghỉ biển quen thuộc của Phan Rang", recommend: true, map: "TTC+Resort+Ninh+Thu%E1%BA%ADn", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80", note: "Nguồn: TTC Hospitality", source: "https://ttchospitality.vn/ttc-hotel/ttc-resort-ninh-thuan", booking: "https://www.agoda.com/vi-vn/ttc-resort-premium-ninh-thuan/hotel/phan-rang-thap-cham-ninh-thuan-vn.html" },
+            { id: "long-thuan", name: "Long Thuận Hotel & Resort", category: "ninhchu", stars: 4, priceNum: 7600000, price: "Xem giá live", location: "01 Yên Ninh, Bình Sơn - Ninh Chữ", features: "Có website riêng • Gần biển và thuận đường chạy điểm trong ngày", recommend: true, map: "Long+Thu%E1%BA%ADn+Hotel+%26+Resort", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức", source: "https://longthuanhotelresort.com/", booking: "https://www.ivivu.com/khach-san-ninh-thuan/long-thuan-hotel-resort-ninh-thuan" },
+            { id: "saigon-ninh-chu", name: "Sài Gòn - Ninh Chữ Hotel & Resort", category: "ninhchu", stars: 4, priceNum: 7900000, price: "Xem giá live", location: "Khánh Hải / Ninh Chữ", features: "Điểm lưu trú lâu năm • Có trang Booking và Tripadvisor để đối chiếu review", recommend: true, map: "Saigon+Ninh+Chu+Hotel+%26+Resort", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80", note: "Nguồn: Booking + Tripadvisor", source: "https://www.booking.com/hotel/vn/saigon-ninh-chu-resort.vi.html", booking: "https://www.tripadvisor.com.vn/Hotel_Review-g13821331-d952424-Reviews-Saigon_Ninh_Chu_Hotel_Resort-Khanh_Hai_Ninh_Thuan_Province.html" },
+            { id: "aniise-villa", name: "Aniise Villa Resort", category: "special", stars: 4, priceNum: 9200000, price: "Xem giá live", location: "Trục Phan Rang - Ninh Chữ", features: "Tên thật đã được giữ lại • Chỉ còn link OTA thật và Maps thật", recommend: false, map: "Aniise+Villa+Resort", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80", note: "Nguồn: Agoda", source: "https://www.agoda.com/aniise-villa-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html", booking: "https://www.agoda.com/aniise-villa-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html" },
+            { id: "vinh-hy-resort", name: "Vĩnh Hy Resort", category: "vinhhy", stars: 3, priceNum: 8200000, price: "Xem giá live", location: "Vịnh Vĩnh Hy", features: "Ở gần vịnh thật • Hợp nếu muốn ưu tiên cụm Vĩnh Hy - Núi Chúa", recommend: true, map: "V%C4%A9nh+Hy+Resort", img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức", source: "https://resortvinhhy.com/", booking: "https://www.agoda.com/vi-vn/vinh-hy-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html" },
+            { id: "amanoi", name: "Amanoi", category: "special", stars: 5, priceNum: 99999999, price: "Rất cao cấp • xem live", location: "Khu Vĩnh Hy - Núi Chúa", features: "Mốc tham chiếu cao cấp đã verify • Phù hợp nếu ưu tiên nghỉ dưỡng thiên nhiên", recommend: false, map: "Amanoi+V%C4%A9nh+Hy", img: "https://images.unsplash.com/photo-1615571022219-eb45cf7faa36?auto=format&fit=crop&w=800&q=80", note: "Nguồn: Aman chính thức", source: "https://www.aman.com/vi-vn/resorts/amanoi", booking: "https://www.tripadvisor.com.vn/Hotel_Review-g12622782-d5784629-Reviews-Amanoi-Vinh_Hai_Ninh_Thuan_Province.html" }
+        ];
+
+        const places = [
+            { id: "vinh-hy", name: "Vịnh Vĩnh Hy", category: "visit", budget: "Chi phí tour biển: kiểm tra live", timing: "Sáng Ngày 2", location: "Nhánh đông bắc từ Phan Rang", desc: "Điểm biển đẹp nhất của kế hoạch. Nên đi sớm và hỏi trực tiếp dịch vụ tàu đáy kính / snorkeling trước ngày đi.", map: "V%E1%BB%8Bnh+V%C4%A9nh+Hy", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80", label: "Nguồn chính thức / VQG", source: "https://vqgnuichua.vn/" },
+            { id: "hang-rai", name: "Hang Rái", category: "visit", budget: "Kiểm tra phí tại thời điểm đi", timing: "Chiều Ngày 2", location: "Khu Núi Chúa", desc: "Đi cùng tuyến Vĩnh Hy. Bản cũ ghi miễn phí như mặc định là không an toàn nên đã bỏ.", map: "Hang+R%C3%A1i+Ninh+Thu%E1%BA%ADn", img: "https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?auto=format&fit=crop&w=800&q=80", label: "Cảnh quan", source: "https://vqgnuichua.vn/" },
+            { id: "nui-chua", name: "Vườn Quốc gia Núi Chúa", category: "visit", budget: "Xem hoạt động / tour live", timing: "Sáng hoặc ghép với Vĩnh Hy", location: "Ninh Hải", desc: "Nguồn chính thức xác nhận khu này đang vận hành các điểm tham quan và dịch vụ liên quan.", map: "V%C6%B0%E1%BB%9Dn+qu%E1%BB%91c+gia+N%C3%BAi+Ch%C3%BAa", img: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80", label: "Nguồn chính thức", source: "https://vqgnuichua.vn/" },
+            { id: "po-klong-garai", name: "Tháp Po Klong Garai", category: "visit", budget: "Xem phí tham quan live", timing: "Chiều Ngày 1", location: "Gần trung tâm Phan Rang", desc: "Điểm văn hóa Chăm chắc tay nhất để ghép nhẹ vào ngày đầu mà không làm lịch quá dồn.", map: "Po+Klong+Garai", img: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=800&q=80", label: "Vietnam Tourism", source: "https://vietnamtourism.vn/en/index.php/news/items/17178" },
+            { id: "bau-truc", name: "Làng gốm Bàu Trúc", category: "visit", budget: "Tùy hoạt động trải nghiệm", timing: "Sáng Ngày 3", location: "Ninh Phước", desc: "Điểm làng nghề Chăm đã được giữ lại với căn cứ từ UNESCO, phù hợp cho chặng cuối.", map: "L%C3%A0ng+g%E1%BB%91m+B%C3%A0u+Tr%C3%BAc", img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=800&q=80", label: "UNESCO", source: "https://ich.unesco.org/en/USL/art-of-pottery-making-of-chm-people-01574" },
+            { id: "my-nghiep", name: "Làng dệt Mỹ Nghiệp", category: "visit", budget: "Tự do mua sắm / trải nghiệm", timing: "Sáng Ngày 3", location: "Ninh Phước", desc: "Ghép hợp lý với Bàu Trúc thay vì đi lẻ. Bản mới gắn lại nguồn thay vì chỉ mô tả suông.", map: "L%C3%A0ng+d%E1%BB%87t+M%E1%BB%B9+Nghi%E1%BB%87p", img: "https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&w=800&q=80", label: "Vietnam Tourism", source: "https://vietnamtourism.gov.vn/post/16023" },
+            { id: "thai-an", name: "Vườn nho Thái An", category: "food", budget: "Tùy mua nho / đặc sản", timing: "Chiều Ngày 2", location: "Thái An - Ninh Hải", desc: "Giữ lại như điểm trải nghiệm và mua quà, không còn gắn chi phí cứng cho cả đoàn như bản cũ.", map: "V%C6%B0%E1%BB%9Dn+nho+Th%C3%A1i+An", img: "https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=800&q=80", label: "Điểm trải nghiệm", source: "https://sg.trip.com/travel-guide/attraction/ninh-hai/vn-nho-thi-an-138971861?poiType=3" },
+            { id: "ninh-chu-seafood", name: "Khu hải sản Ninh Chữ", category: "food", budget: "Xem quán và giá theo review live", timing: "Tối Ngày 1", location: "Trục biển Ninh Chữ - Khánh Hải", desc: "Giữ khu ăn thật, bỏ cách gắn cứng món / giá / quán như thể đã chốt.", map: "h%E1%BA%A3i+s%E1%BA%A3n+Ninh+Ch%E1%BB%AF", img: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80", label: "Ăn theo review live", source: "https://www.google.com/maps/search/?api=1&query=h%E1%BA%A3i+s%E1%BA%A3n+Ninh+Ch%E1%BB%AF" },
+            { id: "phan-rang-center-food", name: "Khu ăn trung tâm Phan Rang", category: "food", budget: "Tùy quán", timing: "Tối Ngày 1 hoặc Ngày 2", location: "Quanh chợ / trung tâm thành phố", desc: "Ưu tiên nhóm món địa phương như bánh căn, cơm gà, bánh xèo theo review mới nhất.", map: "b%C3%A1nh+c%C4%83n+Phan+Rang", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80", label: "Món địa phương", source: "https://www.google.com/maps/search/?api=1&query=b%C3%A1nh+c%C4%83n+Phan+Rang" },
+            { id: "vinh-hy-food", name: "Khu bè / nhà hàng quanh Vĩnh Hy", category: "food", budget: "Xem giá live trước khi gọi món", timing: "Trưa Ngày 2", location: "Bến Vĩnh Hy", desc: "Ăn được sau khi đi biển nhưng giá thay đổi mạnh theo loại hải sản và thời điểm.", map: "nh%C3%A0+h%C3%A0ng+V%C4%A9nh+Hy", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80", label: "Sau tour biển", source: "https://www.google.com/maps/search/?api=1&query=nh%C3%A0+h%C3%A0ng+V%C4%A9nh+Hy" }
+        ];
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+
+        function filterHotels(category) {
+            document.querySelectorAll('#lodging .filter-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = Array.from(document.querySelectorAll('#lodging .filter-btn')).find(btn => btn.getAttribute('onclick').includes(category));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const container = document.getElementById('hotel-cards-container');
+            container.innerHTML = '';
+            let filtered = hotels;
+
+            if (category === 'special') {
+                filtered = hotels.filter(h => h.category === 'special' || h.recommend);
+            } else if (category !== 'all') {
+                filtered = hotels.filter(h => h.category === category);
             }
-        ];
 
-        const spots = [
-            {
-                kind: "visit",
-                name: "Vịnh Vĩnh Hy",
-                area: "Nhánh đông bắc từ Phan Rang",
-                label: "Điểm biển",
-                note: "Là cụm biển nên ưu tiên đi sớm. Nếu có ý định đi tàu đáy kính hoặc snorkeling, nên hỏi trực tiếp trước ngày đi.",
-                tags: ["Biển đẹp", "Đi buổi sáng", "Hỏi giá live"],
-                sourceUrl: "https://vqgnuichua.vn/",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=V%E1%BB%8Bnh+V%C4%A9nh+Hy"
-            },
-            {
-                kind: "visit",
-                name: "Hang Rái",
-                area: "Khu Núi Chúa",
-                label: "Điểm cảnh quan",
-                note: "Đi chung tuyến với Vĩnh Hy và Núi Chúa. Bản cũ ghi miễn phí cố định là không an toàn; nên kiểm tra phí tại thời điểm đi.",
-                tags: ["Đi cùng Vĩnh Hy", "Check phí trước", "Đẹp lúc nắng tốt"],
-                sourceUrl: "https://vqgnuichua.vn/",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Hang+R%C3%A1i+Ninh+Thu%E1%BA%ADn"
-            },
-            {
-                kind: "visit",
-                name: "Vườn Quốc gia Núi Chúa",
-                area: "Ninh Hải",
-                label: "Nguồn chính thức",
-                note: "Đây là nhóm điểm quan trọng nhất để làm day-trip thiên nhiên. Nguồn chính thức xác nhận khu này là Vườn quốc gia và có tour/điểm tham quan đang hoạt động.",
-                tags: ["Nguồn chính thức", "Có tour", "Nên xem cập nhật"],
-                sourceUrl: "https://vqgnuichua.vn/",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=V%C6%B0%E1%BB%9Dn+qu%E1%BB%91c+gia+N%C3%BAi+Ch%C3%BAa"
-            },
-            {
-                kind: "visit",
-                name: "Tháp Po Klong Garai",
-                area: "Gần trung tâm Phan Rang",
-                label: "Điểm văn hóa Chăm",
-                note: "Là điểm văn hóa chắc tay nhất để ghép vào ngày đầu hoặc sáng ngày cuối. Không phải điểm quá xa nên hợp cho gia đình hơn việc nhồi thêm nhiều điểm ngoài biển.",
-                tags: ["Gần trung tâm", "Đi nhẹ", "Di tích Chăm"],
-                sourceUrl: "https://vietnamtourism.vn/en/index.php/news/items/17178",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=Po+Klong+Garai"
-            },
-            {
-                kind: "visit",
-                name: "Làng gốm Bàu Trúc",
-                area: "Ninh Phước",
-                label: "Làng nghề Chăm",
-                note: "Đây là điểm thật, có căn cứ từ nguồn UNESCO về nghệ thuật gốm Chăm gắn với Bàu Trúc. Hợp ghé trước khi rời Phan Rang.",
-                tags: ["Di sản Chăm", "Mua quà", "Dễ ghép ngày 3"],
-                sourceUrl: "https://ich.unesco.org/en/USL/art-of-pottery-making-of-chm-people-01574",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=L%C3%A0ng+g%E1%BB%91m+B%C3%A0u+Tr%C3%BAc"
-            },
-            {
-                kind: "visit",
-                name: "Làng dệt Mỹ Nghiệp",
-                area: "Ninh Phước",
-                label: "Làng nghề Chăm",
-                note: "Điểm văn hóa thật, nằm gần Bàu Trúc nên nên đi cùng nhau. Bản cũ đúng ý tưởng nhưng ghi rất tự tin mà không gắn nguồn.",
-                tags: ["Gần Bàu Trúc", "Văn hóa Chăm", "Thủ công"],
-                sourceUrl: "https://vietnamtourism.gov.vn/post/16023",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=L%C3%A0ng+d%E1%BB%87t+M%E1%BB%B9+Nghi%E1%BB%87p"
-            },
-            {
-                kind: "food",
-                name: "Khu hải sản Ninh Chữ",
-                area: "Trục biển Ninh Chữ - Khánh Hải",
-                label: "Ăn theo review live",
-                note: "Bản cũ gắn nhiều món và mức giá như thể đã chốt quán. Bản mới chỉ giữ khu ăn thật, còn quán cụ thể nên chọn theo review mới nhất trong ngày.",
-                tags: ["Không khóa quán", "Xem review mới", "Hợp tối ngày 1"],
-                sourceUrl: "https://www.google.com/maps/search/?api=1&query=h%E1%BA%A3i+s%E1%BA%A3n+Ninh+Ch%E1%BB%AF",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=h%E1%BA%A3i+s%E1%BA%A3n+Ninh+Ch%E1%BB%AF"
-            },
-            {
-                kind: "food",
-                name: "Khu ăn trung tâm Phan Rang",
-                area: "Quanh chợ / trung tâm thành phố",
-                label: "Bánh căn - cơm gà",
-                note: "Giữ lại nhóm món đặc trưng thay vì gán bừa một quán không chắc. Vào trung tâm Phan Rang sẽ dễ chọn bánh căn, cơm gà, bánh xèo theo review mới.",
-                tags: ["Món địa phương", "Đi tối được", "Dễ thay đổi quán"],
-                sourceUrl: "https://www.google.com/maps/search/?api=1&query=b%C3%A1nh+c%C4%83n+Phan+Rang",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=c%C6%A1m+g%C3%A0+Phan+Rang"
-            },
-            {
-                kind: "food",
-                name: "Khu bè / nhà hàng quanh Vĩnh Hy",
-                area: "Bến Vĩnh Hy",
-                label: "Ăn sau khi đi biển",
-                note: "Ăn được sau khi đi vịnh nhưng giá hải sản và loại tàu/nhà bè thay đổi mạnh. Không giữ con số cứng như file cũ.",
-                tags: ["Ăn sau biển", "Giá biến động", "Hỏi trước khi gọi món"],
-                sourceUrl: "https://www.google.com/maps/search/?api=1&query=nh%C3%A0+h%C3%A0ng+V%C4%A9nh+Hy",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=nh%C3%A0+h%C3%A0ng+V%C4%A9nh+Hy"
-            },
-            {
-                kind: "food",
-                name: "Vườn nho Thái An",
-                area: "Thái An - Ninh Hải",
-                label: "Mua nho / thử nho",
-                note: "Giữ lại vì đây là điểm thật và đi thuận tuyến từ Hang Rái về. Bản mới chỉ coi đây là điểm trải nghiệm và mua đặc sản, không gán chi phí cứng cho cả đoàn.",
-                tags: ["Thuận tuyến", "Mua quà", "Xem giờ mở live"],
-                sourceUrl: "https://sg.trip.com/travel-guide/attraction/ninh-hai/vn-nho-thi-an-138971861?poiType=3",
-                mapUrl: "https://www.google.com/maps/search/?api=1&query=V%C6%B0%E1%BB%9Dn+nho+Th%C3%A1i+An"
+            filtered.forEach(h => {
+                const starsHtml = '★'.repeat(h.stars) + '☆'.repeat(5 - h.stars);
+                const tagHtml = h.recommend ? `<div class="hotel-tag recommend">🔥 Đã verify tốt</div>` : `<div class="hotel-tag">${h.category.toUpperCase()}</div>`;
+
+                container.innerHTML += `
+                    <div class="hotel-card">
+                        <div class="hotel-img-wrapper">
+                            <img src="${h.img}" alt="${h.name}">
+                            ${tagHtml}
+                        </div>
+                        <div class="hotel-info">
+                            <div class="hotel-stars">${starsHtml}</div>
+                            <div class="hotel-name">${h.name}</div>
+                            <div class="hotel-meta-row">📍 Vị trí: ${h.location}</div>
+                            <div class="hotel-meta-row">✨ ${h.features}</div>
+                            <div class="hotel-price-row">
+                                <div class="hotel-price">
+                                    <span>Giá cho ngày đi</span>
+                                    ${h.price}
+                                </div>
+                            </div>
+                            <div class="verify-note">${h.note}</div>
+                            <div class="hotel-actions" style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+                                <a href="${h.source}" target="_blank" class="action-btn action-btn-select">🔗 Nguồn</a>
+                                <a href="${h.booking}" target="_blank" class="action-btn action-btn-book">🛏️ Xem phòng</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=${h.map}" target="_blank" class="action-btn action-btn-map">📍 Maps</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function filterPlaces(category) {
+            document.querySelectorAll('#places .filter-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = Array.from(document.querySelectorAll('#places .filter-btn')).find(btn => btn.getAttribute('onclick').includes(category));
+            if (activeBtn) activeBtn.classList.add('active');
+
+            const container = document.getElementById('places-container');
+            container.innerHTML = '';
+            let filtered = places;
+            if (category !== 'all') {
+                filtered = places.filter(p => p.category === category);
             }
-        ];
 
-        const sources = [
-            ["TTC Resort - Ninh Thuận", "https://ttchospitality.vn/ttc-hotel/ttc-resort-ninh-thuan"],
-            ["Long Thuận Hotel & Resort", "https://longthuanhotelresort.com/"],
-            ["Sài Gòn - Ninh Chữ Hotel & Resort trên Booking", "https://www.booking.com/hotel/vn/saigon-ninh-chu-resort.vi.html"],
-            ["Aniise Villa Resort trên Agoda", "https://www.agoda.com/aniise-villa-resort/hotel/phan-rang-thap-cham-ninh-thuan-vn.html"],
-            ["Vĩnh Hy Resort", "https://resortvinhhy.com/"],
-            ["Amanoi", "https://www.aman.com/vi-vn/resorts/amanoi"],
-            ["Vườn quốc gia Núi Chúa", "https://vqgnuichua.vn/"],
-            ["Po Klong Garai - Vietnam Tourism", "https://vietnamtourism.vn/en/index.php/news/items/17178"],
-            ["Bàu Trúc - UNESCO / Chăm pottery", "https://ich.unesco.org/en/USL/art-of-pottery-making-of-chm-people-01574"],
-            ["Mỹ Nghiệp - Vietnam Tourism", "https://vietnamtourism.gov.vn/post/16023"],
-            ["Vườn nho Thái An", "https://sg.trip.com/travel-guide/attraction/ninh-hai/vn-nho-thi-an-138971861?poiType=3"]
-        ];
+            filtered.forEach(p => {
+                const badge = p.category === 'food' ? '🍔 Ăn uống' : '🎡 Tham quan';
+                const badgeClass = p.category === 'food' ? '' : 'fun';
 
-        function activateTab(tabId) {
-            document.querySelectorAll(".tab-btn").forEach((button) => {
-                button.classList.toggle("active", button.dataset.tab === tabId);
-            });
-            document.querySelectorAll(".tab-panel").forEach((panel) => {
-                panel.classList.toggle("active", panel.id === tabId);
+                container.innerHTML += `
+                    <div class="place-card">
+                        <div class="place-img-wrapper">
+                            <img src="${p.img}" alt="${p.name}">
+                            <div class="place-category ${badgeClass}">${badge}</div>
+                        </div>
+                        <div class="place-info">
+                            <div class="place-name">${p.name}</div>
+                            <div class="place-meta">
+                                <div>📍 Vị trí: <strong>${p.location}</strong></div>
+                                <div>⏱️ Gợi ý đi: <strong>${p.timing}</strong></div>
+                                <div>💰 Chi phí dự kiến: <strong>${p.budget}</strong></div>
+                            </div>
+                            <p class="place-desc">${p.desc}</p>
+                            <div class="verify-note">${p.label}</div>
+                            <div class="place-action" style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap;">
+                                <a href="${p.source}" target="_blank" class="action-btn action-btn-select">🔗 Nguồn</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=${p.map}" target="_blank" class="action-btn action-btn-map">📍 Chỉ đường</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
             });
         }
 
-        document.querySelectorAll(".tab-btn").forEach((button) => {
-            button.addEventListener("click", () => activateTab(button.dataset.tab));
-        });
-
-        function renderStays(filter = "all") {
-            const host = document.getElementById("stay-list");
-            const filtered = filter === "all" ? stays : stays.filter((item) => item.category === filter);
-            host.innerHTML = filtered.map((item) => `
-                <article class="stay">
-                    <div class="kicker">${item.label}</div>
-                    <div class="title-row">
-                        <h3>${item.name}</h3>
-                        <span class="pill">${item.category === "ninhchu" ? "Ninh Chữ" : "Vĩnh Hy"}</span>
-                    </div>
-                    <div class="meta">Khu vực: ${item.area}</div>
-                    <p class="desc">${item.note}</p>
-                    <div class="chips">${item.tags.map((tag) => `<span class="chip">${tag}</span>`).join("")}</div>
-                    <div class="actions">
-                        <a class="action primary" href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">Nguồn / Trang chính</a>
-                        <a class="action" href="${item.bookUrl}" target="_blank" rel="noopener noreferrer">Xem phòng / review</a>
-                        <a class="action" href="${item.mapUrl}" target="_blank" rel="noopener noreferrer">Mở Maps</a>
-                    </div>
-                </article>
-            `).join("");
+        function copyTripLink() {
+            const tempInput = document.createElement('input');
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            alert('Đã sao chép link kế hoạch Ninh Thuận.');
         }
 
-        function renderSpots(filter = "all") {
-            const host = document.getElementById("spot-list");
-            const filtered = filter === "all" ? spots : spots.filter((item) => item.kind === filter);
-            host.innerHTML = filtered.map((item) => `
-                <article class="spot">
-                    <div class="kicker">${item.label}</div>
-                    <div class="title-row">
-                        <h3>${item.name}</h3>
-                        <span class="pill">${item.kind === "visit" ? "Tham quan" : "Ăn uống"}</span>
-                    </div>
-                    <div class="meta">Khu vực: ${item.area}</div>
-                    <p class="desc">${item.note}</p>
-                    <div class="chips">${item.tags.map((tag) => `<span class="chip">${tag}</span>`).join("")}</div>
-                    <div class="actions">
-                        <a class="action primary" href="${item.sourceUrl}" target="_blank" rel="noopener noreferrer">${item.kind === "visit" ? "Nguồn verify" : "Mở điểm / khu ăn"}</a>
-                        <a class="action" href="${item.mapUrl}" target="_blank" rel="noopener noreferrer">Mở Maps</a>
-                    </div>
-                </article>
-            `).join("");
-        }
-
-        function renderSources() {
-            const host = document.getElementById("source-list");
-            host.innerHTML = sources.map(([label, url]) => `
-                <div class="source-item">
-                    <strong>${label}</strong><br>
-                    <a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>
-                </div>
-            `).join("");
-        }
-
-        document.querySelectorAll("#stay-filters .filter-btn").forEach((button) => {
-            button.addEventListener("click", () => {
-                document.querySelectorAll("#stay-filters .filter-btn").forEach((item) => item.classList.remove("active"));
-                button.classList.add("active");
-                renderStays(button.dataset.filter);
-            });
-        });
-
-        document.querySelectorAll("#spot-filters .filter-btn").forEach((button) => {
-            button.addEventListener("click", () => {
-                document.querySelectorAll("#spot-filters .filter-btn").forEach((item) => item.classList.remove("active"));
-                button.classList.add("active");
-                renderSpots(button.dataset.filter);
-            });
-        });
-
-        renderStays();
-        renderSpots();
-        renderSources();
+        window.onload = function() {
+            filterHotels('all');
+            filterPlaces('all');
+        };
     </script>
 </body>
 </html>
