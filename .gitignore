@@ -5,4 +5,6 @@
 !family-travel-jun-2026/
 !family-travel-jun-2026/**
 !.gitignore
+!.nojekyll
+!index.html
 !README.md
