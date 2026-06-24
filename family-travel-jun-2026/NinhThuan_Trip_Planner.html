@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cẩm Nang & Kế Hoạch Trip Ninh Thuận 3N2Đ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0f766e;
+            --primary-dark: #0d5f58;
+            --primary-light: #ccfbf1;
+            --accent: #f59e0b;
+            --accent-light: #fef3c7;
+            --success: #10b981;
+            --success-light: #d1fae5;
+            --danger: #ef4444;
+            --danger-light: #fee2e2;
+            --bg-body: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.07);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+        /* HERO */
+        .hero {
+            height: 360px;
+            background: linear-gradient(160deg, rgba(15,118,110,0.5) 0%, rgba(15,23,42,0.88) 100%),
+                        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
+            display: flex; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px;
+        }
+        .badge-trip { background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); padding: 6px 18px; border-radius: 50px; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; display: inline-block; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.25); }
+        .hero h1 { font-size: 2.4rem; font-weight: 800; line-height: 1.15; margin-bottom: 12px; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+        .hero p { font-size: 1.05rem; opacity: 0.92; font-weight: 500; }
+
+        /* CONTAINER */
+        .container { max-width: 1200px; margin: -60px auto 60px; padding: 0 20px; position: relative; z-index: 5; }
+
+        /* TAB NAV */
+        .tab-nav { display: flex; background: white; padding: 8px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); margin-bottom: 30px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; border: 1px solid var(--border-color); gap: 4px; }
+        .tab-nav::-webkit-scrollbar { display: none; }
+        .tab-btn { flex: 1; min-width: max-content; display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 11px 18px; border: none; background: none; color: var(--text-muted); font-weight: 600; font-size: 0.9rem; border-radius: var(--radius-sm); cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .tab-btn.active { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(15,118,110,0.3); }
+        .tab-content { display: none; animation: fadeIn 0.35s ease forwards; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* INFO CARDS */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px,1fr)); gap: 18px; margin-bottom: 28px; }
+        .info-card { background: white; border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); display: flex; align-items: center; gap: 15px; }
+        .info-icon { width: 50px; height: 50px; border-radius: 50%; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+        .info-card.accent .info-icon { background: var(--accent-light); color: var(--accent); }
+        .info-card.success .info-icon { background: var(--success-light); color: var(--success); }
+        .info-card-text span { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-card-text h3 { font-size: 1.12rem; font-weight: 700; margin-top: 3px; }
+
+        /* CARD */
+        .card { background: white; border-radius: var(--radius-md); box-shadow: var(--shadow-md); border: 1px solid var(--border-color); padding: 26px; margin-bottom: 28px; overflow: hidden; }
+        .card-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--border-color); padding-bottom: 14px; margin-bottom: 22px; flex-wrap: wrap; gap: 10px; }
+        .card-title { font-size: 1.25rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        .text-muted { color: var(--text-muted); font-size: 0.88rem; }
+
+        /* BUDGET CALCULATOR */
+        .budget-split { display: grid; grid-template-columns: 1fr; gap: 28px; }
+        @media(min-width:768px){ .budget-split { grid-template-columns: 1.2fr 0.8fr; } }
+        .slider-group { margin-bottom: 18px; }
+        .slider-header { display: flex; justify-content: space-between; margin-bottom: 7px; font-weight: 600; font-size: 0.92rem; }
+        .slider-value { color: var(--primary); font-weight: 700; }
+        input[type=range] { width: 100%; height: 6px; background: #cbd5e1; border-radius: 5px; outline: none; -webkit-appearance: none; }
+        input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%; background: var(--primary); cursor: pointer; box-shadow: 0 0 5px rgba(15,118,110,0.5); transition: transform 0.1s; }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.25); }
+        .calc-box { background: var(--bg-body); border-radius: var(--radius-md); padding: 24px; border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: center; }
+        .calc-total { text-align: center; margin-bottom: 18px; }
+        .calc-total span { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; }
+        .calc-total h2 { font-size: 2.2rem; font-weight: 800; color: var(--primary); margin-top: 4px; }
+        .budget-box { padding: 12px 15px; border-radius: var(--radius-sm); font-size: 0.88rem; text-align: center; font-weight: 700; }
+        .budget-safe { background: var(--success-light); color: var(--success); }
+        .budget-danger { background: var(--danger-light); color: var(--danger); }
+
+        /* 2-COL LAYOUT */
+        .two-col { display: grid; grid-template-columns: 1fr; gap: 26px; }
+        @media(min-width:768px){ .two-col { grid-template-columns: 1fr 1.1fr; } }
+        .img-banner { border-radius: var(--radius-md); overflow: hidden; height: 260px; position: relative; }
+        .img-banner img { width: 100%; height: 100%; object-fit: cover; }
+        .img-caption { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 15px; font-size: 0.88rem; font-weight: 600; }
+        .spec-list { list-style: none; }
+        .spec-list li { position: relative; padding-left: 26px; margin-bottom: 10px; font-size: 0.94rem; }
+        .spec-list li::before { content: "✓"; position: absolute; left: 0; top: 1px; color: var(--success); font-weight: bold; }
+
+        /* PROVIDER TABLE */
+        .table-wrap { overflow-x: auto; }
+        .data-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 650px; }
+        .data-table th, .data-table td { padding: 11px 14px; border-bottom: 1px solid var(--border-color); }
+        .data-table th { background: var(--bg-body); font-weight: 700; text-align: left; }
+        .data-table tr:hover td { background: #f8fafc; }
+        .pbadge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; margin-top: 4px; }
+        .pbadge-primary { background: var(--primary-light); color: var(--primary); }
+        .pbadge-success { background: var(--success-light); color: var(--success); }
+
+        /* FILTER */
+        .filter-wrap { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 22px; }
+        .filter-btn { background: white; border: 1px solid var(--border-color); padding: 8px 16px; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 0.88rem; color: var(--text-muted); transition: all 0.2s; font-family: inherit; }
+        .filter-btn.active, .filter-btn:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+
+        /* HOTEL GRID */
+        .hotel-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+        @media(min-width:640px){ .hotel-grid { grid-template-columns: repeat(2,1fr); } }
+        @media(min-width:1024px){ .hotel-grid { grid-template-columns: repeat(3,1fr); } }
+        .hotel-card { background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); transition: all 0.3s; display: flex; flex-direction: column; }
+        .hotel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: rgba(15,118,110,0.3); }
+        .hotel-img { height: 175px; position: relative; background: #cbd5e1; }
+        .hotel-img img { width: 100%; height: 100%; object-fit: cover; }
+        .htag { position: absolute; top: 11px; left: 11px; background: var(--primary); color: white; padding: 3px 9px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+        .htag.rec { background: var(--accent); }
+        .hotel-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
+        .hstars { color: var(--accent); font-size: 0.82rem; margin-bottom: 4px; }
+        .hname { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; line-height: 1.3; }
+        .hmeta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; display: flex; flex-direction: column; gap: 4px; }
+        .hprice-row { margin-top: auto; border-top: 1px solid var(--border-color); padding-top: 13px; }
+        .hprice { font-weight: 800; color: var(--success); font-size: 1.1rem; }
+        .hprice small { font-size: 0.72rem; color: var(--text-muted); font-weight: 400; display: block; }
+        .hbtns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+        .hbtn { text-align: center; text-decoration: none; padding: 8px 10px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.82rem; transition: all 0.2s; }
+        .hbtn-map { background: var(--bg-body); color: var(--text-main); border: 1px solid var(--border-color); }
+        .hbtn-map:hover { background: #cbd5e1; }
+        .hbtn-book { background: var(--primary); color: white; }
+        .hbtn-book:hover { background: var(--primary-dark); }
+
+        /* PLACES GRID */
+        .places-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+        @media(min-width:640px){ .places-grid { grid-template-columns: repeat(2,1fr); } }
+        @media(min-width:1024px){ .places-grid { grid-template-columns: repeat(3,1fr); } }
+        .place-card { background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); transition: all 0.3s; display: flex; flex-direction: column; }
+        .place-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .place-img { height: 175px; position: relative; background: #cbd5e1; }
+        .place-img img { width: 100%; height: 100%; object-fit: cover; }
+        .pcat { position: absolute; top: 11px; left: 11px; background: var(--accent); color: white; padding: 3px 9px; border-radius: 50px; font-size: 0.72rem; font-weight: 700; }
+        .pcat.fun { background: var(--primary); }
+        .place-body { padding: 18px; display: flex; flex-direction: column; flex-grow: 1; }
+        .pname { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+        .pmeta { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; display: flex; flex-direction: column; gap: 4px; }
+        .pdesc { font-size: 0.88rem; margin-bottom: 14px; flex-grow: 1; color: var(--text-main); }
+        .pmap-btn { display: block; text-align: center; text-decoration: none; padding: 9px; border-radius: var(--radius-sm); font-weight: 600; font-size: 0.85rem; background: var(--bg-body); color: var(--text-main); border: 1px solid var(--border-color); margin-top: auto; }
+        .pmap-btn:hover { background: #cbd5e1; }
+
+        /* TIMELINE */
+        .itinerary-toggle { display: flex; justify-content: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border-color); }
+        .tday { font-size: 1.15rem; font-weight: 800; color: var(--primary); margin: 26px 0 14px -30px; display: inline-flex; align-items: center; gap: 8px; background: var(--primary-light); padding: 7px 14px; border-radius: var(--radius-sm); }
+        .titem { position: relative; margin-bottom: 22px; }
+        .tdot { position: absolute; left: -30px; top: 4px; width: 17px; height: 17px; border-radius: 50%; background: white; border: 3px solid var(--primary); }
+        .ttime { font-size: 0.82rem; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 3px; }
+        .ttitle { font-size: 1rem; font-weight: 700; margin-bottom: 5px; }
+        .tdesc { font-size: 0.9rem; color: var(--text-muted); }
+
+        /* CHECKLIST */
+        .cl-group { margin-bottom: 22px; }
+        .cl-group h4 { font-size: 1rem; margin-bottom: 10px; color: var(--primary); border-left: 3px solid var(--primary); padding-left: 10px; }
+        .cl-item { display: flex; align-items: flex-start; gap: 12px; padding: 11px 14px; border-radius: var(--radius-sm); background: var(--bg-body); border: 1px solid var(--border-color); margin-bottom: 9px; cursor: pointer; transition: all 0.2s; }
+        .cl-item:hover { border-color: var(--primary); }
+        .cl-item.done { opacity: 0.6; }
+        .cl-item.done .cl-text { text-decoration: line-through; color: var(--text-muted); }
+        .cl-check { margin-top: 3px; width: 17px; height: 17px; accent-color: var(--primary); flex-shrink: 0; }
+        .cl-text { font-weight: 600; font-size: 0.92rem; }
+        .cl-note { font-size: 0.78rem; color: var(--text-muted); margin-top: 2px; }
+
+        /* SHARE BANNER */
+        .share-banner { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); border-radius: var(--radius-md); padding: 28px; color: white; text-align: center; box-shadow: var(--shadow-lg); }
+        .share-banner h3 { font-size: 1.4rem; margin-bottom: 8px; font-weight: 700; }
+        .share-banner p { font-size: 0.92rem; opacity: 0.9; margin-bottom: 18px; }
+        .share-btn { background: white; color: var(--primary); border: none; padding: 11px 24px; border-radius: 50px; font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+        .share-btn:hover { transform: scale(1.05); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+
+        /* ALERT BOX */
+        .alert-box { padding: 13px 16px; border-radius: var(--radius-sm); font-size: 0.9rem; margin-bottom: 22px; }
+        .alert-warn { background: var(--accent-light); border-left: 4px solid var(--accent); }
+        .alert-info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+
+        /* TEXT UTILS */
+        .text-success { color: var(--success); }
+        .fw700 { font-weight: 700; }
+        footer { text-align: center; padding: 36px 0; color: var(--text-muted); font-size: 0.82rem; border-top: 1px solid var(--border-color); margin-top: 56px; }
+    </style>
+    <style>
+        body { display: none !important; }
+    </style>
+    <script>
+        (function() {
+            const correctHash = 'f57df4fcbd098f97178520cb1ba094f678e1dca0e953930e88671684fb081a16';
+            const loginKey = 'family_travel_jun_2026_auth';
+            if (localStorage.getItem(loginKey) === correctHash) {
+                document.write('<style>body { display: block !important; }</style>');
+            } else {
+                window.location.href = 'index.html';
+            }
+        })();
+    </script>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+    <div>
+        <span class="badge-trip">🌿 Trip Planner • Đất Nho & Cừu • 6 Người</span>
+        <h1>Kế hoạch Ninh Thuận 3N2Đ</h1>
+        <p>Phan Rang – Tháp Chàm • Vịnh Vĩnh Hy • Cà Ná • Trọn gói Limousine</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- TAB NAV -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('overview')">🏠 Tổng quan</button>
+        <button class="tab-btn" onclick="switchTab('transport')">🚐 Xe Limousine</button>
+        <button class="tab-btn" onclick="switchTab('lodging')">🏨 Resort & Villa</button>
+        <button class="tab-btn" onclick="switchTab('places')">🦞 Ăn uống & Vui chơi</button>
+        <button class="tab-btn" onclick="switchTab('itinerary')">📅 Lịch trình</button>
+        <button class="tab-btn" onclick="switchTab('checklist')">📝 Chuẩn bị</button>
+    </nav>
+
+    <!-- ==================== TAB: OVERVIEW ==================== -->
+    <div id="overview" class="tab-content active">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">💰</div>
+                <div class="info-card-text"><span>Tổng budget</span><h3>27.000.000đ</h3></div>
+            </div>
+            <div class="info-card success">
+                <div class="info-icon">🏨</div>
+                <div class="info-card-text"><span>Budget nơi ở (2 đêm)</span><h3>6 – 8.500.000đ</h3></div>
+            </div>
+            <div class="info-card accent">
+                <div class="info-icon">🚐</div>
+                <div class="info-card-text"><span>Xe Limousine riêng</span><h3>3N2Đ ở lại phục vụ</h3></div>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">📍</div>
+                <div class="info-card-text"><span>Khoảng cách từ Q8</span><h3>~350 km</h3></div>
+            </div>
+        </div>
+
+        <!-- Budget Calculator -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🧮 Tính Toán Ngân Sách Linh Hoạt</h3>
+                <span class="text-muted">Kéo để điều chỉnh chi tiêu</span>
+            </div>
+            <div class="budget-split">
+                <div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>🏨 Nơi ở (2 đêm):</span><span class="slider-value" id="v-lodging">7.500.000đ</span></div>
+                        <input type="range" id="s-lodging" min="4000000" max="12000000" step="100000" value="7500000" oninput="calcBudget()">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>🚐 Xe Limousine 9 chỗ (3N2Đ):</span><span class="slider-value" id="v-transport">10.000.000đ</span></div>
+                        <input type="range" id="s-transport" min="8000000" max="13000000" step="100000" value="10000000" oninput="calcBudget()">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>🦐 Ăn uống (hải sản, dê, cừu, nho...):</span><span class="slider-value" id="v-food">6.500.000đ</span></div>
+                        <input type="range" id="s-food" min="4000000" max="10000000" step="100000" value="6500000" oninput="calcBudget()">
+                    </div>
+                    <div class="slider-group">
+                        <div class="slider-header"><span>🎟️ Vé tham quan & Vui chơi:</span><span class="slider-value" id="v-tickets">2.000.000đ</span></div>
+                        <input type="range" id="s-tickets" min="500000" max="5000000" step="100000" value="2000000" oninput="calcBudget()">
+                    </div>
+                </div>
+                <div class="calc-box">
+                    <div class="calc-total">
+                        <span>Ước Tính Tổng Chi Phí</span>
+                        <h2 id="total-budget">26.000.000đ</h2>
+                    </div>
+                    <div id="budget-status" class="budget-box budget-safe">✅ Nằm trong tầm kiểm soát!</div>
+                    <p style="font-size:0.78rem;color:var(--text-muted);text-align:center;margin-top:12px;">(Ninh Thuận xa hơn Phan Thiết ~150km, nên budget xe được điều chỉnh tăng tương ứng)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Strategy -->
+        <div class="card">
+            <div class="card-header"><h3 class="card-title">💡 Vì Sao Chọn Ninh Thuận?</h3></div>
+            <div class="two-col">
+                <div>
+                    <div class="alert-box alert-info" style="margin-bottom:16px;">
+                        <strong>🌿 Ninh Thuận – Vùng đất của ánh nắng, gió và màu sắc</strong><br>
+                        Nhiều nắng nhất Việt Nam (trên 300 ngày nắng/năm), là xứ sở của nho chín đỏ, đồng cừu bao la, biển xanh hoang sơ chưa bị thương mại hóa và văn hóa Chăm Pa huyền bí.
+                    </div>
+                    <h4 style="margin-bottom:8px;">✨ Trải nghiệm độc đáo chỉ có ở Ninh Thuận</h4>
+                    <ul class="spec-list">
+                        <li>Ăn thịt cừu / dê nướng sa tế cay nồng đặc sản vùng cát nóng.</li>
+                        <li>Tham quan vườn nho chín mọng và mua nho tươi, rượu nho tại Thái An.</li>
+                        <li>Bơi lặn ngắm san hô tại Vịnh Vĩnh Hy đẹp nhất miền Trung.</li>
+                        <li>Khám phá Hang Rái – bờ đá núi lửa triệu năm tuổi hùng vĩ.</li>
+                        <li>Cắm trại / tắm biển hoang sơ tại bãi biển Cà Ná.</li>
+                    </ul>
+                </div>
+                <div class="img-banner">
+                    <img src="https://images.unsplash.com/photo-1528543606781-2f6e6857f318?auto=format&fit=crop&w=800&q=80" alt="Ninh Thuan landscape">
+                    <div class="img-caption">Cảnh quan hoang sơ hùng vĩ của bờ biển Ninh Thuận</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TAB: TRANSPORT ==================== -->
+    <div id="transport" class="tab-content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🚐 Xe Limousine 9 Chỗ Riêng – Tuyến TP.HCM – Ninh Thuận</h3>
+                <span class="pbadge pbadge-primary">Bao trọn gói 3N2Đ</span>
+            </div>
+            <div class="two-col">
+                <div class="img-banner" style="height:300px;">
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=800&q=80" alt="Limousine interior">
+                    <div class="img-caption">Nội thất Dcar Limousine 9 chỗ VIP chuẩn ghế massage cao cấp</div>
+                </div>
+                <div>
+                    <h4 style="font-size:1rem;font-weight:700;margin-bottom:12px;">Lưu ý đặc biệt cho tuyến Ninh Thuận:</h4>
+                    <ul class="spec-list">
+                        <li>Quãng đường từ Q8 → Phan Rang khoảng <strong>350km</strong>, qua cao tốc Phan Thiết – Cam Lâm (dự kiến thông xe 2025–2026).</li>
+                        <li>Tổng thời gian di chuyển ước tính <strong>4.5h – 5.5h</strong> (đi đêm không kẹt xe).</li>
+                        <li>Chi phí thuê xe cao hơn Phan Thiết khoảng <strong>2–3 triệu</strong> do quãng đường xa hơn ~150km.</li>
+                        <li>Dọc đường rất tiện ghé ăn sáng tại <strong>Bình Thuận / Long Thành</strong> hoặc các trạm dừng chân mới.</li>
+                        <li>Đường cao tốc mới đi vào hoạt động giúp tiết kiệm đáng kể thời gian và nhiên liệu.</li>
+                    </ul>
+                    <div class="alert-box alert-warn">
+                        <strong>⚠️ Phụ phí cần đàm phán:</strong> Giá trọn gói nên bao gồm xăng dầu, cao tốc BOT, ăn ngủ tài xế và không giới hạn km hợp lý trong phạm vi Ninh Thuận (Phan Rang → Vĩnh Hy → Cà Ná khoảng 120km). Cần thỏa thuận rõ trước khi đặt cọc.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Top 10 Providers -->
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">🔍 Top 10 Nhà Xe Limousine Uy Tín (Kèm Link Xác Thực)</h3>
+                <span class="text-muted">Tuyến TP.HCM – Phan Rang / Ninh Thuận</span>
+            </div>
+            <div class="table-wrap">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Đơn Vị Cung Cấp</th>
+                            <th>Giá Ước Tính (3N2Đ)</th>
+                            <th>Điểm Nổi Bật</th>
+                            <th>Link Xác Thực</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Hải Tuấn Travel</strong><br><span class="pbadge pbadge-primary">Uy tín lâu năm</span></td>
+                            <td class="text-success fw700">9.5M – 10.5M</td>
+                            <td>Chuyên thuê xe VIP toàn miền. Dcar Limousine đời mới, lái xe am hiểu tuyến đường Ninh Thuận.</td>
+                            <td><a href="https://haituantravel.com" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Xe Đất Phương Nam</strong><br><span class="pbadge pbadge-primary">Hợp đồng VIP</span></td>
+                            <td class="text-success fw700">9.0M – 10.5M</td>
+                            <td>Đội xe lớn, cam kết đời mới 2022–2025, hợp đồng rõ ràng minh bạch.</td>
+                            <td><a href="https://xedatphuongnam.vn" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Vie Limo</strong><br><span class="pbadge pbadge-success">Cao Cấp VIP</span></td>
+                            <td class="text-success fw700">11.0M – 12.5M</td>
+                            <td>Ghế Boeing massage chỉnh điện. Phòng chờ VIP tại Q1. Dịch vụ cao cấp nhất phân khúc.</td>
+                            <td><a href="https://vielimousine.com" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Nhiều Xe (nhieuxe.vn)</strong><br><span class="pbadge pbadge-primary">Giá tốt</span></td>
+                            <td class="text-success fw700">8.8M – 10.0M</td>
+                            <td>Báo giá online nhanh chóng, so sánh nhiều lựa chọn, hợp đồng điện tử.</td>
+                            <td><a href="https://nhieuxe.vn" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Thuê Xe Việt (thuexeviet.vn)</strong><br><span class="pbadge pbadge-primary">Chuyên Ninh Thuận</span></td>
+                            <td class="text-success fw700">9.0M – 10.5M</td>
+                            <td>Kinh nghiệm phục vụ tuyến Ninh Thuận, tài xế hiểu địa hình núi biển ở đây.</td>
+                            <td><a href="https://thuexeviet.vn" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>6. Travel Bus (travelbus.com.vn)</strong><br><span class="pbadge pbadge-primary">Hợp đồng chuẩn</span></td>
+                            <td class="text-success fw700">9.5M – 11.0M</td>
+                            <td>Chuyên xe hợp đồng du lịch, hệ thống hỗ trợ online 24/7, nhiều loại xe.</td>
+                            <td><a href="https://travelbus.com.vn" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>7. Tân Triều Travel</strong><br><span class="pbadge pbadge-primary">Tư vấn tốt</span></td>
+                            <td class="text-success fw700">9.2M – 10.5M</td>
+                            <td>Hỗ trợ tư vấn lịch trình miễn phí, ghép tour hoặc thuê xe riêng tùy chọn.</td>
+                            <td><a href="https://tantrieutravel.com" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>8. Xe Sài Gòn (xesaigon.vn)</strong><br><span class="pbadge pbadge-primary">Đa dạng xe</span></td>
+                            <td class="text-success fw700">9.0M – 10.0M</td>
+                            <td>Đội xe từ 4–45 chỗ. Limousine 9 chỗ đời mới sạch sẽ, tài xế chuyên nghiệp.</td>
+                            <td><a href="https://xesaigon.vn" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>9. Hàm Ý Travel</strong><br><span class="pbadge pbadge-primary">Ninh Thuận</span></td>
+                            <td class="text-success fw700">9.0M – 10.5M</td>
+                            <td>Đơn vị địa phương uy tín tại Ninh Thuận, có thể thuê xe 1 chiều hoặc trọn gói.</td>
+                            <td><a href="https://hamytravel.com" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                        <tr>
+                            <td><strong>10. Như Quỳnh Travel</strong><br><span class="pbadge pbadge-success">Tour + Xe</span></td>
+                            <td class="text-success fw700">9.5M – 11.0M</td>
+                            <td>Kết hợp tour tham quan + thuê xe, nhiều gói linh hoạt cho đoàn gia đình.</td>
+                            <td><a href="https://nhuquynhtravel.com" target="_blank" class="hbtn hbtn-book" style="display:inline-block;">🔗 Website</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Checklist xe -->
+        <div class="card">
+            <div class="card-header"><h3 class="card-title">📋 Check Điều Khoản Quan Trọng Khi Đàm Phán</h3></div>
+            <div class="cl-group">
+                <div class="cl-item" onclick="toggleCl('cx1')">
+                    <input type="checkbox" id="cx1" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Xác nhận đón sau 22:00 không tính phụ phí đêm</span><div class="cl-note">Tuyến xa (350km) nên cần đi đêm để có thêm thời gian ban ngày.</div></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('cx2')">
+                    <input type="checkbox" id="cx2" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Giá đã gồm toàn bộ phí cao tốc & BOT (bao gồm Vĩnh Hảo, Cam Lâm)</span><div class="cl-note">Tuyến Ninh Thuận qua nhiều trạm thu phí, cần chốt rõ tránh phát sinh.</div></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('cx3')">
+                    <input type="checkbox" id="cx3" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Xác nhận ăn ngủ tài xế trong 3N2Đ (tự túc hay gia đình lo?)</span></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('cx4')">
+                    <input type="checkbox" id="cx4" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Hỏi giới hạn km/ngày trong nội tỉnh Ninh Thuận</span><div class="cl-note">Phan Rang → Vĩnh Hy → Cà Ná ~120km/ngày. Cần đủ km không phụ phí.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TAB: LODGING ==================== -->
+    <div id="lodging" class="tab-content">
+        <div class="card" style="margin-bottom:18px;">
+            <div class="card-header" style="border:none;margin:0;padding-bottom:0;">
+                <h3 class="card-title">🏨 Lọc Danh Sách Nơi Ở Phù Hợp 6 Người</h3>
+            </div>
+            <p style="font-size:0.9rem;color:var(--text-muted);margin:10px 0 18px;">Các khu lưu trú đa dạng từ resort biển sát bờ đến villa nguyên căn gần trung tâm Phan Rang.</p>
+            <div class="filter-wrap">
+                <button class="filter-btn active" onclick="filterHotels('all')">Tất cả</button>
+                <button class="filter-btn" onclick="filterHotels('ninhchu')">Ninh Chữ (Gần biển)</button>
+                <button class="filter-btn" onclick="filterHotels('vinhy')">Vĩnh Hy (Hoang sơ)</button>
+                <button class="filter-btn" onclick="filterHotels('cana')">Cà Ná / Phía Nam</button>
+                <button class="filter-btn" onclick="filterHotels('budget')">Tiết kiệm</button>
+            </div>
+        </div>
+        <div class="hotel-grid" id="hotel-list"></div>
+    </div>
+
+    <!-- ==================== TAB: PLACES ==================== -->
+    <div id="places" class="tab-content">
+        <div class="card" style="margin-bottom:18px;">
+            <div class="card-header" style="border:none;margin:0;padding-bottom:0;">
+                <h3 class="card-title">🦞 Ăn Uống & Vui Chơi Đặc Sắc tại Ninh Thuận</h3>
+            </div>
+            <p style="font-size:0.9rem;color:var(--text-muted);margin:10px 0 18px;">Tổng hợp các điểm ẩm thực đặc sản và điểm tham quan không thể bỏ qua khi đến Ninh Thuận.</p>
+            <div class="filter-wrap">
+                <button class="filter-btn active" onclick="filterPlaces('all')">Tất cả</button>
+                <button class="filter-btn" onclick="filterPlaces('dining')">🍽️ Ăn uống</button>
+                <button class="filter-btn" onclick="filterPlaces('attraction')">🏞️ Tham quan</button>
+            </div>
+        </div>
+        <div class="places-grid" id="places-list"></div>
+    </div>
+
+    <!-- ==================== TAB: ITINERARY ==================== -->
+    <div id="itinerary" class="tab-content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">📅 Lịch Trình Chi Tiết 3 Ngày 2 Đêm</h3>
+                <span class="pbadge pbadge-primary">6 Người lớn • Limousine riêng</span>
+            </div>
+            <div class="itinerary-toggle">
+                <button class="filter-btn active" id="btn-night" onclick="toggleIti('night')">🌙 PA1: Khởi hành Đêm (22:00)</button>
+                <button class="filter-btn" id="btn-day" onclick="toggleIti('day')">☀️ PA2: Khởi hành Sáng (05:00)</button>
+            </div>
+
+            <!-- ITINERARY NIGHT -->
+            <div id="iti-night" class="timeline">
+                <div class="tday">🌙 Ngày 1 (Tối): Khởi hành từ TP.HCM</div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">22:00</div><div class="ttitle">Đón khách tại Quận 8 – Lên đường</div><div class="tdesc">Xe Limousine 9 chỗ đón gia đình, khởi hành qua cao tốc Long Thành – Dầu Giây – Phan Thiết – Cam Lâm vào Ninh Thuận. Gia đình ngủ trên xe, khoảng 4.5–5 tiếng.</div></div>
+
+                <div class="tday">☀️ Ngày 2: Biển Ninh Chữ & Vườn Nho</div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">03:30 – 04:00</div><div class="ttitle">Đến Phan Rang – Check-in muộn</div><div class="tdesc">Nhận phòng resort tại Ninh Chữ, nghỉ ngơi lấy sức sau hành trình dài.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">07:30</div><div class="ttitle">Tắm biển sáng & Ăn sáng buffet</div><div class="tdesc">Tắm biển Ninh Chữ trong lành, mát mẻ. Ăn sáng buffet tại resort với đặc sản Ninh Thuận.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">09:00 – 11:00</div><div class="ttitle">Tham quan Vườn Nho Thái An</div><div class="tdesc">Tự tay hái nho chín đỏ mọng, thưởng thức nho tươi và mua rượu vang nho Ninh Thuận mang về. Chi phí: ~100k – 200k/người.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">11:30 – 13:00</div><div class="ttitle">Ăn trưa thịt cừu / dê nướng sa tế</div><div class="tdesc">Thưởng thức đặc sản nổi tiếng số 1 của Ninh Thuận tại các nhà hàng dọc bờ biển Ninh Chữ. Chi phí: 600k – 900k.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">14:00 – 16:30</div><div class="ttitle">Hang Rái & Bãi đá núi lửa Vĩnh Hy</div><div class="tdesc">Khám phá bãi đá đen hàng triệu năm tuổi từ dung nham núi lửa. Chụp ảnh hoang sơ hùng vĩ tuyệt đẹp. Vào cửa tự do.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">17:00 – 19:00</div><div class="ttitle">Đồng cừu & Đồi cát Nam Cương</div><div class="tdesc">Cưỡi lạc đà, ngắm đàn cừu hàng trăm con trên đồng cỏ vàng đặc trưng. Chụp ảnh đồi cát Nam Cương hoàng hôn rực lửa.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">19:30 – 21:30</div><div class="ttitle">Ăn tối hải sản Ninh Chữ</div><div class="tdesc">Ăn tối tại khu hàng quán ven biển Ninh Chữ. Thưởng thức tôm hùm, ghẹ, ốc, mực ngon giá mềm hơn Sài Gòn nhiều. Chi phí: 700k – 1M.</div></div>
+
+                <div class="tday">🌊 Ngày 3: Vịnh Vĩnh Hy & Cà Ná</div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">06:00</div><div class="ttitle">Đón bình minh biển Ninh Chữ</div><div class="tdesc">Tắm biển sáng sớm và ăn sáng tại resort. Ngắm bình minh biển phẳng lặng như gương cực đẹp.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">08:30 – 12:00</div><div class="ttitle">Vịnh Vĩnh Hy – Lặn ngắm san hô</div><div class="tdesc">Di chuyển ~40km đến Vịnh Vĩnh Hy. Thuê thuyền hoặc kayak, lặn ngắm san hô rực rỡ sắc màu, độ trong của nước biển cực cao. Chi phí thuyền + lặn: 200k – 400k/người.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">12:30 – 14:00</div><div class="ttitle">Check-out & Ăn trưa lẩu tôm hùm / hải sản Vĩnh Hy</div><div class="tdesc">Trả phòng, ăn trưa lẩu tôm hùm hoặc gỏi cá mai đặc sản Vĩnh Hy trứ danh. Chi phí: 700k – 1M.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">14:30 – 16:00</div><div class="ttitle">Ghé Cà Ná – Chụp ảnh biển hoang sơ</div><div class="tdesc">Dừng chân tại bờ biển Cà Ná với các khối đá granit khổng lồ và làn nước trong xanh nguyên sơ hiếm có.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">16:00 – 22:00</div><div class="ttitle">Xe về lại TP.HCM – Quận 8</div><div class="tdesc">Khởi hành về Sài Gòn lúc 16:00, dự kiến về đến nơi lúc 21:00 – 22:00 tối. Ăn nhẹ trên đường.</div></div>
+            </div>
+
+            <!-- ITINERARY DAY -->
+            <div id="iti-day" class="timeline" style="display:none;">
+                <div class="tday">☀️ Ngày 1: Xuất phát Sáng Sớm</div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">05:00</div><div class="ttitle">Xuất phát từ Quận 8</div><div class="tdesc">Khởi hành sớm qua cao tốc để tránh kẹt xe. Ghé ăn sáng tại trạm dừng Long Thành hoặc Long Khánh.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">10:00 – 11:00</div><div class="ttitle">Đến Phan Rang – Nhận phòng sớm</div><div class="tdesc">Đến nơi nghỉ, gửi hành lý hoặc nhận phòng sớm nếu còn. Tắm biển Ninh Chữ lần đầu.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">11:30 – 13:00</div><div class="ttitle">Ăn trưa cừu / dê nướng đặc sản</div><div class="tdesc">Bữa trưa đầu tiên với đặc sản xứ cát: thịt cừu một nắng, bê thui chấm mắm nêm Ninh Thuận.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">14:00 – 17:30</div><div class="ttitle">Tháp Chàm Po Klong Garai & Đồng cừu Nam Cương</div><div class="tdesc">Tham quan tháp Chàm hơn 700 tuổi. Đến đồng cừu Nam Cương chụp ảnh hoàng hôn cưỡi lạc đà.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">18:00 – 21:00</div><div class="ttitle">Phố biển Ninh Chữ & Ăn tối hải sản</div><div class="tdesc">Dạo phố biển Ninh Chữ, thưởng thức hải sản tươi ngon buổi tối. Chi phí: 700k – 1M.</div></div>
+
+                <div class="tday">🌊 Ngày 2: Vịnh Vĩnh Hy & Hang Rái</div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">06:00 – 08:00</div><div class="ttitle">Bình minh biển & Ăn sáng</div><div class="tdesc">Chụp bình minh hoàng hồng lung linh trên biển Ninh Chữ. Ăn sáng buffet tại resort.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">08:30 – 12:00</div><div class="ttitle">Vịnh Vĩnh Hy – Lặn ngắm san hô</div><div class="tdesc">Xe chở ra Vĩnh Hy (~40km), thuê thuyền thúng kayak, lặn snorkeling san hô màu sắc đặc sắc.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">12:00 – 13:30</div><div class="ttitle">Ăn trưa lẩu tôm hùm Vĩnh Hy</div><div class="tdesc">Nhà hàng nổi mặt nước ngay trong vịnh. Lẩu tôm hùm, gỏi cá mai chua cay vừa miệng.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">14:00 – 16:30</div><div class="ttitle">Hang Rái – Bãi đá núi lửa triệu năm</div><div class="tdesc">Khám phá quần thể đá đen hùng vĩ sát bờ biển. Leo trèo, chụp hình cực ấn tượng.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">17:00 – 18:30</div><div class="ttitle">Vườn Nho Thái An</div><div class="tdesc">Tự tay hái nho, chụp hình trong vườn nho xanh rì rào, mua nho và rượu vang nho đặc sản.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">19:30</div><div class="ttitle">Ăn tối & Nghỉ ngơi</div><div class="tdesc">Ăn tối tại nhà hàng ven biển, thư giãn trước ngày cuối.</div></div>
+
+                <div class="tday">🛒 Ngày 3: Cà Ná & Trở về</div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">06:30 – 09:00</div><div class="ttitle">Tắm biển & Check-out</div><div class="tdesc">Tắm biển buổi sáng cuối cùng, ăn sáng và làm thủ tục trả phòng.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">09:30 – 11:00</div><div class="ttitle">Bãi biển Cà Ná & Mua đặc sản</div><div class="tdesc">Ghé Cà Ná chụp hình cùng các tảng đá granit khổng lồ. Mua nho Ninh Thuận, thịt cừu khô, tỏi Phan Rang mang về.</div></div>
+                <div class="titem"><div class="tdot"></div><div class="ttime">11:30 – 13:00</div><div class="ttitle">Ăn trưa nhẹ & Lên đường</div><div class="tdesc">Ăn trưa nhẹ rồi khởi hành về TP.HCM. Dự kiến về đến Quận 8 lúc 17:00 – 18:00.</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TAB: CHECKLIST ==================== -->
+    <div id="checklist" class="tab-content">
+        <div class="card">
+            <div class="card-header"><h3 class="card-title">📝 Checklist Chuẩn Bị Chuyến Đi</h3><span class="text-muted">Đánh dấu để lưu tiến độ trên thiết bị</span></div>
+
+            <div class="cl-group">
+                <h4>🚀 Việc cần làm ngay</h4>
+                <div class="cl-item" onclick="toggleCl('t1')"><input type="checkbox" id="t1" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Liên hệ & đặt cọc xe Limousine 9 chỗ (tuyến Ninh Thuận)</span><div class="cl-note">Chốt trọn gói 3N2Đ bao gồm cao tốc BOT và ăn ngủ tài xế.</div></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('t2')"><input type="checkbox" id="t2" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Check & đặt phòng resort Ninh Chữ / Vĩnh Hy cho 6 người</span><div class="cl-note">Ưu tiên xác nhận chính sách check-in muộn nếu đi đêm.</div></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('t3')"><input type="checkbox" id="t3" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Đặt trước tour lặn san hô / thuê thuyền Vịnh Vĩnh Hy</span><div class="cl-note">Mùa hè đông khách, nên book trước để có chỗ tốt.</div></div>
+                </div>
+            </div>
+
+            <div class="cl-group">
+                <h4>🎒 Hành lý cần mang</h4>
+                <div class="cl-item" onclick="toggleCl('t4')"><input type="checkbox" id="t4" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Đồ lặn / snorkel (mang theo sẽ tiết kiệm hơn thuê ở Vĩnh Hy)</span></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('t5')"><input type="checkbox" id="t5" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Kem chống nắng SPF 50+ (Ninh Thuận nắng gắt nhất VN!)</span><div class="cl-note">Mang nhiều hơn bình thường, bôi lại mỗi 2 tiếng khi tắm biển.</div></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('t6')"><input type="checkbox" id="t6" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Nón, khăn che nắng và áo khoác nhẹ (phòng gió biển)</span></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('t7')"><input type="checkbox" id="t7" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Thuốc say xe, tiêu hóa (cừu/dê dễ nặng bụng lần đầu ăn)</span></div>
+                </div>
+                <div class="cl-item" onclick="toggleCl('t8')"><input type="checkbox" id="t8" class="cl-check" onclick="event.stopPropagation()">
+                    <div><span class="cl-text">Túi đựng đặc sản mang về (nho, thịt cừu khô, tỏi Phan Rang)</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SHARE -->
+    <div class="share-banner">
+        <h3>🔗 Chia Sẻ Kế Hoạch Cho Cả Nhà</h3>
+        <p>Gửi file HTML này qua Zalo/Messenger, mở bằng trình duyệt Chrome/Safari để xem đầy đủ hình ảnh và tính năng tương tác!</p>
+        <button class="share-btn" onclick="copyLink()">📋 Sao Chép Link Kế Hoạch</button>
+    </div>
+</div>
+
+<footer><p>Cẩm nang Trip Ninh Thuận 3N2Đ • Dành cho gia đình 6 người • 2026</p></footer>
+
+<script>
+    // ===== DATA =====
+    const hotels = [
+        // NINH CHU
+        { id:"ttc", name:"TTC Resort Ninh Thuận", cat:"ninhchu", stars:4, cap:"Bungalow gia đình / Villa", price:"7.500.000đ", loc:"Ninh Chữ, Phan Rang", feat:"Hồ bơi + Bãi biển riêng • Thương hiệu TTC uy tín • Công viên nước cho trẻ", rec:true, map:"TTC+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" },
+        { id:"aniise", name:"Aniise Villa Resort", cat:"ninhchu", stars:4, cap:"Villa nguyên căn 3PN", price:"8.000.000đ", loc:"Ninh Chữ, Phan Rang", feat:"Thiết kế hiện đại sang trọng • Hồ bơi riêng • Không gian biệt lập ốc đảo", rec:true, map:"Aniise+Villa+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" },
+        { id:"sgnt", name:"Sài Gòn Ninh Chữ Hotel & Resort", cat:"ninhchu", stars:4, cap:"3 phòng Superior liền kề", price:"7.000.000đ", loc:"Bãi biển Ninh Chữ", feat:"Chuẩn 4 sao sát biển • Nhà hàng view biển rộng • Nhiều hoạt động gia đình", rec:false, map:"Saigon+Ninh+Chu+Hotel+Resort", img:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" },
+        { id:"longthuong", name:"Long Thuận Hotel & Resort", cat:"ninhchu", stars:4, cap:"3 phòng Deluxe / Family", price:"6.800.000đ", loc:"Bình Sơn – Ninh Chữ", feat:"Sân vườn cực rộng nhiều bóng mát • Hồ bơi ngoài trời • Khu vui chơi trẻ em", rec:true, map:"Long+Thuong+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" },
+        { id:"goldrooster", name:"Con Gà Vàng Resort (Gold Rooster)", cat:"ninhchu", stars:3, cap:"3 phòng Bungalow Biển", price:"5.800.000đ", loc:"Ninh Chữ, Phan Rang", feat:"Kiến trúc Chăm Pa độc đáo • Bãi biển riêng yên tĩnh • Giá siêu tốt", rec:true, map:"Con+Ga+Vang+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80" },
+        { id:"myho", name:"Mỹ Hòa Beach Resort", cat:"ninhchu", stars:3, cap:"3 phòng Standard", price:"5.200.000đ", loc:"Ninh Chữ, Phan Rang", feat:"Sát biển • Hồ bơi mát mẻ • Thích hợp nhóm tiết kiệm", rec:false, map:"My+Hoa+Beach+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" },
+        { id:"lapan", name:"La Pan Resort Ninh Chữ", cat:"ninhchu", stars:3, cap:"3 phòng Standard / Superior", price:"5.500.000đ", loc:"Ninh Chữ, Phan Rang", feat:"Gần biển, hồ bơi ngoài trời • Dịch vụ thân thiện", rec:false, map:"La+Pan+Resort+Ninh+Chu", img:"https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" },
+        { id:"sunny-nt", name:"Sunny Beach Resort Ninh Thuận", cat:"ninhchu", stars:3, cap:"3 phòng Superior", price:"6.000.000đ", loc:"Ninh Chữ, Phan Rang", feat:"Bãi tắm rộng thoáng • Khu vực ẩm thực phong phú xung quanh", rec:false, map:"Sunny+Beach+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=80" },
+        // VINH HY
+        { id:"vinhy-resort", name:"Vĩnh Hy Bay Resort", cat:"vinhy", stars:3, cap:"Villa/Bungalow 2-3PN", price:"7.500.000đ", loc:"Vịnh Vĩnh Hy, Ninh Hải", feat:"Sát vịnh biển hoang sơ • Snorkeling ngay cửa resort • Ăn sáng lẩu hải sản", rec:true, map:"Vinh+Hy+Bay+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80" },
+        { id:"sunrise-vh", name:"Sunrise Village Vĩnh Hy", cat:"vinhy", stars:3, cap:"3 Bungalow sát vịnh", price:"6.800.000đ", loc:"Vịnh Vĩnh Hy, Ninh Hải", feat:"Không gian yên tĩnh hoang sơ đúng nghĩa • Vịnh xanh ngay trước cửa", rec:false, map:"Sunrise+Village+Vinh+Hy+Ninh+Thuan", img:"https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" },
+        { id:"vinauthenic", name:"Vinauthentic Vĩnh Hy Resort", cat:"vinhy", stars:4, cap:"Villa 3PN nguyên căn", price:"8.000.000đ", loc:"Vịnh Vĩnh Hy, Ninh Hải", feat:"Thiết kế kết hợp bản địa hiện đại • View vịnh biển tuyệt đỉnh đẹp nhất vịnh", rec:true, map:"Vinauthentic+Vinh+Hy", img:"https://images.unsplash.com/photo-1596598538551-90a249675941?auto=format&fit=crop&w=800&q=80" },
+        // CA NA
+        { id:"cana-resort", name:"Khu Nghỉ Dưỡng Cà Ná", cat:"cana", stars:3, cap:"2 phòng Family + 1 Standard", price:"5.500.000đ", loc:"Cà Ná, Thuận Nam", feat:"Bãi biển Cà Ná nguyên sơ đẹp • Đá granit ven biển chụp ảnh độc đáo", rec:false, map:"Ca+Na+Resort+Ninh+Thuan", img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" },
+        { id:"cana-hotel", name:"Cà Ná Hotel & Camping", cat:"cana", stars:3, cap:"Nguyên khu 6 người", price:"4.800.000đ", loc:"Cà Ná, Thuận Nam", feat:"Trải nghiệm cắm trại / đêm kết hợp bãi đá biển độc đáo", rec:false, map:"Ca+Na+Hotel+Ninh+Thuan", img:"https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=800&q=80" },
+        // BUDGET
+        { id:"nhaho-nt", name:"Nhà Hồng Homestay Phan Rang", cat:"budget", stars:2, cap:"Nguyên căn 6 người", price:"3.800.000đ", loc:"Trung tâm TP. Phan Rang", feat:"Nhà nguyên căn giá siêu rẻ • Gần chợ đặc sản • Thích hợp nhóm tiết kiệm", rec:false, map:"Nha+Hong+Homestay+Phan+Rang", img:"https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+        { id:"villa-nt", name:"Villa Sông Dinh Phan Rang", cat:"budget", stars:3, cap:"Villa 4 phòng ngủ", price:"4.500.000đ", loc:"Ven sông Dinh, Phan Rang", feat:"Villa nguyên căn gần trung tâm • Có bếp đủ nấu ăn • Giá tiết kiệm nhất", rec:false, map:"Villa+Song+Dinh+Phan+Rang", img:"https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" }
+    ];
+
+    const places = [
+        // DINING
+        { id:"cuunuong", name:"Thịt Cừu Nướng Sa Tế", cat:"dining", budget:"150.000đ – 250.000đ / kg", timing:"Trưa/Tối Ngày 1 & 2", loc:"Khu nhà hàng Ninh Chữ / Phan Rang", desc:"Đặc sản số 1 Ninh Thuận. Cừu nuôi thả đồng cỏ tự nhiên nên thịt ngọt thơm không hôi. Nướng sa tế cay nồng ăn kèm bánh tráng mè.", map:"Thịt+Cừu+Nướng+Ninh+Thuận", img:"https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=800&q=80" },
+        { id:"lauomhu", name:"Lẩu Tôm Hùm Vĩnh Hy", cat:"dining", budget:"700.000đ – 1.200.000đ / nồi", timing:"Ăn trưa Ngày 2 / 3 tại Vĩnh Hy", loc:"Nhà hàng nổi Vịnh Vĩnh Hy", desc:"Lẩu tôm hùm tươi sống nấu cùng hải sản mực, tôm, cua. Ăn ngay trên nhà hàng nổi giữa vịnh biển hoang sơ cực lãng mạn.", map:"Lẩu+Tôm+Hùm+Vĩnh+Hy", img:"https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" },
+        { id:"goicamai", name:"Gỏi Cá Mai Đặc Sản Ninh Thuận", cat:"dining", budget:"80.000đ – 120.000đ / phần", timing:"Ăn trưa hoặc tối bất kỳ ngày nào", loc:"Nhà hàng ven biển Ninh Chữ", desc:"Cá mai tươi sống trộn chua ngọt với vị nước mắm Ninh Thuận đặc trưng. Ăn cuốn bánh tráng mè, rau thơm cực ngon.", map:"Gỏi+Cá+Mai+Ninh+Thuận", img:"https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80" },
+        { id:"nhonho", name:"Vườn Nho Thái An – Hái Nho Tươi", cat:"dining", budget:"100.000đ – 200.000đ / người vào cửa", timing:"Sáng Ngày 2 (09:00 – 11:00)", loc:"Thôn Thái An, Phan Rang", desc:"Tự tay hái nho chín đỏ mọng, chụp ảnh giữa những hàng nho xanh uốn lượn. Mua nho tươi giá gốc và rượu vang nho nguyên chất.", map:"Vườn+Nho+Thái+An+Phan+Rang", img:"https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?auto=format&fit=crop&w=800&q=80" },
+        { id:"toidengoc", name:"Tỏi Phan Rang & Đặc Sản Mua Về", cat:"dining", budget:"Mua sắm tùy chọn", timing:"Chiều Ngày 3 (trước khi về)", loc:"Chợ Phan Rang / Các cửa hàng đặc sản", desc:"Mua tỏi ớt Phan Rang thơm cay đặc trưng, thịt cừu khô tẩm ướp, nước mắm nhĩ nguyên chất, rượu vang nho Ninh Thuận làm quà.", map:"Đặc+Sản+Phan+Rang+Ninh+Thuận", img:"https://images.unsplash.com/photo-1505253758473-96b7015fcd40?auto=format&fit=crop&w=800&q=80" },
+        { id:"haisannc", name:"Hải Sản Tươi Sống Bờ Biển Ninh Chữ", cat:"dining", budget:"600.000đ – 900.000đ / bàn 6 người", timing:"Ăn tối Ngày 1 & 2", loc:"Khu ẩm thực bờ biển Ninh Chữ", desc:"Ghẹ xanh, tôm hùm baby, ốc hương, mực một nắng nướng mỡ hành... Giá rẻ hơn Sài Gòn và Mũi Né rất nhiều, độ tươi ngon tuyệt vời.", map:"Hải+Sản+Ninh+Chữ+Phan+Rang", img:"https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80" },
+        // ATTRACTIONS
+        { id:"vinhy-at", name:"Vịnh Vĩnh Hy – Lặn San Hô", cat:"attraction", budget:"200.000đ – 400.000đ / người (thuyền + lặn)", timing:"Ngày 2 / 3 (08:30 – 12:00)", loc:"Xã Vĩnh Hải, Ninh Hải (~40km từ Phan Rang)", desc:"Vịnh biển được mệnh danh đẹp nhất Ninh Thuận. Nước trong như pha lê, san hô ngũ sắc lung linh rực rỡ. Thuê kayak, thuyền kính đáy ngắm san hô cực thú vị.", map:"Vịnh+Vĩnh+Hy+Ninh+Thuận", img:"https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" },
+        { id:"hangrai", name:"Hang Rái – Bãi Đá Núi Lửa", cat:"attraction", budget:"Miễn phí vào cửa", timing:"Chiều Ngày 1 / 2 (14:00 – 16:30)", loc:"Gần Vĩnh Hy, Ninh Hải", desc:"Quần thể đá đen hàng triệu năm tuổi từ dung nham núi lửa đông đặc ven biển. Cảnh quan hoang sơ vĩ đại, địa điểm chụp ảnh tuyệt đẹp ấn tượng.", map:"Hang+Rái+Ninh+Thuận", img:"https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?auto=format&fit=crop&w=800&q=80" },
+        { id:"doicuunu", name:"Đồng Cừu Nam Cương & Lạc Đà", cat:"attraction", budget:"50.000đ – 150.000đ (Cưỡi lạc đà, chụp ảnh)", timing:"Chiều tối Ngày 1 (17:00 – 19:00)", loc:"Đầu Mô, Ninh Phước (~10km từ Phan Rang)", desc:"Đàn cừu hàng trăm con ung dung trên đồi cỏ vàng như bức tranh châu Phi thu nhỏ. Hoàng hôn đỏ rực rỡ trên đồng cát mịn với đàn lạc đà trứ danh.", map:"Đồng+Cừu+Nam+Cương+Ninh+Thuận", img:"https://images.unsplash.com/photo-1509316975850-ff9c5edd0cd9?auto=format&fit=crop&w=800&q=80" },
+        { id:"poklong", name:"Tháp Chàm Po Klong Garai", cat:"attraction", budget:"Vé vào cổng ~25.000đ / người", timing:"Chiều Ngày 1 (15:00 – 16:30)", loc:"Phường Đô Vinh, Phan Rang", desc:"Quần thể tháp Chăm hơn 700 năm tuổi, biểu tượng của vương quốc Chăm Pa huyền thoại. Kiến trúc gạch đỏ tinh xảo vẫn còn nguyên vẹn đến ngày nay.", map:"Tháp+Chàm+Po+Klong+Garai+Phan+Rang", img:"https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=800&q=80" },
+        { id:"doicatnam", name:"Đồi Cát Nam Cương", cat:"attraction", budget:"20.000đ – 50.000đ (ván trượt cát)", timing:"Chiều tối Ngày 1 (17:30 – 19:00)", loc:"Nam Cương, Phan Rang", desc:"Đồi cát đỏ cam hồng lung linh chụp ảnh đẹp nhất lúc hoàng hôn. Trượt cát bằng ván nhựa xuống sườn cát dốc cực phấn khích.", map:"Đồi+Cát+Nam+Cương+Ninh+Thuận", img:"https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=800&q=80" },
+        { id:"cana-beach", name:"Bãi Biển Cà Ná – Hoang Sơ Nhất", cat:"attraction", budget:"Tự do", timing:"Chiều Ngày 3 (14:30 – 16:00) – Trên đường về", loc:"Cà Ná, Thuận Nam (~70km từ Phan Rang)", desc:"Bãi biển hoang sơ chưa khai thác du lịch với những khối đá granit trắng khổng lồ và làn nước xanh trong suốt rực rỡ. Điểm chụp ảnh cực ấn tượng trên đường về.", map:"Bãi+Biển+Cà+Ná+Ninh+Thuận", img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80" },
+        { id:"muidinh", name:"Mũi Dinh – Ngọn Hải Đăng Đẹp Nhất NT", cat:"attraction", budget:"Tự do đến chân mũi, leo thêm ~15k", timing:"Buổi sáng Ngày 2 hoặc 3", loc:"Thuận Nam, Ninh Thuận", desc:"Mũi đất nhô ra biển với ngọn hải đăng trắng tinh khôi giữa biển xanh. Cảnh quan nhìn ra biển Đông hoang sơ từ đỉnh cao cực đẹp tuyệt vời.", map:"Mũi+Dinh+Ninh+Thuận", img:"https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=800&q=80" }
+    ];
+
+    // ===== LOGIC =====
+    function switchTab(id){
+        document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        const ab=Array.from(document.querySelectorAll('.tab-btn')).find(b=>b.getAttribute('onclick').includes(id));
+        if(ab) ab.classList.add('active');
+    }
+
+    function calcBudget(){
+        const l=+document.getElementById('s-lodging').value;
+        const t=+document.getElementById('s-transport').value;
+        const f=+document.getElementById('s-food').value;
+        const k=+document.getElementById('s-tickets').value;
+        document.getElementById('v-lodging').textContent=l.toLocaleString('vi-VN')+'đ';
+        document.getElementById('v-transport').textContent=t.toLocaleString('vi-VN')+'đ';
+        document.getElementById('v-food').textContent=f.toLocaleString('vi-VN')+'đ';
+        document.getElementById('v-tickets').textContent=k.toLocaleString('vi-VN')+'đ';
+        const total=l+t+f+k;
+        document.getElementById('total-budget').textContent=total.toLocaleString('vi-VN')+'đ';
+        const sb=document.getElementById('budget-status');
+        if(total<=27000000){ sb.className='budget-box budget-safe'; sb.textContent='✅ Ổn! Còn dư '+(27000000-total).toLocaleString('vi-VN')+'đ'; }
+        else { sb.className='budget-box budget-danger'; sb.textContent='⚠️ Vượt budget '+(total-27000000).toLocaleString('vi-VN')+'đ!'; }
+    }
+
+    function filterHotels(cat){
+        document.querySelectorAll('#lodging .filter-btn').forEach(b=>b.classList.remove('active'));
+        const ab=Array.from(document.querySelectorAll('#lodging .filter-btn')).find(b=>b.getAttribute('onclick').includes(cat));
+        if(ab) ab.classList.add('active');
+        const list=cat==='all'?hotels:hotels.filter(h=>h.cat===cat);
+        const el=document.getElementById('hotel-list');
+        el.innerHTML='';
+        list.forEach(h=>{
+            const stars='★'.repeat(h.stars)+'☆'.repeat(5-h.stars);
+            el.innerHTML+=`<div class="hotel-card">
+                <div class="hotel-img"><img src="${h.img}" alt="${h.name}" loading="lazy"><div class="htag ${h.rec?'rec':''}">${h.rec?'🔥 Đề xuất':h.cat.toUpperCase()}</div></div>
+                <div class="hotel-body">
+                    <div class="hstars">${stars}</div>
+                    <div class="hname">${h.name}</div>
+                    <div class="hmeta">
+                        <div>📍 ${h.loc}</div>
+                        <div>👥 ${h.cap}</div>
+                        <div style="margin-top:4px;font-size:0.79rem;">✨ ${h.feat}</div>
+                    </div>
+                    <div class="hprice-row"><div class="hprice"><small>Giá dự kiến 2 đêm</small>${h.price}</div></div>
+                    <div class="hbtns">
+                        <a href="https://www.google.com/maps/search/?api=1&query=${h.map}" target="_blank" class="hbtn hbtn-map">📍 Maps</a>
+                        <a href="https://www.booking.com/searchresults.vi.html?ss=${h.map}" target="_blank" class="hbtn hbtn-book">🖼️ Xem phòng</a>
+                    </div>
+                </div>
+            </div>`;
+        });
+    }
+
+    function filterPlaces(cat){
+        document.querySelectorAll('#places .filter-btn').forEach(b=>b.classList.remove('active'));
+        const ab=Array.from(document.querySelectorAll('#places .filter-btn')).find(b=>b.getAttribute('onclick').includes(cat));
+        if(ab) ab.classList.add('active');
+        const list=cat==='all'?places:places.filter(p=>p.cat===cat);
+        const el=document.getElementById('places-list');
+        el.innerHTML='';
+        list.forEach(p=>{
+            el.innerHTML+=`<div class="place-card">
+                <div class="place-img"><img src="${p.img}" alt="${p.name}" loading="lazy"><div class="pcat ${p.cat==='attraction'?'fun':''}">${p.cat==='dining'?'🍽️ Ăn uống':'🏞️ Tham quan'}</div></div>
+                <div class="place-body">
+                    <div class="pname">${p.name}</div>
+                    <div class="pmeta">
+                        <div>📍 ${p.loc}</div>
+                        <div>⏱️ Gợi ý: <strong>${p.timing}</strong></div>
+                        <div>💰 <strong>${p.budget}</strong></div>
+                    </div>
+                    <p class="pdesc">${p.desc}</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=${p.map}" target="_blank" class="pmap-btn">📍 Chỉ đường Google Maps</a>
+                </div>
+            </div>`;
+        });
+    }
+
+    function toggleIti(type){
+        document.getElementById('iti-night').style.display=type==='night'?'block':'none';
+        document.getElementById('iti-day').style.display=type==='day'?'block':'none';
+        document.getElementById('btn-night').classList.toggle('active',type==='night');
+        document.getElementById('btn-day').classList.toggle('active',type==='day');
+    }
+
+    function toggleCl(id){
+        const cb=document.getElementById(id);
+        const item=cb.closest('.cl-item');
+        cb.checked=!cb.checked;
+        item.classList.toggle('done',cb.checked);
+        localStorage.setItem(id,cb.checked);
+        cb.addEventListener('change',()=>{ item.classList.toggle('done',cb.checked); localStorage.setItem(id,cb.checked); });
+    }
+
+    function initChecklists(){
+        document.querySelectorAll('.cl-check').forEach(cb=>{
+            if(localStorage.getItem(cb.id)==='true'){ cb.checked=true; cb.closest('.cl-item').classList.add('done'); }
+            cb.addEventListener('change',()=>{ cb.closest('.cl-item').classList.toggle('done',cb.checked); localStorage.setItem(cb.id,cb.checked); });
+        });
+    }
+
+    function copyLink(){
+        const tmp=document.createElement('input');
+        tmp.value=window.location.href;
+        document.body.appendChild(tmp); tmp.select();
+        document.execCommand('copy'); document.body.removeChild(tmp);
+        alert('Đã sao chép! Gửi qua Zalo/Facebook và mở bằng Chrome/Safari để xem đầy đủ nhé 🌿');
+    }
+
+    window.onload=()=>{ filterHotels('all'); filterPlaces('all'); initChecklists(); };
+</script>
+</body>
+</html>

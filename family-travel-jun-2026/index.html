@@ -322,11 +322,11 @@
                     <p>3 Ngày 2 Đêm • Resort nghỉ dưỡng & Ẩm thực hải sản</p>
                 </a>
                 
-                <a href="MuiNe_Trip_Planner.html" class="plan-card accent">
-                    <span class="icon-box">🌅</span>
-                    <h3>Mũi Né</h3>
-                    <p>3 Ngày 2 Đêm • Trải nghiệm đồi cát & Làng chài</p>
-                </a>
+                <div onclick="goToNinhThuan()" class="plan-card accent">
+                    <span class="icon-box">🏜️</span>
+                    <h3>Ninh Thuận</h3>
+                    <p>3 Ngày 2 Đêm • Vịnh Vĩnh Hy & Tháp Chàm</p>
+                </div>
             </div>
             
             <button class="logout-btn" onclick="handleLogout()">Đăng xuất thiết bị</button>
@@ -410,6 +410,15 @@
                 handleLogin();
             }
         });
+
+        // Redirect to mobile or PC version of Ninh Thuan trip planner
+        function goToNinhThuan() {
+            if (window.innerWidth < 768) {
+                window.location.href = 'NinhThuan_Trip_Planner_Mobile.html';
+            } else {
+                window.location.href = 'NinhThuan_Trip_Planner.html';
+            }
+        }
 
         // Initialize check
         checkAuth();
