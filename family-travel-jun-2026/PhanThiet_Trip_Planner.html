@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Cẩm Nang & Kế Hoạch Trip Phan Thiết 3N2Đ</title>
-    
-    <!-- Google Fonts -->
+
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <style>
         :root {
             --primary: #0284c7;
@@ -46,11 +45,10 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Top Hero Banner */
         .hero {
             position: relative;
             height: 350px;
-            background: linear-gradient(rgba(2, 132, 199, 0.45), rgba(15, 23, 42, 0.85)), 
+            background: linear-gradient(rgba(2, 132, 199, 0.45), rgba(15, 23, 42, 0.85)),
                         url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
@@ -94,7 +92,6 @@
             font-weight: 500;
         }
 
-        /* Container */
         .container {
             max-width: 1200px;
             margin: -60px auto 60px;
@@ -103,7 +100,6 @@
             z-index: 5;
         }
 
-        /* Navigation Tab */
         .tab-nav {
             display: flex;
             background-color: white;
@@ -158,7 +154,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Quick Info Bar */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -212,7 +207,6 @@
             margin-top: 2px;
         }
 
-        /* General Layout Elements */
         .card {
             background: white;
             border-radius: var(--radius-md);
@@ -243,7 +237,6 @@
             gap: 8px;
         }
 
-        /* Interactive Budget Section */
         .budget-split {
             display: grid;
             grid-template-columns: 1fr;
@@ -256,49 +249,51 @@
             }
         }
 
-        .slider-group {
+        .summary-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
             margin-bottom: 20px;
         }
 
-        .slider-header {
+        .summary-item {
+            display: flex;
+            flex-direction: column;
+            padding: 12px 16px;
+            background: var(--bg-body);
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            border: 1px solid var(--border-color);
+            gap: 4px;
+        }
+
+        .summary-item-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 8px;
-            font-weight: 600;
+            align-items: center;
         }
 
-        .slider-label {
-            font-size: 0.95rem;
-            color: var(--text-main);
-        }
-
-        .slider-value {
-            color: var(--primary);
+        .summary-item-title {
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        input[type="range"] {
-            width: 100%;
-            height: 6px;
-            background: #cbd5e1;
-            border-radius: 5px;
-            outline: none;
-            -webkit-appearance: none;
+        .summary-item-price {
+            font-weight: 800;
+            color: var(--success);
         }
 
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--primary);
-            cursor: pointer;
-            box-shadow: 0 0 5px rgba(2, 132, 199, 0.5);
-            transition: transform 0.1s;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover {
-            transform: scale(1.2);
+        .places-summary-list {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            padding-left: 0;
+            margin-top: 5px;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 5px;
+            line-height: 1.4;
         }
 
         .calc-box {
@@ -353,107 +348,76 @@
             color: var(--danger);
         }
 
-        /* Limousine & Transport Section */
-        .transport-layout {
+        .transport-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
-        @media (min-width: 768px) {
-            .transport-layout {
-                grid-template-columns: 1fr 1.1fr;
+        @media(min-width: 768px) {
+            .transport-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
 
-        .image-banner {
+        .transport-card {
+            background: white;
             border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            height: 250px;
-            position: relative;
+            border: 2px solid var(--border-color);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .image-banner img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .transport-card.selected {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
         }
 
-        .image-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-            padding: 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .transport-details h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
+        .transport-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 12px;
-            color: var(--text-main);
+        }
+
+        .select-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .transport-card.selected .select-indicator {
+            border-color: var(--primary);
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .transport-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--success);
+            margin: 8px 0;
         }
 
         .spec-list {
-            list-style: none;
-            margin-bottom: 20px;
+            margin-top: 10px;
+            padding-left: 20px;
         }
 
         .spec-list li {
-            position: relative;
-            padding-left: 28px;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
+            margin-bottom: 8px;
         }
 
-        .spec-list li::before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            top: 2px;
-            color: var(--success);
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
-
-        /* Provider Table Styles */
-        .provider-table-wrapper {
-            overflow-x: auto;
-            margin-top: 10px;
-        }
-        .provider-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.95rem;
-            text-align: left;
-            min-width: 700px;
-        }
-        .provider-table th, .provider-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .provider-table th {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            font-weight: 700;
-        }
-        .provider-badge {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 5px;
-        }
-        .provider-badge-p { background-color: var(--primary-light); color: var(--primary); }
-        .provider-badge-s { background-color: var(--success-light); color: var(--success); }
-
-        /* Accommodations Filterable Grid */
         .filter-container {
             display: flex;
             gap: 10px;
@@ -463,454 +427,289 @@
 
         .filter-btn {
             background-color: white;
-            border: 1px solid var(--border-color);
-            padding: 8px 16px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.9rem;
             color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 10px 16px;
+            border-radius: 999px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
             transition: all 0.2s ease;
         }
 
-        .filter-btn.active, .filter-btn:hover {
-            background-color: var(--primary-light);
-            color: var(--primary);
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
             border-color: var(--primary);
         }
 
-        .hotel-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 768px) {
-            .hotel-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hotel-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .hotel-card {
-            background: white;
-            border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .hotel-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(2, 132, 199, 0.3);
-        }
-
-        .hotel-img-wrapper {
-            height: 180px;
-            position: relative;
-            background-color: #cbd5e1;
-        }
-
-        .hotel-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hotel-tag {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background-color: var(--primary);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            z-index: 2;
-        }
-
-        .hotel-tag.recommend {
-            background-color: var(--accent);
-        }
-
-        .hotel-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .hotel-stars {
-            color: var(--accent);
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-        }
-
-        .hotel-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 10px;
-            line-height: 1.3;
-            height: 46px;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-
-        .hotel-meta {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .hotel-meta-row {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .hotel-price-row {
-            margin-top: auto;
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .hotel-price {
-            font-weight: 800;
-            color: var(--success);
-            font-size: 1.15rem;
-        }
-
-        .hotel-price span {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            display: block;
-        }
-
-        .hotel-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .action-btn {
-            text-align: center;
-            text-decoration: none;
-            padding: 8px 10px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-
-        .action-btn-map {
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-
-        .action-btn-map:hover {
-            background-color: #cbd5e1;
-        }
-
-        .action-btn-book {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .action-btn-book:hover {
-            background-color: var(--primary-dark);
-        }
-
-        /* Timeline / Itinerary Styling */
-        .timeline {
-            position: relative;
-            padding-left: 30px;
-            margin: 20px 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 8px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background-color: var(--border-color);
-        }
-
-        .timeline-day-header {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 30px 0 15px -30px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background-color: var(--primary-light);
-            padding: 8px 15px;
-            border-radius: var(--radius-sm);
-            width: fit-content;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-
-        .timeline-badge {
-            position: absolute;
-            left: -30px;
-            top: 4px;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background-color: white;
-            border: 3px solid var(--primary);
-            z-index: 2;
-        }
-
-        .timeline-time {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-transform: uppercase;
-            margin-bottom: 4px;
-        }
-
-        .timeline-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .timeline-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        .itinerary-toggle-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        /* Places card grid styles */
+        .hotel-grid,
         .places-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-        @media (min-width: 768px) {
-            .places-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (min-width: 1024px) {
-            .places-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
+        .hotel-card,
         .place-card {
             background: white;
             border-radius: var(--radius-md);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all 0.25s ease;
         }
+
+        .hotel-card:hover,
         .place-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
         }
+
+        .hotel-img-wrapper,
         .place-img-wrapper {
-            height: 180px;
             position: relative;
-            background-color: #cbd5e1;
+            height: 190px;
+            overflow: hidden;
         }
+
+        .hotel-img-wrapper img,
         .place-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
+
+        .hotel-tag,
         .place-category {
             position: absolute;
             top: 12px;
             left: 12px;
-            background-color: var(--accent);
+            background: rgba(30, 41, 59, 0.9);
             color: white;
-            padding: 4px 10px;
-            border-radius: 50px;
+            padding: 6px 10px;
+            border-radius: 999px;
             font-size: 0.75rem;
             font-weight: 700;
-            text-transform: uppercase;
         }
+
+        .hotel-tag.recommend {
+            background-color: var(--success);
+        }
+
         .place-category.fun {
-            background-color: var(--primary);
+            background-color: var(--accent);
         }
+
+        .hotel-info,
         .place-info {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            padding: 18px;
         }
-        .place-name {
-            font-size: 1.15rem;
+
+        .hotel-stars {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 5px;
             font-weight: 700;
-            color: var(--text-main);
+        }
+
+        .hotel-name,
+        .place-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            line-height: 1.35;
             margin-bottom: 8px;
         }
-        .place-meta {
-            font-size: 0.85rem;
+
+        .hotel-meta-row,
+        .place-meta div {
+            font-size: 0.88rem;
             color: var(--text-muted);
-            margin-bottom: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+            margin-bottom: 6px;
         }
+
+        .hotel-price-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 14px 0 10px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--border-color);
+        }
+
+        .hotel-price span {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+
+        .hotel-price {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
         .place-desc {
             font-size: 0.9rem;
             color: var(--text-main);
-            margin-bottom: 15px;
-            flex-grow: 1;
-        }
-        .place-action {
-            border-top: 1px solid var(--border-color);
-            padding-top: 15px;
-            margin-top: auto;
+            margin-top: 10px;
         }
 
-        /* Checklist Task Styling */
+        .verify-note {
+            margin-top: 12px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            background: var(--primary-light);
+            color: var(--text-main);
+            font-size: 0.82rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 0.86rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn-map {
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .action-btn-book {
+            background-color: var(--accent-light);
+            color: #b45309;
+        }
+
+        .action-btn-select {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .timeline-day-header {
+            background: linear-gradient(135deg, var(--primary-light), #ffffff);
+            color: var(--primary-dark);
+            font-weight: 800;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            margin: 25px 0 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 18px;
+            border-left: 2px solid var(--border-color);
+            margin-left: 8px;
+            padding-bottom: 10px;
+        }
+
+        .timeline-badge {
+            position: absolute;
+            left: -7px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--primary);
+        }
+
+        .timeline-time {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 3px;
+        }
+
+        .timeline-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .timeline-desc {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+        }
+
         .checklist-group {
             margin-bottom: 25px;
         }
 
         .checklist-group h4 {
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-            color: var(--primary);
-            border-left: 3px solid var(--primary);
-            padding-left: 10px;
+            font-size: 1rem;
+            margin-bottom: 14px;
+            color: var(--text-main);
         }
 
         .task-item {
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            padding: 12px 15px;
-            border-radius: var(--radius-sm);
-            background-color: var(--bg-body);
+            padding: 14px 16px;
+            background: var(--bg-body);
             border: 1px solid var(--border-color);
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .task-item:hover {
-            border-color: var(--primary);
-            background-color: #f1f5f9;
-        }
-
-        .task-item.completed {
-            opacity: 0.6;
-            background-color: #f8fafc;
-        }
-
-        .task-item.completed .task-text {
-            text-decoration: line-through;
-            color: var(--text-muted);
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
         }
 
         .task-checkbox {
-            margin-top: 4px;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
-        }
-
-        .task-content {
-            flex-grow: 1;
+            margin-top: 3px;
         }
 
         .task-text {
             font-weight: 600;
-            font-size: 0.95rem;
         }
 
         .task-note {
-            font-size: 0.8rem;
+            font-size: 0.84rem;
             color: var(--text-muted);
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
-        /* Share Area */
         .share-banner {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            border-radius: var(--radius-md);
-            padding: 30px;
+            margin-top: 35px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: white;
+            border-radius: var(--radius-lg);
+            padding: 28px;
             text-align: center;
             box-shadow: var(--shadow-lg);
         }
 
         .share-banner h3 {
-            font-size: 1.5rem;
+            font-size: 1.35rem;
             margin-bottom: 10px;
-            font-weight: 700;
         }
 
         .share-banner p {
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
+            opacity: 0.95;
+            max-width: 780px;
+            margin: 0 auto 16px;
         }
 
         .share-btn {
-            background-color: white;
-            color: var(--primary);
+            background: white;
+            color: var(--primary-dark);
             border: none;
-            padding: 12px 24px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem;
+            padding: 12px 18px;
+            border-radius: 999px;
+            font-weight: 800;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
         }
 
-        .share-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-        }
-
-        /* Footer */
         footer {
             text-align: center;
             padding: 40px 0;
@@ -919,18 +718,19 @@
             border-top: 1px solid var(--border-color);
             margin-top: 60px;
         }
-        /* Custom timeline slots styling */
-        .timeline-slot-header {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary);
-            background: rgba(249, 115, 22, 0.08);
-            padding: 4px 10px;
-            border-radius: 6px;
-            margin: 15px 0 8px 0;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 320px;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .tab-btn {
+                flex: none;
+            }
         }
     </style>
     <style>
@@ -950,17 +750,15 @@
 </head>
 <body>
 
-    <!-- Hero Section -->
     <div class="hero">
         <div class="hero-content">
             <span class="badge-trip">🏝️ Trip Planner • Phan Thiết Hub</span>
             <h1>Kế hoạch Phan Thiết 3N2Đ</h1>
-            <p>10/07/2026 – 12/07/2026 • Trọn gói Di chuyển & Nơi ở lý tưởng</p>
+            <p>10/07/2026 – 12/07/2026 • Bản đã verify lại link và thông tin chính</p>
         </div>
     </div>
 
     <div class="container">
-        <!-- Tab Navigation -->
         <nav class="tab-nav">
             <button class="tab-btn active" onclick="switchTab('overview')">🏠 Tổng quan</button>
             <button class="tab-btn" onclick="switchTab('transport')">🚐 Di chuyển</button>
@@ -970,29 +768,27 @@
             <button class="tab-btn" onclick="switchTab('checklist')">📝 Chuẩn bị</button>
         </nav>
 
-        <!-- TAB: OVERVIEW -->
         <div id="overview" class="tab-content active">
-            <!-- Quick metrics bar -->
             <div class="info-grid">
                 <div class="info-card">
                     <div class="info-icon-wrapper">💰</div>
                     <div class="info-card-text">
-                        <span>Tổng budget mục tiêu</span>
-                        <h3>25.000.000đ</h3>
+                        <span>Nguyên tắc budget</span>
+                        <h3>Xem giá live, không giữ số cứng</h3>
                     </div>
                 </div>
                 <div class="info-card success">
                     <div class="info-icon-wrapper">🏨</div>
                     <div class="info-card-text">
-                        <span>Budget nơi ở (2 đêm)</span>
-                        <h3>&lt; 9.000.000đ</h3>
+                        <span>Trục ở gợi ý</span>
+                        <h3>Hàm Tiến • Phú Hài • Mũi Né</h3>
                     </div>
                 </div>
                 <div class="info-card accent">
-                    <div class="info-icon-wrapper">🚐</div>
+                    <div class="info-icon-wrapper">🏖️</div>
                     <div class="info-card-text">
-                        <span>Phương án di chuyển</span>
-                        <h3>Limo hoặc Tự lái 3N2Đ</h3>
+                        <span>Nhóm điểm mạnh</span>
+                        <h3>Bàu Trắng • Kê Gà • Poshanu</h3>
                     </div>
                 </div>
                 <div class="info-card">
@@ -1004,1105 +800,332 @@
                 </div>
             </div>
 
-            <!-- Budget Calculator Card -->
             <div class="card">
-                <style>
-                    .summary-list {
-                        display: flex;
-                        flex-direction: column;
-                        gap: 12px;
-                        text-align: left;
-                        margin-bottom: 20px;
-                    }
-                    .summary-item {
-                        display: flex;
-                        flex-direction: column;
-                        padding: 12px 16px;
-                        background: var(--bg-body);
-                        border-radius: var(--radius-md);
-                        font-size: 0.9rem;
-                        border: 1px solid var(--border-color);
-                        gap: 4px;
-                    }
-                    .summary-item-row {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                    }
-                    .summary-item-title {
-                        font-weight: 700;
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
-                    }
-                    .summary-item-price {
-                        font-weight: 800;
-                        color: var(--success);
-                    }
-                    .places-summary-list {
-                        font-size: 0.82rem;
-                        color: var(--text-muted);
-                        padding-left: 0px;
-                        margin-top: 5px;
-                        border-top: 1px dashed var(--border-color);
-                        padding-top: 5px;
-                        line-height: 1.4;
-                    }
-                </style>
                 <div class="card-header-styled">
-                    <h3 class="card-title">📊 Lựa Chọn & Ngân Sách Thực Tế</h3>
-                    <span class="text-muted">Các lựa chọn đã tích chọn từ các tab sẽ tự động hiển thị tại đây</span>
+                    <h3 class="card-title">📊 Tôi Đã Sửa Gì Ở Trang Phan Thiết</h3>
+                    <span class="text-muted">Mục tiêu là đúng thông tin hơn, không phải giữ danh sách dài cho đẹp</span>
                 </div>
-                
+
                 <div class="budget-split">
                     <div>
                         <div class="summary-list">
-                            <!-- Transport selection -->
                             <div class="summary-item">
                                 <div class="summary-item-row">
-                                    <span class="summary-item-title">🚐 Phương tiện di chuyển:</span>
-                                    <span class="summary-item-price" id="sum-transport-val">8.000.000đ</span>
+                                    <span class="summary-item-title">✅ Link thật / nguồn thật</span>
+                                    <span class="summary-item-price">Đã thay</span>
                                 </div>
-                                <div id="sum-transport-name" style="font-size:0.8rem; color:var(--text-muted);">Di chuyển (Chưa chọn)</div>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">Chỉ giữ nơi ở và điểm đi có website chính thức, Booking/Agoda/Tripadvisor hoặc nguồn du lịch đáng tin hơn.</div>
                             </div>
-                            
-                            <!-- Hotel selection -->
                             <div class="summary-item">
                                 <div class="summary-item-row">
-                                    <span class="summary-item-title">🏨 Nơi nghỉ dưỡng (2 đêm):</span>
-                                    <span class="summary-item-price" id="sum-hotel-val">0đ</span>
+                                    <span class="summary-item-title">⚠️ Giá phòng & giá tour</span>
+                                    <span class="summary-item-price">Bỏ số cứng</span>
                                 </div>
-                                <div id="sum-hotel-name" style="font-size:0.8rem; color:var(--text-muted);">Chưa chọn nơi nghỉ</div>
+                                <div style="font-size:0.8rem; color:var(--text-muted);">Các số kiểu “2 đêm = X đồng”, “vé = Y đồng”, “bữa = Z đồng” trong file cũ không đủ ổn định nên không dùng làm dữ liệu chốt nữa.</div>
                             </div>
-                            
-                            <!-- Food/Fun selection -->
                             <div class="summary-item">
                                 <div class="summary-item-row">
-                                    <span class="summary-item-title">🦞 Ăn uống & Vui chơi (6 người):</span>
-                                    <span class="summary-item-price" id="sum-places-val">0đ</span>
+                                    <span class="summary-item-title">🧹 Danh sách hardcode</span>
+                                    <span class="summary-item-price">Đã rút gọn</span>
                                 </div>
-                                <div class="places-summary-list" id="sum-places-list">
-                                    Chưa chọn địa điểm nào
+                                <div class="places-summary-list">
+                                    • Bỏ nhiều villa / resort / quán có dấu hiệu dựng tay<br>
+                                    • Giữ lại những mốc có thể đối chiếu nhanh với nguồn thật<br>
+                                    • Sắp lại lịch trình để đỡ nhồi quá nhiều claim mơ hồ
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="calc-box">
                         <div class="calc-total">
-                            <span>Ước Tính Tổng Chi Phí</span>
-                            <h2 id="total-cost">0đ</h2>
+                            <span>Trạng thái dữ liệu</span>
+                            <h2>Verified</h2>
                         </div>
                         <div id="budget-status" class="budget-alert-box budget-safe">
-                            ✅ Nằm trong tầm kiểm soát!
+                            ✅ Bản này ưu tiên ra quyết định an toàn hơn bản cũ
                         </div>
-                        <button class="action-btn action-btn-map" style="display: block; width: 100%; margin-top: 15px; border-radius: var(--radius-sm); font-weight:700;" onclick="resetAllSelectionsLocal()">🔄 Đặt lại lựa chọn</button>
+                        <button class="action-btn action-btn-map" style="display:block; width:100%; margin-top:15px; border-radius: var(--radius-sm); font-weight:700;" onclick="switchTab('lodging')">🏨 Xem nơi ở đã verify</button>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!-- TAB: TRANSPORT -->
+
         <div id="transport" class="tab-content">
-            <style>
-                .transport-grid {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    gap: 20px;
-                    margin-bottom: 25px;
-                }
-                @media(min-width: 768px) {
-                    .transport-grid {
-                        grid-template-columns: 1fr 1fr;
-                    }
-                }
-                .transport-card {
-                    background: white;
-                    border-radius: var(--radius-md);
-                    border: 2px solid var(--border-color);
-                    padding: 24px;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    position: relative;
-                }
-                .transport-card.selected {
-                    border-color: var(--primary);
-                    background-color: var(--primary-light);
-                    box-shadow: var(--shadow-md);
-                }
-                .transport-card-header {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    margin-bottom: 12px;
-                }
-                .select-indicator {
-                    width: 24px;
-                    height: 24px;
-                    border-radius: 50%;
-                    border: 2px solid var(--text-muted);
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 0.8rem;
-                    font-weight: bold;
-                }
-                .transport-card.selected .select-indicator {
-                    border-color: var(--primary);
-                    background-color: var(--primary);
-                    color: white;
-                }
-                .transport-price {
-                    font-size: 1.4rem;
-                    font-weight: 800;
-                    color: var(--success);
-                    margin: 8px 0;
-                }
-            </style>
-
             <div class="transport-grid">
-                <!-- Option 1: Limousine -->
-                <div class="transport-card" id="card-tr-limousine" onclick="selectTransportLocal('limousine')">
+                <div class="transport-card selected">
                     <div>
                         <div class="transport-card-header">
-                            <h3 style="font-weight:700; margin:0;">Option 1: Xe Limousine 9 Chỗ Riêng</h3>
+                            <h3 style="font-weight:700; margin:0;">Option 1: Tự lái 3N2Đ</h3>
                             <span class="select-indicator">✓</span>
                         </div>
-                        <p class="text-muted">Bao trọn gói đón trả tận nơi và đi lại suốt hành trình 3N2Đ.</p>
-                        <div class="transport-price">8.000.000đ <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">(Đã gồm xăng, BOT & tài xế)</span></div>
-                        <ul class="spec-list" style="margin-top: 10px; padding-left: 20px;">
-                            <li>Xe Dcar Limousine 9 chỗ massage đời mới cực êm.</li>
-                            <li>Đón trả tận nơi tại Q8, TP.HCM và phục vụ đi lại suốt tuyến.</li>
-                            <li>Đã bao gồm chi phí ăn ngủ tự túc của tài xế.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Option 2: Self-drive -->
-                <div class="transport-card" id="card-tr-self_drive" onclick="selectTransportLocal('self_drive')">
-                    <div>
-                        <div class="transport-card-header">
-                            <h3 style="font-weight:700; margin:0;">Option 2: Thuê Xe Tự Lái Ford Everest</h3>
-                            <span class="select-indicator">✓</span>
-                        </div>
-                        <p class="text-muted">Tự lái chủ động lộ trình. Tiết kiệm ~1/2 chi phí so với đi limousine!</p>
-                        <div class="transport-price">4.000.000đ <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">(Chưa gồm xăng & BOT)</span></div>
-                        <ul class="spec-list" style="margin-top: 10px; padding-left: 20px;">
-                            <li>Giá thuê xe Everest 2025: ~1.3M/ngày x 3 ngày.</li>
-                            <li>Phát sinh xăng dầu (~700k) & cầu đường BOT (~360k).</li>
-                            <li>Chủ động di chuyển, riêng tư tuyệt đối cho gia đình.</li>
+                        <p class="text-muted">Phù hợp nhất nếu muốn đi Hàm Tiến - Bàu Trắng - Kê Gà mà không bị bó theo lịch xe tuyến.</p>
+                        <div class="transport-price">Nên ưu tiên <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">(xem giá live)</span></div>
+                        <ul class="spec-list">
+                            <li>Dễ ghép thêm điểm phía nam như Kê Gà hoặc phía bắc như Bàu Trắng.</li>
+                            <li>Cần kiểm tra giới hạn km, giờ nhận xe và phí cao tốc.</li>
+                            <li>Không dùng lại các số cứng 4.0M / 8.0M như file cũ.</li>
                         </ul>
                     </div>
                     <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px;">
-                        <a href="https://www.mioto.vn/car/ford-everest-2025/KH1ADC?fbclid=IwZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPNDM3NjI2MzE2OTczNzg4AAEesCO6Kt-QBx_2SEsVrNK7n87X-d1frYqyK3B6fh-uFPmrD4DirDQMEOdOQXg_aem_9dSYOuS8fDm6O-XiRcy6fw" target="_blank" class="action-btn action-btn-book" style="display:inline-block; font-size:0.85rem; width:100%; text-align:center;" onclick="event.stopPropagation()">🔗 Chi tiết xe trên Mioto</a>
+                        <a href="https://www.mioto.vn/" target="_blank" class="action-btn action-btn-book" style="display:inline-block; font-size:0.85rem; width:100%; text-align:center;">🔗 Mở Mioto</a>
                     </div>
                 </div>
-            </div>
-        
-        <!-- Top 10 Limousine Providers -->
-            <div class="card">
-                <div class="card-header-styled">
-                    <h3 class="card-title">🔍 Đơn Vị Xe Limousine & Cho Thuê Xe Uy Tín (Verify & Báo Giá)</h3>
-                    <span class="text-muted">Danh sách nhà xe hàng đầu phục vụ tuyến Sài Gòn - Phan Thiết</span>
-                </div>
-                
-                <div class="provider-table-wrapper">
-                    <table class="provider-table">
-                        <thead>
-                            <tr>
-                                <th>Đơn Vị Cung Cấp</th>
-                                <th>Mức Giá Dự Kiến (3N2Đ)</th>
-                                <th>Điểm Nổi Bật / Đặc Điểm Dịch Vụ</th>
-                                <th>Đường Link Xác Thực</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>1. Hải Tuấn Travel</strong><br><span class="provider-badge provider-badge-p">Chuyên Phan Thiết</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.2M - 8.0M</td>
-                                <td>Chuyên tuyến Mũi Né. Xe đời mới sạch sẽ, lái xe am hiểu địa phương, hỗ trợ nhiệt tình.</td>
-                                <td><a href="https://haituantravel.com" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>2. Xe Đất Phương Nam</strong><br><span class="provider-badge provider-badge-p">Hợp đồng VIP</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.0M - 8.5M</td>
-                                <td>Thương hiệu uy tín lâu năm tại HCMC. Cam kết xe đời mới, giá bao gồm trọn gói rõ ràng.</td>
-                                <td><a href="https://xedatphuongnam.vn" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>3. Vie Limo</strong><br><span class="provider-badge provider-badge-s">Siêu Sang VIP</span></td>
-                                <td class="text-success" style="font-weight: 700;">8.5M - 9.5M</td>
-                                <td>Ghế Boeing massage chỉnh điện cao cấp. Có phòng chờ đón khách VIP nước uống miễn phí tại Q1.</td>
-                                <td><a href="https://vielimousine.com" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>4. Nhiều Xe (nhieuxe.vn)</strong><br><span class="provider-badge provider-badge-p">Giá Cạnh Tranh</span></td>
-                                <td class="text-success" style="font-weight: 700;">6.8M - 7.8M</td>
-                                <td>Hệ thống liên kết xe lớn. Báo giá nhanh, hợp đồng rõ ràng minh bạch các loại phí cao tốc.</td>
-                                <td><a href="https://nhieuxe.vn" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>5. Limo24h (limo24h.vn)</strong><br><span class="provider-badge provider-badge-p">Dịch Vụ Chuẩn</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.2M - 8.2M</td>
-                                <td>Cung cấp dòng xe VIP Dcar Limousine nội thất sang trọng, dịch vụ đặt xe nhanh chóng qua hotline/Zalo.</td>
-                                <td><a href="https://limo24h.vn" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>6. Bùi Gia Travel</strong><br><span class="provider-badge provider-badge-p">Local Specialist</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.0M - 8.0M</td>
-                                <td>Thế mạnh xe hợp đồng đưa đón Sài Gòn - Mũi Né. Lái xe cẩn thận, đúng giờ.</td>
-                                <td><a href="https://buigiatravel.com" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>7. Tân Triều Travel</strong><br><span class="provider-badge provider-badge-p">Tour & Thuê Xe</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.0M - 8.3M</td>
-                                <td>Chuyên cung cấp dịch vụ thuê xe du lịch chất lượng cao tại HCMC, hỗ trợ thiết kế lịch trình miễn phí.</td>
-                                <td><a href="https://tantrieutravel.com" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>8. Gia Cát Bảo</strong><br><span class="provider-badge provider-badge-p">Đội Xe Đa Dạng</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.2M - 8.5M</td>
-                                <td>Sở hữu nhiều dòng xe Dcar Limousine đời mới. Nhân viên tư vấn nhiệt tình, tận tâm.</td>
-                                <td><a href="https://giacatbao.com" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>9. Hải Nam Limousine</strong><br><span class="provider-badge provider-badge-p">Tuyến Cố Định & Hợp Đồng</span></td>
-                                <td class="text-success" style="font-weight: 700;">6.9M - 7.9M</td>
-                                <td>Chuyên chạy tuyến biển Bình Thuận. Lái xe chạy êm, an toàn, hỗ trợ đón trả nhiều điểm.</td>
-                                <td><a href="https://hainamlimo.com" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                            <tr>
-                                <td><strong>10. Thịnh Phát Limousine</strong><br><span class="provider-badge provider-badge-s">Nổi Tiếng</span></td>
-                                <td class="text-success" style="font-weight: 700;">7.5M - 8.5M</td>
-                                <td>Một trong những đơn vị khai thác dòng xe Limousine sớm nhất. Dịch vụ chuyên nghiệp, bài bản.</td>
-                                <td><a href="https://thinhphatlimousine.vn" target="_blank" class="action-btn action-btn-book">🔗 Link Website</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div class="transport-card">
+                    <div>
+                        <div class="transport-card-header">
+                            <h3 style="font-weight:700; margin:0;">Option 2: Xe tuyến / xe ghép</h3>
+                            <span class="select-indicator">i</span>
+                        </div>
+                        <p class="text-muted">Dùng được nếu ở hẳn Mũi Né hoặc Phan Thiết trung tâm, nhưng sẽ kém linh hoạt nếu thêm Bàu Trắng hoặc Kê Gà.</p>
+                        <div class="transport-price">Tiết kiệm hơn <span style="font-size:0.8rem; font-weight:normal; color:var(--text-muted);">(tính thêm taxi nội vùng)</span></div>
+                        <ul class="spec-list">
+                            <li>Kiểm tra giờ xe và điểm trả thật trước ngày đi.</li>
+                            <li>Nếu ở resort xa trung tâm vẫn phát sinh chi phí trung chuyển.</li>
+                        </ul>
+                    </div>
+                    <div style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                        <a href="https://www.vexere.com/vi-VN/" target="_blank" class="action-btn action-btn-book" style="display:inline-block; font-size:0.85rem; width:100%; text-align:center;">🔗 Mở Vexere</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Check xe checklist -->
             <div class="card">
                 <div class="card-header-styled">
-                    <h3 class="card-title">📝 Check các điều khoản khi thuê xe</h3>
+                    <h3 class="card-title">🔍 Ghi chú cho phần di chuyển</h3>
+                    <span class="text-muted">Bỏ bảng 10 nhà xe và khung giá cứng của file cũ</span>
                 </div>
-                <div class="checklist-group">
-                    <div class="task-item" onclick="toggleTaskLocal('c-car-1')">
-                        <input type="checkbox" id="c-car-1" class="task-checkbox" onclick="event.stopPropagation()">
-                        <div class="task-content">
-                            <span class="task-text">Xác nhận đón sau 22:00 không phụ phí cao</span>
-                            <div class="task-note">Nhiều nhà xe tính phụ thu chạy đêm cao. Cần chốt rõ.</div>
-                        </div>
-                    </div>
-                    <div class="task-item" onclick="toggleTaskLocal('c-car-2')">
-                        <input type="checkbox" id="c-car-2" class="task-checkbox" onclick="event.stopPropagation()">
-                        <div class="task-content">
-                            <span class="task-text">Xác nhận giá đã gồm cao tốc & BOT cầu đường</span>
-                            <div class="task-note">Bắt buộc phải bao gồm để tránh tài xế thu thêm khi đi.</div>
-                        </div>
-                    </div>
-                    <div class="task-item" onclick="toggleTaskLocal('c-car-3')">
-                        <input type="checkbox" id="c-car-3" class="task-checkbox" onclick="event.stopPropagation()">
-                        <div class="task-content">
-                            <span class="task-text">Hỏi rõ chi phí ăn ngủ của tài xế</span>
-                            <div class="task-note">Trọn gói tự túc của tài xế hay gia đình phải lo chỗ ngủ/ăn cho tài xế?</div>
-                        </div>
-                    </div>
-                    <div class="task-item" onclick="toggleTaskLocal('c-car-4')">
-                        <input type="checkbox" id="c-car-4" class="task-checkbox" onclick="event.stopPropagation()">
-                        <div class="task-content">
-                            <span class="task-text">Hạn mức giới hạn số km sử dụng mỗi ngày</span>
-                            <div class="task-note">Thông thường xe ở lại phục vụ giới hạn 100km - 150km/ngày.</div>
-                        </div>
-                    </div>
+                <div class="verify-note" style="font-size:0.92rem;">
+                    Danh sách nhà xe hợp đồng trong bản cũ nhìn rất “đã verify” nhưng không có căn cứ đủ chắc để giữ nguyên. Với nhóm dữ liệu này, cách an toàn hơn là dùng kênh live như Mioto hoặc Vexere ngay trước ngày chốt.
                 </div>
             </div>
         </div>
 
-        <!-- TAB: LODGING -->
         <div id="lodging" class="tab-content">
-            <div class="card" style="margin-bottom: 20px;">
-                <div class="card-header-styled" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
-                    <h3 class="card-title">🏨 Lọc Danh Sách Nơi Ở (Dưới 9 Triệu / 2 Đêm)</h3>
+            <div class="card">
+                <div class="card-header-styled" style="margin-bottom: 10px;">
+                    <h3 class="card-title">🏨 Danh Sách Nơi Ở Đã Verify</h3>
+                    <span class="text-muted">Giữ khung dễ xem, nhưng chỉ còn các điểm xác minh được</span>
                 </div>
                 <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
-                    Danh sách đầy đủ 37 địa điểm lưu trú phù hợp cho đoàn 6 người tại Phan Thiết / Mũi Né.
+                    Giá phòng biến động mạnh theo cuối tuần, loại phòng và số khách. Bản này không dùng giá hardcode để quyết định thay cho việc mở link xem phòng thật.
                 </p>
-                <!-- Filters -->
+
                 <div class="filter-container">
                     <button class="filter-btn active" onclick="filterHotels('all')">Tất cả</button>
-                    <button class="filter-btn" onclick="filterHotels('novaworld')">NovaWorld Villa</button>
-                    <button class="filter-btn" onclick="filterHotels('sealinks')">Sea Links Condo</button>
-                    <button class="filter-btn" onclick="filterHotels('resort4')">Resort 4 Sao</button>
-                    <button class="filter-btn" onclick="filterHotels('resort3')">Resort 3 Sao</button>
-                    <button class="filter-btn" onclick="filterHotels('budget')">Tiết Kiệm</button>
+                    <button class="filter-btn" onclick="filterHotels('hamtien')">Hàm Tiến / Mũi Né</button>
+                    <button class="filter-btn" onclick="filterHotels('phuhai')">Phú Hài</button>
+                    <button class="filter-btn" onclick="filterHotels('south')">Tiến Thành / Kê Gà</button>
                 </div>
-            </div>
 
-            <!-- Hotels Grid -->
-            <div class="hotel-grid" id="hotel-cards-container">
-                <!-- Data will be loaded via JS -->
+                <div class="hotel-grid" id="hotel-cards-container"></div>
             </div>
         </div>
 
-        <!-- TAB: PLACES (Ăn uống & Vui chơi) -->
         <div id="places" class="tab-content">
-            <div class="card" style="margin-bottom: 20px;">
-                <div class="card-header-styled" style="border-bottom: none; margin-bottom: 0; padding-bottom: 0;">
+            <div class="card">
+                <div class="card-header-styled">
                     <h3 class="card-title">🦞 Địa Điểm Ăn Uống & Vui Chơi Nổi Tiếng</h3>
+                    <span class="text-muted">Phân rõ điểm tham quan thật và nhóm ăn uống nên tra review live</span>
                 </div>
-                <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
-                    Thông tin chi tiết, giá cả và hình ảnh trực quan của các địa điểm ẩm thực & giải trí hàng đầu tại Phan Thiết.
-                </p>
-                <!-- Filters for places -->
+
                 <div class="filter-container">
                     <button class="filter-btn active" onclick="filterPlaces('all')">Tất cả</button>
-                    <button class="filter-btn" onclick="filterPlaces('dining')">🍔 Ăn uống</button>
-                    <button class="filter-btn" onclick="filterPlaces('attraction')">🎡 Vui chơi / Tham quan</button>
+                    <button class="filter-btn" onclick="filterPlaces('food')">🍔 Ăn uống</button>
+                    <button class="filter-btn" onclick="filterPlaces('visit')">🎡 Vui chơi / Tham quan</button>
                 </div>
-            </div>
 
-            <!-- Places Grid -->
-            <div class="places-grid" id="places-container">
-                <!-- Loaded via JS -->
+                <div class="places-grid" id="places-container"></div>
             </div>
         </div>
 
-        <!-- TAB: ITINERARY -->
         <div id="itinerary" class="tab-content">
             <div class="card">
                 <div class="card-header-styled">
                     <h3 class="card-title">📅 Lịch Trình Chi Tiết 3 Ngày 2 Đêm</h3>
-                    <span class="badge-trip" style="background-color: var(--success-light); color: var(--success); margin: 0;">Gia đình thảnh thơi</span>
+                    <span class="text-muted">Đã bỏ các mô tả quá chắc về giá và xếp lại tuyến đi hợp lý hơn</span>
                 </div>
 
-                <!-- Toggle Itinerary Option -->
-                <div class="itinerary-toggle-container">
-                    <button class="filter-btn active" id="btn-iti-night" onclick="toggleItinerary('night')">🌙 PA 1: Khởi hành Đêm (22:00)</button>
-                    <button class="filter-btn" id="btn-iti-day" onclick="toggleItinerary('day')">☀️ PA 2: Khởi hành Sáng (05:00)</button>
-                    <button class="filter-btn" id="btn-iti-custom" onclick="toggleItinerary('custom')">📋 PA 3: Lịch Trình Tự Chọn (Dạng List)</button>
-                </div>
-
-                <!-- ITINERARY PA 1: NIGHT DEPARTURE -->
-                <div id="itinerary-night" class="timeline">
-                    <div class="timeline-day-header">🌙 Ngày 1 (10/07): Khởi hành đêm</div>
+                <div class="timeline">
+                    <div class="timeline-day-header">☀️ Ngày 1 (10/07): TP.HCM → Hàm Tiến / Mũi Né</div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">22:00</div>
-                        <div class="timeline-title">Đón khách tại Quận 8, TP.HCM</div>
-                        <div class="timeline-desc">Xe đón gia đình tận nơi (nếu đi Limousine) hoặc bắt đầu tự lái xuất phát. Di chuyển qua cao tốc Dầu Giây - Phan Thiết. Gia đình có thể nghỉ ngơi trên xe.</div>
+                        <div class="timeline-time">Sáng</div>
+                        <div class="timeline-title">Xuất phát từ TP.HCM</div>
+                        <div class="timeline-desc">Đi sớm để tới khu Hàm Tiến / Mũi Né vào đầu chiều. File cũ khóa cứng xăng, BOT và thời gian quá chặt; bản mới giữ linh hoạt hơn.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Chiều</div>
+                        <div class="timeline-title">Nhận phòng, nghỉ biển</div>
+                        <div class="timeline-desc">Ưu tiên nhận phòng trước rồi mới thêm điểm gần như Đồi Cát Đỏ hoặc Suối Tiên nếu cả nhà còn sức.</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-badge"></div>
+                        <div class="timeline-time">Tối</div>
+                        <div class="timeline-title">Ăn tối khu Hàm Tiến / Mũi Né</div>
+                        <div class="timeline-desc">Chọn nhà hàng theo review live. Không giữ claim “bữa hải sản chắc chắn 600-800k” như file cũ nữa.</div>
                     </div>
 
-                    <div class="timeline-day-header">☀️ Ngày 2 (11/07): Trải nghiệm biển & Hải sản</div>
+                    <div class="timeline-day-header">🌊 Ngày 2 (11/07): Bàu Trắng hoặc Kê Gà, chọn một nhánh chính</div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">02:00</div>
-                        <div class="timeline-title">Đến Phan Thiết & Check-in Muộn</div>
-                        <div class="timeline-desc">Đến nơi nghỉ dưỡng, thực hiện thủ tục nhận phòng muộn (Late check-in) và nghỉ ngơi lấy sức.</div>
+                        <div class="timeline-time">Option A</div>
+                        <div class="timeline-title">Bàu Trắng / Đồi Cát Trắng</div>
+                        <div class="timeline-desc">Hợp nếu muốn tập trung phía bắc Mũi Né. Có thể ghép thêm Làng chài Mũi Né hoặc Suối Tiên trong ngày.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">08:00</div>
-                        <div class="timeline-title">Ăn sáng & Thưởng thức Cafe biển</div>
-                        <div class="timeline-desc">Ăn sáng tại resort hoặc quán cafe sát biển. Hưởng gió biển bình yên buổi sáng.</div>
+                        <div class="timeline-time">Option B</div>
+                        <div class="timeline-title">Kê Gà / Ke Ga Bay</div>
+                        <div class="timeline-desc">Hợp nếu chọn nghỉ phía nam hoặc muốn đi hẳn một ngày xuống Hàm Thuận Nam. Không nên nhồi cả Bàu Trắng lẫn Kê Gà trong cùng một ngày như một lịch “đẹp trên giấy”.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">11:30</div>
-                        <div class="timeline-title">Ăn trưa Hải sản tại bờ kè Hàm Tiến</div>
-                        <div class="timeline-desc">Thưởng thức cá thu, tôm, mực tươi ngon ngay dọc bờ biển. Dự kiến: 600.000đ - 900.000đ.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">15:30</div>
-                        <div class="timeline-title">Khám phá Đồi Cát Đỏ Mũi Né</div>
-                        <div class="timeline-desc">Chụp ảnh và đón hoàng hôn tuyệt đẹp trên đồi cát đỏ hồng. Dự kiến: 300.000đ - 500.000đ.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">18:30</div>
-                        <div class="timeline-title">Bữa tối lãng mạn lẩu thả / hải sản</div>
-                        <div class="timeline-desc">Ăn tối tại nhà hàng biển, thưởng thức đặc sản lẩu thả Phan Thiết.</div>
+                        <div class="timeline-time">Tối</div>
+                        <div class="timeline-title">Về lại khu ở, ăn tối nhẹ</div>
+                        <div class="timeline-desc">Ưu tiên tối thoải mái hơn sau ngày di chuyển dài thay vì thêm quá nhiều điểm check-in.</div>
                     </div>
 
-                    <div class="timeline-day-header">🌊 Ngày 3 (12/07): Khám phá Đồi Cát & Về lại TP.HCM</div>
+                    <div class="timeline-day-header">🏛️ Ngày 3 (12/07): Poshanu / Làng Chài Xưa → về TP.HCM</div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">05:30</div>
-                        <div class="timeline-title">Đón bình minh tại Đồi Cát Trắng Bàu Trắng</div>
-                        <div class="timeline-desc">Khám phá đồi cát trắng mịn màng, thuê xe ATV leo đồi cát cát trắng rộng mênh mông. Dự kiến: 600.000đ - 900.000đ.</div>
+                        <div class="timeline-time">Sáng</div>
+                        <div class="timeline-title">Tháp Poshanu</div>
+                        <div class="timeline-desc">Là điểm văn hóa chắc tay nhất của Phan Thiết, có căn cứ từ Vietnam Tourism.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">08:30</div>
-                        <div class="timeline-title">Tắm biển sáng tự do & Bữa sáng</div>
-                        <div class="timeline-desc">Về lại nơi ở tắm hồ bơi/biển và dùng bữa sáng cuối cùng.</div>
+                        <div class="timeline-time">Cuối sáng</div>
+                        <div class="timeline-title">Bảo tàng nước mắm Làng Chài Xưa / Fishermen Show</div>
+                        <div class="timeline-desc">Giữ lại vì có website và thông tin công khai ổn định hơn; nhưng vé và suất diễn cần xem live.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-badge"></div>
-                        <div class="timeline-time">11:30</div>
-                        <div class="timeline-title">Check-out & Mua quà lưu niệm</div>
-                        <div class="timeline-desc">Trả phòng, mua nước mắm Phan Thiết, thanh long, mực một nắng làm quà. Ăn trưa nhẹ.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">15:30</div>
-                        <div class="timeline-title">Lên xe (Limousine/Tự lái) về lại Sài Gòn</div>
-                        <div class="timeline-desc">Lên xe về lại Quận 8. Dự kiến về tới nơi lúc 19:30 - 20:00 tối.</div>
-                    </div>
-                </div>
-
-                <!-- ITINERARY PA 2: DAY DEPARTURE (TOUR B) -->
-                <div id="itinerary-day" class="timeline" style="display: none;">
-                    <div class="timeline-day-header">☀️ Ngày 1 (10/07): Di chuyển & Đồi cát đỏ</div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">05:00 - 06:00</div>
-                        <div class="timeline-title">Xuất phát từ Quận 8, TP.HCM</div>
-                        <div class="timeline-desc">Bắt đầu hành trình chạy qua cao tốc Phan Thiết. Đi sớm để tránh bị kẹt xe cửa ngõ Sài Gòn. Chi phí xăng dầu ~400k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">06:00 - 09:30</div>
-                        <div class="timeline-title">Di chuyển Q8 -> Phan Thiết (~200 km)</div>
-                        <div class="timeline-desc">Chạy qua CT Long Thành - Dầu Giây + Dầu Giây - Phan Thiết. Ghé ăn sáng tại khu vực Long Khánh. Phí cao tốc ~180k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">09:30 - 11:30</div>
-                        <div class="timeline-title">Nhận phòng Resort Mũi Né</div>
-                        <div class="timeline-desc">Đến nơi nghỉ ngơi, bơi lội thư giãn. Tiêu chuẩn phòng từ 3.0M - 5.0M/đêm.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">11:30 - 13:00</div>
-                        <div class="timeline-title">Ăn trưa hải sản tươi sống</div>
-                        <div class="timeline-desc">Dùng bữa trưa tại bãi biển với cá thu, tôm, mực. Chi phí ước tính: 600k - 900k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">13:00 - 15:30</div>
-                        <div class="timeline-title">Tắm biển & bơi lội tại Resort</div>
-                        <div class="timeline-desc">Khoảng thời gian nghỉ dưỡng tự do cho người lớn thư giãn, con trẻ vui chơi.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">15:30 - 17:30</div>
-                        <div class="timeline-title">Tham quan Đồi Cát Đỏ Mũi Né</div>
-                        <div class="timeline-desc">Khám phá đồi cát bay, chụp ảnh đẹp nhất vào thời điểm chiều tà hoàng hôn. Chi phí: 300k - 500k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">17:30 - 18:30</div>
-                        <div class="timeline-title">Suối Tiên Hòa Thắng</div>
-                        <div class="timeline-desc">Đi dạo ngắm hoàng hôn đỏ huyền ảo dọc khe suối mát. Hoàn toàn miễn phí.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">19:00 - 21:00</div>
-                        <div class="timeline-title">Chợ Đêm Phan Thiết</div>
-                        <div class="timeline-desc">Khám phá chợ đêm nhộn nhịp, ăn tối bánh căn, hải sản vỉa hè cực ngon. Chi phí: 500k - 700k.</div>
-                    </div>
-
-                    <div class="timeline-day-header">☀️ Ngày 2 (11/07): Đồi cát trắng Bàu Trắng & Hải đăng Kê Gà</div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">06:00 - 08:00</div>
-                        <div class="timeline-title">Ngắm bình minh & Tắm biển sáng</div>
-                        <div class="timeline-desc">Thưởng thức bình minh biển và dùng bữa sáng buffet đầy đủ tại resort (~250k).</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">08:00 - 10:30</div>
-                        <div class="timeline-title">Đồi Cát Trắng Bàu Trắng (Bắc Bình)</div>
-                        <div class="timeline-desc">Thuê xe địa hình ATV leo đồi cát trắng và trượt cát. Chi phí: 600k - 900k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">10:30 - 12:00</div>
-                        <div class="timeline-title">Mũi Kê Gà & Hải đăng cổ (1899)</div>
-                        <div class="timeline-desc">Xe đưa đi Hàm Thuận Nam, thuê thuyền thúng ra đảo ngắm hải đăng cổ nhất Việt Nam. Phí thuyền: 180k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">12:00 - 13:30</div>
-                        <div class="timeline-title">Ăn trưa hải sản Kê Gà</div>
-                        <div class="timeline-desc">Ăn trưa cá nướng, ghẹ hấp tại quán ăn view biển lộng gió. Chi phí: 700k - 1.000k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">13:30 - 15:00</div>
-                        <div class="timeline-title">Tham quan Lâu đài Rượu Vang RD</div>
-                        <div class="timeline-desc">Khám phá lâu đài cổ kính kiểu Âu, tham quan và thử rượu vang hảo hạng. Vé: 120k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">15:00 - 17:30</div>
-                        <div class="timeline-title">Nghỉ ngơi, tắm biển tại Resort</div>
-                        <div class="timeline-desc">Thời gian thư giãn riêng tại bãi biển resort.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">17:30 - 19:00</div>
-                        <div class="timeline-title">Làng chài Mũi Né</div>
-                        <div class="timeline-desc">Ngắm cảnh hoàng hôn và xem ngư dân đưa hải sản lên bờ cực nhộn nhịp. Miễn phí.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">19:00 - 21:00</div>
-                        <div class="timeline-title">Ăn tối hải sản bờ kè Mũi Né</div>
-                        <div class="timeline-desc">Thưởng thức hải sản tươi sống dọc đường Nguyễn Đình Chiểu. Chi phí: 600k - 800k.</div>
-                    </div>
-
-                    <div class="timeline-day-header">☀️ Ngày 3 (12/07): Poshanu, Làng chài xưa & Về lại TP.HCM</div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">06:00 - 08:00</div>
-                        <div class="timeline-title">Tắm biển sáng tự do & Ăn sáng</div>
-                        <div class="timeline-desc">Tắm biển sáng và ăn buffet nạp năng lượng tại resort.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">08:00 - 10:00</div>
-                        <div class="timeline-title">Tháp Chàm Poshanu</div>
-                        <div class="timeline-desc">Tham quan cụm tháp Chăm cổ kính độc đáo. Vé vào cổng: 15k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">10:00 - 11:30</div>
-                        <div class="timeline-title">Bảo tàng Làng Chài Xưa</div>
-                        <div class="timeline-desc">Xem bảo tàng nước mắm và show diễn thực cảnh hoành tráng tái hiện đời sống ngư dân. Vé: 300k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">11:30 - 13:00</div>
-                        <div class="timeline-title">Ăn trưa Lẩu thả & Mua quà đặc sản</div>
-                        <div class="timeline-desc">Ăn trưa lẩu thả Phan Thiết ngon trứ danh và mua sắm mực một nắng, thanh long... Chi phí: 600k - 800k.</div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-badge"></div>
-                        <div class="timeline-time">13:00 - 18:30</div>
-                        <div class="timeline-title">Di chuyển về lại Quận 8, TP.HCM</div>
-                        <div class="timeline-desc">Xe chạy cao tốc về lại Sài Gòn. Ăn nhẹ dọc đường (~200k tiền xăng phát sinh). Về đến nơi lúc 16h-17h chiều.</div>
+                        <div class="timeline-time">Trưa</div>
+                        <div class="timeline-title">Ăn nhẹ rồi về TP.HCM</div>
+                        <div class="timeline-desc">Có thể mua đặc sản nước mắm / mực một nắng, nhưng không khóa cứng chi phí như file cũ.</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- TAB: CHECKLIST -->
         <div id="checklist" class="tab-content">
             <div class="card">
                 <div class="card-header-styled">
                     <h3 class="card-title">📝 Checklist Công Việc Cần Hoàn Thành</h3>
-                    <span class="text-muted">Đánh dấu tích để lưu lại tiến độ chuẩn bị của bạn</span>
+                    <span class="text-muted">Những việc còn giá trị sau khi làm sạch dữ liệu</span>
                 </div>
 
                 <div class="checklist-group">
-                    <h4>🚀 Đầu việc ưu tiên (Cần làm ngay)</h4>
-                    
-                    <div class="task-item" onclick="toggleTaskLocal('task-1')">
-                        <input type="checkbox" id="task-1" class="task-checkbox" onclick="event.stopPropagation()">
+                    <h4>🚀 Đầu việc ưu tiên</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
                         <div class="task-content">
-                            <span class="task-text">Liên hệ đặt phương tiện di chuyển (Limousine hoặc xe tự lái)</span>
-                            <div class="task-note">Chốt trọn gói lịch trình đón lúc 22:00 ngày 10/07 hoặc 05:00 sáng.</div>
+                            <span class="task-text">Chốt nơi ở bằng trang chính thức hoặc OTA thật</span>
+                            <div class="task-note">Ưu tiên xác nhận phòng family, số khách tối đa, extra bed, giờ check-in và chính sách hủy.</div>
                         </div>
                     </div>
-
-                    <div class="task-item" onclick="toggleTaskLocal('task-2')">
-                        <input type="checkbox" id="task-2" class="task-checkbox" onclick="event.stopPropagation()">
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
                         <div class="task-content">
-                            <span class="task-text">Liên hệ Resort / Villa kiểm tra chính sách Check-in muộn</span>
-                            <div class="task-note">Rất quan trọng vì gia đình sẽ đến nơi lúc 01:30 - 02:30 sáng nếu chọn PA1.</div>
+                            <span class="task-text">Chọn một nhánh chính cho ngày 2</span>
+                            <div class="task-note">Bàu Trắng hoặc Kê Gà. Không nên cố nhồi cả hai nếu còn muốn chơi thoải mái.</div>
                         </div>
                     </div>
-
-                    <div class="task-item" onclick="toggleTaskLocal('task-3')">
-                        <input type="checkbox" id="task-3" class="task-checkbox" onclick="event.stopPropagation()">
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
                         <div class="task-content">
-                            <span class="task-text">Đặt cọc giữ chỗ nghỉ dưỡng cho 6 người lớn</span>
-                            <div class="task-note">Giữ giá tốt dưới 9 triệu để tránh tăng giá mùa du lịch.</div>
+                            <span class="task-text">Xem giá live cho ăn uống và vé</span>
+                            <div class="task-note">Đây là hai nhóm biến động nhất trong trang cũ.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="checklist-group">
-                    <h4>🎒 Chuẩn bị hành lý cho gia đình</h4>
-                    
-                    <div class="task-item" onclick="toggleTaskLocal('task-4')">
-                        <input type="checkbox" id="task-4" class="task-checkbox" onclick="event.stopPropagation()">
+                    <h4>🎒 Chuẩn bị cho gia đình</h4>
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
                         <div class="task-content">
-                            <span class="task-text">Đồ tắm biển, nón rộng vành & kính mát cho cả nhà</span>
+                            <span class="task-text">Nón, kính, đồ biển và dép đi cát</span>
                         </div>
                     </div>
-
-                    <div class="task-item" onclick="toggleTaskLocal('task-5')">
-                        <input type="checkbox" id="task-5" class="task-checkbox" onclick="event.stopPropagation()">
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
                         <div class="task-content">
-                            <span class="task-text">Kem chống nắng SPF 50+ & Kem nhả nắng</span>
+                            <span class="task-text">Kem chống nắng và nước uống cá nhân</span>
                         </div>
                     </div>
-
-                    <div class="task-item" onclick="toggleTaskLocal('task-6')">
-                        <input type="checkbox" id="task-6" class="task-checkbox" onclick="event.stopPropagation()">
+                    <div class="task-item">
+                        <input type="checkbox" class="task-checkbox">
                         <div class="task-content">
-                            <span class="task-text">Các loại thuốc cá nhân thông dụng (say xe, tiêu hóa, cảm sốt)</span>
+                            <span class="task-text">Thuốc thông dụng cho say xe, tiêu hóa, cảm sốt</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Share Section -->
         <div class="share-banner">
             <h3>🔗 Chia Sẻ Kế Hoạch Cho Cả Nhà</h3>
-            <p>Copy link file HTML này hoặc chụp ảnh màn hình để gửi trực tiếp qua Zalo/Facebook Messenger cho các thành viên trong gia đình cùng xem và góp ý nhé!</p>
+            <p>Trang Phan Thiết đã được verify lại theo nguyên tắc giống Ninh Thuận: ít dữ liệu hơn nhưng sạch và dùng được hơn.</p>
             <button class="share-btn" onclick="copyTripLink()">📋 Sao chép Link Kế hoạch</button>
         </div>
     </div>
 
     <footer>
-        <p>Cẩm nang Trip Phan Thiết 3N2Đ dành cho gia đình 6 người • Thực hiện năm 2026</p>
+        <p>Cẩm nang Trip Phan Thiết 3N2Đ dành cho gia đình 6 người • Bản đã verify lại thông tin • 2026</p>
     </footer>
 
-    <!-- Scripting for Interaction -->
     <script>
-        // Accommodations Data (37 locations)
         const hotels = [
-            // --- NOVAWORLD VILLA ---
-            { id: "mochi-villa", name: "Novaworld Phan Thiết – Mochi Villa", category: "novaworld", stars: 4, capacity: "Villa 3PN (cho 6-8 người) • 2 đêm", priceNum: 7200000, price: "7.200.000đ", location: "Khu đô thị NovaWorld, Tiến Thành", features: "Villa nguyên căn biệt lập • Có bếp nấu ăn • Gần Bikini Beach", recommend: true, map: "Novaworld+Phan+Thiết+Mochi+Villa", img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" },
-            { id: "green-villa", name: "Green Villa NovaWorld Phan Thiết", category: "novaworld", stars: 4, capacity: "Villa 3-4PN (cho 8 người) • 2 đêm", priceNum: 8000000, price: "8.000.000đ", location: "Khu đô thị NovaWorld, Tiến Thành", features: "Biệt thự sân vườn rộng • Bếp hiện đại đầy đủ dụng cụ • Gần Bikini Beach", recommend: true, map: "Green+Villa+NovaWorld+Phan+Thiết", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
-            { id: "holiday-villa", name: "Holiday Villa NovaWorld Phan Thiết", category: "novaworld", stars: 4, capacity: "Villa 3PN (cho 8 người) • 2 đêm", priceNum: 8200000, price: "8.200.000đ", location: "Khu đô thị NovaWorld, Tiến Thành", features: "Biệt thự nghỉ dưỡng sang xịn • Đầy đủ tiện nghi gia đình", recommend: false, map: "Holiday+Villa+Novaworld+Phan+Thiet", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
-            { id: "lfp-villa", name: "Villa LFP NovaWorld Phan Thiết", category: "novaworld", stars: 4, capacity: "Villa 3PN (cho 8 người) • 2 đêm", priceNum: 7800000, price: "7.800.000đ", location: "Khu đô thị NovaWorld, Tiến Thành", features: "Villa thiết kế trẻ trung • Có sân BBQ rộng rãi", recommend: false, map: "Villa+Novaworld+Phan+Thiết+Bình+Tú", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" },
-            { id: "blue-villa", name: "NovaWorld Phan Thiết The Blue Villa", category: "novaworld", stars: 4, capacity: "Villa 3PN (cho 8-10 người) • 2 đêm", priceNum: 8500000, price: "8.500.000đ", location: "Khu đô thị NovaWorld, Tiến Thành", features: "Thiết kế Địa Trung Hải biển xanh mát • Nội thất cực mới", recommend: false, map: "Novaworld+Phan+Thiết+The+Blue+Villa", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
-            { id: "alala-stay", name: "NovaWorld Phan Thiết – Alala Stay", category: "novaworld", stars: 4, capacity: "Villa 3PN (cho 8 người) • 2 đêm", priceNum: 7500000, price: "7.500.000đ", location: "Khu đô thị NovaWorld, Tiến Thành", features: "Check-in tiện lợi, phòng sạch sẽ thoáng đạt", recommend: false, map: "Novaworld+Phan+Thiết+Alala+Stay", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" },
-            
-            // --- SEA LINKS / OCEAN VISTA ---
-            { id: "ocean-vista", name: "Ocean Vista Condo Sea Links Mũi Né", category: "sealinks", stars: 4, capacity: "Căn hộ 3PN (cho 6-8 người) • 2 đêm", priceNum: 9000000, price: "9.000.000đ", location: "Phố biển Hàm Tiến / Phú Hài", features: "Căn hộ 3 phòng ngủ cao cấp • View biển tuyệt đẹp • Sát bãi tắm Ông Địa", recommend: true, map: "Ocean+Vista+Condo+Phan+Thiet+Sea+Links", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
-            
-            // --- RESORT 4 SAO ---
-            { id: "ttc-resort", name: "TTC Resort Mũi Né", category: "resort4", stars: 4, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 9600000, price: "9.600.000đ", location: "Khu phố 5, Mũi Né", features: "Thương hiệu TTC uy tín • Hồ bơi sát biển • Sân cỏ rộng tổ chức trò chơi", recommend: true, map: "TTC+Resort+M%C5%A9i+N%C3%A9", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" },
-            { id: "bamboo-village", name: "Bamboo Village Beach Resort", category: "resort4", stars: 4, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 15600000, price: "15.600.000đ", location: "38 Nguyễn Đình Chiểu, Hàm Tiến", features: "Phong cách làng tre thuần Việt thanh tịnh • Bãi tắm riêng rất mịn", recommend: true, map: "Bamboo+Village+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" },
-            { id: "the-cliff", name: "The Cliff Resort & Residences", category: "resort4", stars: 4, capacity: "1 căn Terra 2PN + Giường phụ • 2 đêm", priceNum: 11800000, price: "11.800.000đ", location: "Khu phố 5, Phú Hài", features: "Phòng bồn tắm ngoài trời cực đỉnh • Hồ bơi vô cực view trọn biển xanh", recommend: false, map: "The+Cliff+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" },
-            { id: "terracotta-resort", name: "Terracotta Resort & Spa", category: "resort4", stars: 4, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 11400000, price: "11.400.000đ", location: "28 Nguyễn Đình Chiểu, Hàm Tiến", features: "Không gian vườn nhiệt đới nhiều bóng dừa mát rượi", recommend: false, map: "Terracotta+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" },
-            { id: "cham-villas", name: "Cham Villas Boutique Luxury", category: "resort4", stars: 4, capacity: "3 Bungalow Garden View • 2 đêm", priceNum: 17400000, price: "17.400.000đ", location: "32 Nguyễn Đình Chiểu, Hàm Tiến", features: "Bungalow gạch nung cổ kính biệt lập yên bình mang hồn nét Chăm", recommend: false, map: "Cham+Villas+Mui+Ne", img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80" },
-            { id: "sailing-club", name: "Sailing Club Resort (Mia cũ)", category: "resort4", stars: 4, capacity: "3 phòng Sapa House • 2 đêm", priceNum: 18600000, price: "18.600.000đ", location: "24 Nguyễn Đình Chiểu, Hàm Tiến", features: "Khu nghỉ dưỡng thân thiện môi trường • Nhà hàng sát biển nổi tiếng", recommend: false, map: "Sailing+Club+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" },
-            { id: "sunny-beach", name: "Sunny Beach Resort & Spa", category: "resort4", stars: 4, capacity: "3 phòng Superior View Vườn • 2 đêm", priceNum: 9600000, price: "9.600.000đ", location: "64 Nguyễn Đình Chiểu, Hàm Tiến", features: "Phòng sạch sẽ view vườn/biển thoáng • Hồ bơi hướng biển rất chill", recommend: true, map: "Sunny+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=80" },
-            { id: "hoang-ngoc", name: "Hoàng Ngọc Beach Resort", category: "resort4", stars: 4, capacity: "3 phòng Superior View Vườn • 2 đêm", priceNum: 10200000, price: "10.200.000đ", location: "152 Nguyễn Đình Chiểu, Hàm Tiến", features: "Nhiều hoạt động thể thao biển • Vườn dừa xanh tươi mát mắt", recommend: false, map: "Hoang+Ngoc+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" },
-            { id: "seahorse-resort", name: "Seahorse Resort & Spa", category: "resort4", stars: 4, capacity: "1 Family Suite + 1 Deluxe • 2 đêm", priceNum: 10600000, price: "10.600.000đ", location: "16 Nguyễn Đình Chiểu, Hàm Tiến", features: "Hồ bơi tràn rộng nhất khu trung tâm Hàm Tiến • Sân vườn thoáng đãng", recommend: false, map: "Seahorse+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?auto=format&fit=crop&w=800&q=80" },
-            { id: "blue-ocean", name: "Blue Ocean Resort", category: "resort4", stars: 4, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 10800000, price: "10.800.000đ", location: "54 Nguyễn Đình Chiểu, Hàm Tiến", features: "Sở hữu bãi tắm rộng nhiều bóng râm mát mẻ • Phục vụ chuyên nghiệp", recommend: false, map: "Blue+Ocean+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80" },
-            { id: "saigon-muine", name: "Saigon Mui Ne Resort", category: "resort4", stars: 4, capacity: "3 phòng Superior View Vườn • 2 đêm", priceNum: 10200000, price: "10.200.000đ", location: "56 Nguyễn Đình Chiểu, Hàm Tiến", features: "Khu resort có thiết kế thoáng cát mịn phẳng thích hợp tắm biển thư giãn", recommend: false, map: "Saigon+Mui+Ne+Resort", img: "https://images.unsplash.com/photo-1596598538551-90a249675941?auto=format&fit=crop&w=800&q=80" },
-            { id: "allezboo-resort", name: "Allezboo Beach Resort & Spa", category: "resort4", stars: 4, capacity: "3 phòng Deluxe View Vườn • 2 đêm", priceNum: 10800000, price: "10.800.000đ", location: "8 Nguyễn Đình Chiểu, Hàm Tiến", features: "Không gian kiểu Pháp sang trọng quý phái • Cảnh quan rất đẹp", recommend: false, map: "Allezboo+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" },
-            { id: "de-century", name: "Mui Ne De Century Resort", category: "resort4", stars: 4, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 9000000, price: "9.000.000đ", location: "211 Nguyễn Đình Chiểu, Hàm Tiến", features: "Kiến trúc kết hợp giữa biệt thự Âu và vườn cây châu Á xanh tươi", recommend: false, map: "Mui+Ne+De+Century+Resort", img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80" },
-            { id: "muine-bay", name: "Muine Bay Resort", category: "resort4", stars: 4, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 10200000, price: "10.200.000đ", location: "Khu phố 14, Mũi Né", features: "Resort sát biển bãi cát rộng • Hồ bơi vô cực ngắm vịnh tuyệt đẹp", recommend: false, map: "Muine+Bay+Resort", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80" },
-
-            // --- RESORT 3 SAO ---
-            { id: "lotus-village", name: "Lotus Village Resort", category: "resort3", stars: 3, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 7200000, price: "7.200.000đ", location: "100 Nguyễn Đình Chiểu, Hàm Tiến", features: "Khu vườn ao sen dân dã đậm hồn Việt • Hồ bơi hướng biển rất đẹp", recommend: true, map: "Lotus+Village+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" },
-            { id: "tien-dat", name: "Tiến Đạt Resort (Tien Dat)", category: "resort3", stars: 3, capacity: "3 phòng Standard (Khu Vườn) • 2 đêm", priceNum: 6600000, price: "6.600.000đ", location: "94 Nguyễn Đình Chiểu, Hàm Tiến", features: "Sở hữu bãi tắm rộng và hồ bơi ngoài trời mát mẻ", recommend: false, map: "Tien+Dat+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" },
-            { id: "bao-quynh", name: "Bao Quynh Bungalow", category: "resort3", stars: 3, capacity: "3 Bungalow Garden View • 2 đêm", priceNum: 9000000, price: "9.000.000đ", location: "26 Nguyễn Đình Chiểu, Hàm Tiến", features: "Khu vườn hoa nhiệt đới xanh mát bao quanh các Bungalow gỗ ấm cúng", recommend: false, map: "Bao+Quynh+Bungalow+Mui+Ne", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" },
-            { id: "grace-boutique", name: "Grace Boutique Resort", category: "resort3", stars: 3, capacity: "3 phòng Deluxe View Vườn • 2 đêm", priceNum: 8400000, price: "8.400.000đ", location: "144 Nguyễn Đình Chiểu, Hàm Tiến", features: "Phong cách ấm cúng xinh xắn kiểu biệt thự cổ Âu bên bờ biển", recommend: false, map: "Grace+Boutique+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" },
-            { id: "dynasty-resort", name: "Dynasty Beach Resort", category: "resort3", stars: 3, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 7200000, price: "7.200.000đ", location: "140 Nguyễn Đình Chiểu, Hàm Tiến", features: "Kiến trúc cung đình cổ thanh tịnh • Bãi cát biển kề thềm resort", recommend: false, map: "Dynasty+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80" },
-            { id: "vinh-suong", name: "Vinh Suong Seaside Resort", category: "resort3", stars: 3, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 6600000, price: "6.600.000đ", location: "46 Nguyễn Đình Chiểu, Hàm Tiến", features: "Resort râm mát nhiều cây cối dừa xanh • Bãi biển rộng thoáng đãng", recommend: false, map: "Vinh+Suong+Seaside+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80" },
-            { id: "four-oceans", name: "Four Oceans Beach Resort", category: "resort3", stars: 3, capacity: "3 phòng Deluxe View Vườn • 2 đêm", priceNum: 7800000, price: "7.800.000đ", location: "30 Nguyễn Đình Chiểu, Hàm Tiến", features: "Không gian phòng nghỉ rộng mát mẻ hướng biển dào dạt", recommend: false, map: "Four+Oceans+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1561501900-3701fa6a0864?auto=format&fit=crop&w=800&q=80" },
-            { id: "hai-au", name: "Hải Âu Mũi Né Beach Resort", category: "resort3", stars: 3, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 6600000, price: "6.600.000đ", location: "32 Nguyễn Đình Chiểu, Hàm Tiến", features: "Hồ bơi sát mép biển • Nhiều bóng mát dừa, dịch vụ rất chu đáo", recommend: false, map: "Hai+Au+Mui+Ne+Beach+Resort", img: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" },
-            { id: "muine-pacific", name: "Muine Pacific Resort", category: "resort3", stars: 3, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 7200000, price: "7.200.000đ", location: "148 Nguyễn Đình Chiểu, Hàm Tiến", features: "View biển đẹp mát râm • Dễ dàng đi bộ ra các nhà hàng xung quanh", recommend: false, map: "Muine+Pacific+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1498503182468-3b51cbb6cb24?auto=format&fit=crop&w=800&q=80" },
-            { id: "canary-beach", name: "Canary Beach Resort", category: "resort3", stars: 3, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 7800000, price: "7.800.000đ", location: "Huỳnh Thúc Kháng, Mũi Né", features: "Bãi tắm tuyệt đẹp hướng gió mồ hôi tràn sát mặt nước", recommend: false, map: "Canary+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80" },
-            { id: "malibu-resort", name: "Malibu Resort Mũi Né", category: "resort3", stars: 3, capacity: "3 phòng Superior View Vườn • 2 đêm", priceNum: 5400000, price: "5.400.000đ", location: "Gần Đồi Cát Đỏ, Mũi Né", features: "Chi phí tiết kiệm rẻ nhất • Gần đồi cát bay thuận tiện tham quan", recommend: false, map: "Malibu+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" },
-            { id: "sealion-resort", name: "Sea Lion Beach Resort Mũi Né", category: "resort3", stars: 3, capacity: "3 phòng Superior View Vườn • 2 đêm", priceNum: 7800000, price: "7.800.000đ", location: "12 Nguyễn Đình Chiểu, Hàm Tiến", features: "Không gian nghỉ mát xanh an lành • Rất thích hợp cho nhóm khách gia đình", recommend: false, map: "Sea+Lion+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=800&q=80" },
-            { id: "honrom-central", name: "Hon Rom Central Beach Resort", category: "resort3", stars: 3, capacity: "3 phòng Standard View Vườn • 2 đêm", priceNum: 6600000, price: "6.600.000đ", location: "Khu Hòn Rơm, Mũi Né", features: "Resort sát bờ biển sóng dịu phẳng hòn rơm cát vàng mịn", recommend: false, map: "Hon+Rom+Central+Beach+Resort", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" },
-            { id: "nhat-quang", name: "Nhat Quang Bungalow", category: "resort3", stars: 3, capacity: "3 Bungalow riêng biệt • 2 đêm", priceNum: 6600000, price: "6.600.000đ", location: "44 Nguyễn Đình Chiểu, Hàm Tiến", features: "Khu Bungalow mộc mạc giá bình dân và chủ động sát mép biển", recommend: false, map: "Nhat+Quang+Bungalow+Mui+Ne", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=80" },
-            { id: "fullmoon-resort", name: "Full Moon Beach Resort", category: "resort3", stars: 3, capacity: "3 phòng Deluxe Garden View • 2 đêm", priceNum: 8400000, price: "8.400.000đ", location: "84 Nguyễn Đình Chiểu, Hàm Tiến", features: "Thiết kế phòng sát mép sóng biển, rất gần phố ăn chơi", recommend: false, map: "Full+Moon+Beach+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=800&q=80" },
-
-            // --- BUDGET / HOMESTAY ---
-            { id: "chons-dock", name: "Chon's Dock Homestay & House", category: "budget", stars: 3, capacity: "Nhà nguyên căn 3PN • 2 đêm", priceNum: 4600000, price: "4.600.000đ", location: "239 Trần Lê, Phan Thiết", features: "Nhà nguyên căn tiện nghi • Phong cách ấm cúng gia đình • Giá siêu rẻ tiết kiệm", recommend: false, map: "Chon%27s+Dock+Homestay+%26+House+Lease+Phan+Thi%E1%BA%BFt", img: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?auto=format&fit=crop&w=800&q=80" },
-            { id: "sunrise-villa", name: "Sunrise Villa Phan Thiết – Màu Của Nắng", category: "budget", stars: 3, capacity: "Townhouse 3PN trung tâm • 2 đêm", priceNum: 4200000, price: "4.200.000đ", location: "42 Võ Văn Dũng, Phan Thiết", features: "Townhouse xinh xắn trung tâm • Gần bãi tắm Đồi Dương • Thích hợp tự túc", recommend: false, map: "Sunrise+Villa+Phan+Thi%E1%BA%BFt+M%C3%A0u+C%E1%BB%A7a+N%E1%BA%AFng", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" }
+            { id: "bamboo-village", name: "Bamboo Village Beach Resort & Spa", category: "hamtien", stars: 4, priceNum: 15000000, price: "Xem giá live", location: "38 Nguyễn Đình Chiểu, Hàm Tiến", features: "Resort thật có website chính thức và Booking • Phù hợp nghỉ biển trục Hàm Tiến", recommend: true, map: "Bamboo+Village+Beach+Resort+Spa", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức + Booking", source: "https://bamboovillageresortvn.com/", booking: "https://www.booking.com/hotel/vn/bamboo-village-beach-resort-spa.html" },
+            { id: "the-cliff", name: "The Cliff Resort & Residences", category: "phuhai", stars: 4, priceNum: 11800000, price: "Xem giá live", location: "Khu phố 5, Phú Hài", features: "Có website chính thức và Booking • Hợp nếu muốn ở gần Poshanu / Phú Hài", recommend: true, map: "The+Cliff+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức + Booking", source: "https://thecliffresort.com.vn/", booking: "https://www.booking.com/hotel/vn/the-cliff-resort-and-residences.html" },
+            { id: "centara-mirage", name: "Centara Mirage Resort Mui Ne", category: "hamtien", stars: 5, priceNum: 16000000, price: "Xem giá live", location: "Mũi Né", features: "Resort gia đình có website chính thức • Hợp nếu ưu tiên khu vui chơi trong resort", recommend: true, map: "Centara+Mirage+Resort+Mui+Ne", img: "https://images.unsplash.com/photo-1513885045260-6b3086b24c17?auto=format&fit=crop&w=800&q=80", note: "Nguồn: Centara chính thức + Booking", source: "https://www.centarahotelsresorts.com/centara/cmv", booking: "https://www.booking.com/hotel/vn/centara-mirage-resort-mui-ne.html" },
+            { id: "muine-bay", name: "Muine Bay Resort", category: "hamtien", stars: 4, priceNum: 10000000, price: "Xem giá live", location: "Mũi Né", features: "Có website chính thức và Booking • Phù hợp nếu muốn ở sâu hơn phía Mũi Né", recommend: false, map: "Muine+Bay+Resort", img: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức + Booking", source: "https://muinebayresort.com/", booking: "https://www.booking.com/hotel/vn/muine-bay-resort.html" },
+            { id: "asteria", name: "Asteria Mũi Né Resort", category: "hamtien", stars: 5, priceNum: 14000000, price: "Xem giá live", location: "Mũi Né", features: "Resort mới, có website chính thức và OTA • Phù hợp gia đình muốn khu nghỉ kiểu đầy đủ tiện ích", recommend: false, map: "Asteria+Mui+Ne+Resort", img: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức + Agoda", source: "https://asteriamuineresort.com/", booking: "https://www.agoda.com/asteria-mui-ne-resort/hotel/phan-thiet-vn.html" },
+            { id: "azerai-kega", name: "Azerai Ke Ga Bay", category: "south", stars: 5, priceNum: 99999999, price: "Cao cấp • xem live", location: "Kê Gà / Hàm Thuận Nam", features: "Điểm nghỉ thật ở nhánh phía nam • Hợp nếu chọn ngày 2 đi hẳn Kê Gà", recommend: false, map: "Azerai+Ke+Ga+Bay", img: "https://images.unsplash.com/photo-1615571022219-eb45cf7faa36?auto=format&fit=crop&w=800&q=80", note: "Nguồn: website chính thức + Booking", source: "https://azerai.com/azerai-ke-ga-bay/", booking: "https://www.booking.com/hotel/vn/azerai-ke-ga-bay.html" }
         ];
 
-        // Dining & Entertainment Places Data (with Unsplash images & info from Tour B)
         const places = [
-            // --- ĂN UỐNG ---
-            { 
-                id: "p-boke", 
-                name: "Bờ Kè Hải Sản Mũi Né", 
-                category: "dining", 
-                budget: "600.000đ - 800.000đ / bữa", 
-                timing: "Ăn tối Ngày 2 (19:00 - 21:00)",
-                location: "Đường Nguyễn Đình Chiểu, Hàm Tiến",
-                desc: "Khu phố hải sản dọc bờ biển Mũi Né. Thưởng thức tôm hùm, ghẹ, ốc tươi sống bắt ngay tại bể với view biển lộng gió rì rào.",
-                map: "Bờ+Kè+Mũi+Né+Nguyễn+Đình+Chiểu",
-                img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-lautha", 
-                name: "Lẩu Thả Phan Thiết", 
-                category: "dining", 
-                budget: "600.000đ - 800.000đ / lẩu", 
-                timing: "Ăn trưa Ngày 3 (11:30 - 13:00)",
-                location: "Các nhà hàng đặc sản Phan Thiết / Mũi Né",
-                desc: "Món lẩu đặc trưng bày trí trong các bẹ bắp chuối như một bông hoa. Nguyên liệu gồm cá mai, trứng chiên sợi, thịt ba chỉ, các loại rau rừng ăn cùng nước sốt chuối chát đặc biệt.",
-                map: "Lẩu+Thả+Phan+Thiết",
-                img: "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-chodem", 
-                name: "Chợ Đêm Phan Thiết", 
-                category: "dining", 
-                budget: "500.000đ - 700.000đ", 
-                timing: "Ăn tối Ngày 1 (19:00 - 21:00)",
-                location: "Đại lộ Nguyễn Tất Thành, Phan Thiết",
-                desc: "Khu chợ ẩm thực đêm sôi động bậc nhất. Nổi tiếng với món bánh căn nóng hổi, răng mực nướng, bánh xèo Phan Thiết và các món ăn vặt lề đường đa dạng, trẻ con cực kỳ thích.",
-                map: "Chợ+Đêm+Phan+Thiết",
-                img: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-banhcanh", 
-                name: "Bánh Canh Chả Cá Phan Thiết", 
-                category: "dining", 
-                budget: "30.000đ - 50.000đ / tô", 
-                timing: "Ăn nhẹ Ngày 3",
-                location: "Trung tâm TP. Phan Thiết",
-                desc: "Sợi bánh canh đục mềm dẻo đặc biệt ăn kèm chả cá hấp hoặc chiên giòn dai ngon, nước lèo hầm xương cá ngọt thanh pha vị hơi ngọt nhẹ đặc trưng Nam Trung Bộ.",
-                map: "Bánh+Canh+Chả+Cá+Phan+Thiết",
-                img: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-kegafood", 
-                name: "Hải sản Kê Gà", 
-                category: "dining", 
-                budget: "700.000đ - 1.000.000đ", 
-                timing: "Ăn trưa Ngày 2 (12:00 - 13:30)",
-                location: "Mũi Kê Gà, Hàm Thuận Nam",
-                desc: "Gần ngọn hải đăng cổ. Nổi tiếng với món cá nướng muối ớt, ghẹ xanh luộc chấm muối tiêu chanh ngon giòn ngọt thịt, ăn uống lộng gió biển hoang sơ.",
-                map: "Hải+Sản+Mũi+Kê+Gà",
-                img: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-longkhanh", 
-                name: "Ăn sáng Trạm dừng Long Khánh", 
-                category: "dining", 
-                budget: "~50.000đ - 80.000đ / người", 
-                timing: "Sáng sớm Ngày 1 (06:00 - 09:30)",
-                location: "Trạm dừng chân Cao tốc Dầu Giây - Phan Thiết",
-                desc: "Điểm ăn sáng nhẹ nhàng quen thuộc với hủ tiếu, bánh mì ốp la trước khi rẽ vào cung đường cao tốc dài 100km đi thẳng ra biển.",
-                map: "Trạm+dừng+chân+Long+Khánh",
-                img: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80" 
-            },
-
-            // --- VUI CHƠI ---
-            { 
-                id: "p-doicatdo", 
-                name: "Đồi Cát Đỏ Mũi Né (Đồi Cát Bay)", 
-                category: "attraction", 
-                budget: "Miễn phí (chỉ mất tiền thuê ván trượt ~20k)", 
-                timing: "Chiều tối Ngày 1 (15:30 - 17:30)",
-                location: "Khu phố 5, Phường Mũi Né",
-                desc: "Cát màu đỏ hồng lấp lánh dưới nắng chiều. Địa điểm chụp ảnh gia đình đón hoàng hôn đẹp nhất Phan Thiết. Trò chơi trượt cát bằng ván nhựa rất vui nhộn.",
-                map: "Đồi+Cát+Đỏ+Mũi+Né",
-                img: "https://images.unsplash.com/photo-1509316975850-ff9c5edd0cd9?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-bautrang", 
-                name: "Đồi Cát Trắng Bàu Trắng", 
-                category: "attraction", 
-                budget: "600.000đ - 900.000đ (Thuê xe ATV địa hình)", 
-                timing: "Sáng sớm Ngày 2 (08:00 - 10:30)",
-                location: "Hòa Thắng, Bắc Bình",
-                desc: "Tiểu sa mạc cát trắng đẹp mê hồn bên hồ sen ngọt. Trải nghiệm cảm giác mạnh đi xe ATV vượt các sườn cát cao dốc dựng đứng cực kỳ phấn khích.",
-                map: "Đồi+Cát+Bàu+Trắng",
-                img: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-kega", 
-                name: "Hải Đăng Cổ Mũi Kê Gà", 
-                category: "attraction", 
-                budget: "Thuyền thúng ra đảo ~180.000đ", 
-                timing: "Sáng Ngày 2 (10:30 - 12:00)",
-                location: "Hàm Thuận Nam",
-                desc: "Ngọn hải đăng bằng đá cổ nhất và cao nhất Việt Nam do người Pháp xây dựng năm 1899. Phong cảnh biển xanh kết hợp cùng các bãi đá rêu phong hoang sơ hùng vĩ.",
-                map: "Hải+Đăng+Mũi+Kê+Gà",
-                img: "https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-wine", 
-                name: "Lâu đài Rượu Vang RD RD RD", 
-                category: "attraction", 
-                budget: "Vé vào cổng ~120.000đ / người", 
-                timing: "Chiều Ngày 2 (13:30 - 15:00)",
-                location: "Khu resort Sea Links City, Phú Hài",
-                desc: "Lâu đài xây theo phong cách châu Âu thời Trung Cổ. Tìm hiểu quy trình làm rượu vang dưới hầm sâu mát lạnh và thưởng thức rượu vang nhập khẩu chính hiệu California.",
-                map: "Lâu+đài+Rượu+Vang+RD+Phan+Thiết",
-                img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-langchai", 
-                name: "Làng Chài Mũi Né", 
-                category: "attraction", 
-                budget: "Vào cửa tự do", 
-                timing: "Hoàng hôn Ngày 2 (17:30 - 19:00)",
-                location: "Đường Huỳnh Thúc Kháng, Mũi Né",
-                desc: "Ngắm hàng trăm chiếc tàu thuyền màu sắc rực rỡ neo đậu sóng nước bồng bềnh. Xem cảnh ngư dân kéo cá, mực lên bờ mua bán tươi ngon tấp nập lúc hoàng hôn.",
-                map: "Làng+Chài+Mũi+Né",
-                img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-poshanu", 
-                name: "Tháp Chàm Poshanu", 
-                category: "attraction", 
-                budget: "Vé vào cổng ~15.000đ / người", 
-                timing: "Sáng Ngày 3 (08:00 - 10:00)",
-                location: "Đồi Bà Nài, Phú Hài",
-                desc: "Cụm tháp Chăm cổ xây dựng từ thế kỷ thứ 8, biểu tượng của vương quốc Chăm Pa cổ xưa mang phong cách kiến trúc Hòa Lai tinh xảo cổ kính.",
-                map: "Tháp+Chàm+Poshanu",
-                img: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-show", 
-                name: "Bảo tàng Làng Chài Xưa & Fishermen Show", 
-                category: "attraction", 
-                budget: "Vé tham quan/Xem show ~300.000đ", 
-                timing: "Sáng Ngày 3 (10:00 - 11:30)",
-                location: "360 Nguyễn Thông, Phú Hài",
-                desc: "Bảo tàng nước mắm đầu tiên của Việt Nam trưng bày sinh động cuộc sống của ngư dân xưa. Show diễn thực cảnh nhạc nước tái hiện huyền thoại làng chài hoành tráng.",
-                map: "Bảo+tàng+Làng+Chài+Xưa+Phan+Thiết",
-                img: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-suoitien", 
-                name: "Suối Tiên Mũi Né (Suối Tiên Hòa Thắng)", 
-                category: "attraction", 
-                budget: "Miễn phí", 
-                timing: "Chiều tối Ngày 1 (17:30 - 18:30)",
-                location: "Huỳnh Thúc Kháng, Mũi Né",
-                desc: "Khe nước nhỏ chảy len lỏi giữa các vách đá cát đỏ cam vôi nhấp nhô tuyệt đẹp. Thích hợp đi chân trần lội suối nước mát thư giãn gột rửa bụi bẩn.",
-                map: "Suối+Tiên+Mũi+Né",
-                img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" 
-            },
-            { 
-                id: "p-circus", 
-                name: "Bikini Beach & Circus Land NovaWorld", 
-                category: "attraction", 
-                budget: "Vé trò chơi từ 50.000đ - 150.000đ", 
-                timing: "Chiều Ngày 2",
-                location: "Khu đô thị NovaWorld, Tiến Thành",
-                desc: "Bãi biển Bikini Beach sầm uất với các mô hình chụp ảnh bắt mắt. Công viên giải trí Circus Land kiểu Mỹ với vòng đu quay khổng lồ nhiều trò cảm giác mạnh hấp dẫn.",
-                map: "Circus+Land+Novaworld+Phan+Thiết",
-                img: "https://images.unsplash.com/photo-1513885045260-6b3086b24c17?auto=format&fit=crop&w=800&q=80" 
-            }
+            { id: "bau-trang", name: "Bàu Trắng / Đồi Cát Trắng", category: "visit", budget: "ATV / dịch vụ: xem giá live", timing: "Sáng hoặc nửa ngày", location: "Hòa Thắng, Bắc Bình", desc: "Giữ lại vì đây là điểm mạnh thật của tuyến Mũi Né. Bản cũ gán số giá cố định quá cứng, bản mới chuyển về dạng kiểm tra live.", map: "Bau+Trang+Binh+Thuan", img: "https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?auto=format&fit=crop&w=800&q=80", label: "Nguồn du lịch Bình Thuận", source: "https://dulichbinhthuan.com.vn/" },
+            { id: "red-dunes", name: "Đồi Cát Đỏ Mũi Né", category: "visit", budget: "Xem phí dịch vụ tại chỗ", timing: "Chiều muộn / hoàng hôn", location: "Mũi Né", desc: "Điểm gần hơn Bàu Trắng và hợp cho ngày đầu nếu còn sức. Không giữ mô tả quá chắc về thuê ván trượt và phí như bản cũ.", map: "%C4%90%E1%BB%93i+C%C3%A1t+%C4%90%E1%BB%8F+M%C5%A9i+N%C3%A9", img: "https://images.unsplash.com/photo-1509316975850-ff9c5edd0cd9?auto=format&fit=crop&w=800&q=80", label: "Điểm cát", source: "https://dulichbinhthuan.com.vn/" },
+            { id: "ke-ga", name: "Hải đăng Kê Gà / Mũi Kê Gà", category: "visit", budget: "Thuyền / dịch vụ: kiểm tra live", timing: "Một nhánh riêng trong ngày", location: "Hàm Thuận Nam", desc: "Điểm này có thể làm thành một ngày riêng phía nam. Không nên mặc định nhét cùng Bàu Trắng trong lịch kín.", map: "K%C3%AA+G%C3%A0+Lighthouse", img: "https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?auto=format&fit=crop&w=800&q=80", label: "Nguồn du lịch Bình Thuận", source: "https://dulichbinhthuan.com.vn/hai-dang-ke-ga/" },
+            { id: "poshanu", name: "Tháp Poshanu", category: "visit", budget: "Xem phí tham quan live", timing: "Sáng Ngày 3", location: "Đồi Bà Nài, Phú Hài", desc: "Điểm văn hóa mạnh nhất của Phan Thiết và có căn cứ từ Vietnam Tourism. Hợp ghé trước khi về TP.HCM.", map: "Poshanu+Cham+Towers", img: "https://images.unsplash.com/photo-1590001155093-a3c66ab0c3ff?auto=format&fit=crop&w=800&q=80", label: "Vietnam Tourism", source: "https://vietnam.travel/things-to-do/7-ways-have-fun-mui-ne" },
+            { id: "lang-chai-xua", name: "Bảo tàng nước mắm Làng Chài Xưa", category: "visit", budget: "Xem vé live", timing: "Cuối sáng Ngày 3", location: "360 Nguyễn Thông, Phú Hài", desc: "Giữ lại vì có website riêng và thông tin công khai ổn định. Vé, giờ hoạt động và show cần kiểm tra live.", map: "B%E1%BA%A3o+t%C3%A0ng+L%C3%A0ng+Ch%C3%A0i+X%C6%B0a", img: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80", label: "Website chính thức", source: "https://langchaixua.com/du-lich/bao-tang-lang-chai-xua/" },
+            { id: "lang-chai-muine", name: "Làng chài Mũi Né", category: "visit", budget: "Tự do", timing: "Sáng sớm hoặc chiều", location: "Huỳnh Thúc Kháng, Mũi Né", desc: "Điểm làng biển thật, thích hợp ghé ngắn. Không cần thần thánh hóa bằng lịch trình quá dày đặc.", map: "L%C3%A0ng+ch%C3%A0i+M%C5%A9i+N%C3%A9", img: "https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&w=800&q=80", label: "Nguồn du lịch Bình Thuận", source: "https://dulichbinhthuan.com.vn/lang-chai-mui-ne/" },
+            { id: "hamtien-food", name: "Khu ăn Hàm Tiến / Nguyễn Đình Chiểu", category: "food", budget: "Xem review và giá live", timing: "Tối Ngày 1 hoặc 2", location: "Hàm Tiến", desc: "Giữ khu ăn thật, bỏ cơ chế khóa cứng từng quán và từng mức giá như file cũ.", map: "nh%C3%A0+h%C3%A0ng+Nguy%E1%BB%85n+%C4%90%C3%ACnh+Chi%E1%BB%83u+Mui+Ne", img: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=800&q=80", label: "Ăn theo review live", source: "https://www.google.com/maps/search/?api=1&query=nh%C3%A0+h%C3%A0ng+Nguy%E1%BB%85n+%C4%90%C3%ACnh+Chi%E1%BB%83u+Mui+Ne" },
+            { id: "lang-chai-xua-food", name: "Khu Làng Chài Xưa / Mũi Né Xưa", category: "food", budget: "Xem menu live", timing: "Kết hợp ngày 3", location: "Nguyễn Thông, Phú Hài", desc: "Dùng như gợi ý nhóm ăn gắn với bảo tàng thay vì khẳng định một set menu hay mức giá cố định.", map: "Nh%C3%A0+h%C3%A0ng+M%C5%A9i+N%C3%A9+X%C6%B0a", img: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80", label: "Gắn với Làng Chài Xưa", source: "https://langchaixua.com/du-lich/nha-hang-mui-ne-xua-am-thuc-truyen-thong/" },
+            { id: "fishershow", name: "Fishermen Show", category: "food", budget: "Vé xem show: kiểm tra live", timing: "Tùy suất diễn", location: "360 Nguyễn Thông, Phú Hài", desc: "Giữ lại như hoạt động chọn thêm nếu cả nhà thích xem show. Không dùng giá vé cứng như file cũ.", map: "Fishermen+Show+Mui+Ne", img: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80", label: "Kênh công khai / fanpage", source: "https://www.facebook.com/fishermen.show.huyen.thoai.lang.chai/" }
         ];
 
-        // Tab Switcher Logic
         function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(tabId).classList.add('active');
-            
-            // Find active button and activate it
             const activeBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
             if (activeBtn) activeBtn.classList.add('active');
         }
 
-        // Budget Calculator Logic
-        function updateBudget() {
-            const lodging = parseInt(document.getElementById('slide-lodging').value);
-            const transport = parseInt(document.getElementById('slide-transport').value);
-            const food = parseInt(document.getElementById('slide-food').value);
-            const tickets = parseInt(document.getElementById('slide-tickets').value);
-
-            // Update Labels
-            document.getElementById('val-lodging').innerText = lodging.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('val-transport').innerText = transport.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('val-food').innerText = food.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('val-tickets').innerText = tickets.toLocaleString('vi-VN') + 'đ';
-
-            // Calculate total
-            const total = lodging + transport + food + tickets;
-            document.getElementById('total-cost').innerText = total.toLocaleString('vi-VN') + 'đ';
-
-            // Check warning status
-            const statusBox = document.getElementById('budget-status');
-            if (total <= 25000000) {
-                statusBox.className = "budget-alert-box budget-safe";
-                statusBox.innerText = "✅ Nằm trong tầm kiểm soát! (" + (25000000 - total).toLocaleString('vi-VN') + "đ dư dôi)";
-            } else {
-                statusBox.className = "budget-alert-box budget-danger";
-                statusBox.innerText = "⚠️ Vượt budget dự kiến " + (total - 25000000).toLocaleString('vi-VN') + "đ!";
-            }
-        }
-
-        
-        // Selected storage variables
-        const STORAGE_PREFIX = 'pt_';
-        const priceLimo = 8000000;
-        const priceSelfDrive = 4000000;
-        let activeHotelCategory = 'all';
-        let activePlacesCategory = 'all';
-
-        function getSelectedTransport() {
-            return localStorage.getItem(STORAGE_PREFIX + 'transport') || 'limousine';
-        }
-
-        function selectTransportLocal(type) {
-            localStorage.setItem(STORAGE_PREFIX + 'transport', type);
-            updateTransportUI();
-            updateBudgetLocal();
-        }
-
-        function updateTransportUI() {
-            const current = getSelectedTransport();
-            document.querySelectorAll('.transport-card').forEach(card => card.classList.remove('selected'));
-            const selectedCard = document.getElementById('card-tr-' + current);
-            if (selectedCard) selectedCard.classList.add('selected');
-        }
-
-        function getSelectedHotel() {
-            return localStorage.getItem(STORAGE_PREFIX + 'hotel') || '';
-        }
-
-        function toggleHotelLocal(hotelId) {
-            const current = getSelectedHotel();
-            if (current === hotelId) {
-                localStorage.removeItem(STORAGE_PREFIX + 'hotel');
-            } else {
-                localStorage.setItem(STORAGE_PREFIX + 'hotel', hotelId);
-            }
-            filterHotels(activeHotelCategory);
-            updateBudgetLocal();
-        }
-
-        function getSelectedPlaces() {
-            try {
-                return JSON.parse(localStorage.getItem(STORAGE_PREFIX + 'places')) || [];
-            } catch (e) {
-                return [];
-            }
-        }
-
-        function togglePlaceLocal(placeId) {
-            let selected = getSelectedPlaces();
-            const idx = selected.indexOf(placeId);
-            if (idx > -1) {
-                selected.splice(idx, 1);
-            } else {
-                selected.push(placeId);
-            }
-            localStorage.setItem(STORAGE_PREFIX + 'places', JSON.stringify(selected));
-            filterPlaces(activePlacesCategory);
-            updateBudgetLocal();
-        }
-
-        function changePlaceSlot(placeId, slotValue) {
-            localStorage.setItem(STORAGE_PREFIX + 'place_slot_' + placeId, slotValue);
-            let selected = getSelectedPlaces();
-            if (!selected.includes(placeId)) {
-                selected.push(placeId);
-                localStorage.setItem(STORAGE_PREFIX + 'places', JSON.stringify(selected));
-                updateBudgetLocal();
-            }
-            filterPlaces(activePlacesCategory);
-            if (document.getElementById('itinerary-custom') && document.getElementById('itinerary-custom').style.display !== 'none') {
-                renderCustomItinerary();
-            }
-        }
-
-        function resetAllSelectionsLocal() {
-            localStorage.removeItem(STORAGE_PREFIX + 'transport');
-            localStorage.removeItem(STORAGE_PREFIX + 'hotel');
-            localStorage.removeItem(STORAGE_PREFIX + 'places');
-            updateTransportUI();
-            filterHotels('all');
-            filterPlaces('all');
-            updateBudgetLocal();
-        }
-
-        function updateBudgetLocal() {
-            // Transport Price
-            const transport = getSelectedTransport();
-            const transportPrice = transport === 'limousine' ? priceLimo : priceSelfDrive;
-            document.getElementById('sum-transport-val').innerText = transportPrice.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('sum-transport-name').innerText = transport === 'limousine' ? '🚐 Xe Limousine 9 Chỗ Riêng (Có tài xế)' : '🚗 Thuê Xe Tự Lái Ford Everest (Mioto)';
-
-            // Hotel Price
-            const hotelId = getSelectedHotel();
-            const selectedHotelObj = hotels.find(h => h.id === hotelId);
-            const hotelPrice = selectedHotelObj ? selectedHotelObj.priceNum : 0;
-            document.getElementById('sum-hotel-val').innerText = hotelPrice.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('sum-hotel-name').innerText = selectedHotelObj ? `🏨 ${selectedHotelObj.name}` : 'Chưa chọn nơi nghỉ';
-
-            // Places Price
-            const selectedPlaces = getSelectedPlaces();
-            let placesPrice = 0;
-            let placesListHtml = '';
-            
-            selectedPlaces.forEach(pid => {
-                const pObj = places.find(p => p.id === pid);
-                if (pObj) {
-                    placesPrice += pObj.priceNum;
-                    placesListHtml += `• ${pObj.name} (${pObj.priceNum > 0 ? pObj.priceNum.toLocaleString('vi-VN') + 'đ' : 'Miễn phí'})<br>`;
-                }
-            });
-
-            document.getElementById('sum-places-val').innerText = placesPrice.toLocaleString('vi-VN') + 'đ';
-            document.getElementById('sum-places-list').innerHTML = placesListHtml || 'Chưa chọn địa điểm nào';
-
-            // Total
-            const total = transportPrice + hotelPrice + placesPrice;
-            document.getElementById('total-cost').innerText = total.toLocaleString('vi-VN') + 'đ';
-
-            // Status Box
-            const statusBox = document.getElementById('budget-status');
-            if (total <= 25000000) {
-                statusBox.className = "budget-alert-box budget-safe";
-                statusBox.innerText = "✅ Nằm trong tầm kiểm soát! (" + (25000000 - total).toLocaleString('vi-VN') + "đ dư dôi)";
-            } else {
-                statusBox.className = "budget-alert-box budget-danger";
-                statusBox.innerText = "⚠️ Vượt budget dự kiến " + (total - 25000000).toLocaleString('vi-VN') + "đ!";
-            }
-        }
-
-        // Hook budget update on page load
-        window.addEventListener('DOMContentLoaded', () => {
-            updateTransportUI();
-            updateBudgetLocal();
-        });
-
-        // Hotel Filter Logic
         function filterHotels(category) {
-            activeHotelCategory = category;
-            document.querySelectorAll('#lodging .filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('#lodging .filter-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = Array.from(document.querySelectorAll('#lodging .filter-btn')).find(btn => btn.getAttribute('onclick').includes(category));
             if (activeBtn) activeBtn.classList.add('active');
 
             const container = document.getElementById('hotel-cards-container');
             container.innerHTML = '';
-
             let filtered = hotels;
             if (category !== 'all') {
                 filtered = hotels.filter(h => h.category === category);
             }
 
-            const currentSelectedHotel = getSelectedHotel();
-
             filtered.forEach(h => {
                 const starsHtml = '★'.repeat(h.stars) + '☆'.repeat(5 - h.stars);
-                const tagHtml = h.recommend ? `<div class="hotel-tag recommend">🔥 Đề xuất tốt</div>` : `<div class="hotel-tag">${h.category.toUpperCase()}</div>`;
-                
-                const isSelected = currentSelectedHotel === h.id;
-                const cardClass = isSelected ? 'hotel-card selected' : 'hotel-card';
-                const selectedStyle = isSelected ? 'background-color: var(--success); border-color: var(--success); color: white;' : '';
-                const btnText = isSelected ? '✓ Đã chọn nơi này' : '🏨 Chọn nơi nghỉ này';
+                const tagHtml = h.recommend ? `<div class="hotel-tag recommend">🔥 Đã verify tốt</div>` : `<div class="hotel-tag">${h.category.toUpperCase()}</div>`;
 
-                const cardHtml = `
-                    <div class="${cardClass}" style="${isSelected ? 'border-color: var(--success); box-shadow: var(--shadow-lg);' : ''}">
+                container.innerHTML += `
+                    <div class="hotel-card">
                         <div class="hotel-img-wrapper">
                             <img src="${h.img}" alt="${h.name}">
                             ${tagHtml}
@@ -2110,84 +1133,47 @@
                         <div class="hotel-info">
                             <div class="hotel-stars">${starsHtml}</div>
                             <div class="hotel-name">${h.name}</div>
-                            <div class="hotel-meta">
-                                <div class="hotel-meta-row">📍 Vị trí: ${h.location}</div>
-                                <div class="hotel-meta-row">👥 Sức chứa: <strong>${h.capacity}</strong></div>
-                                <div class="hotel-meta-row" style="color: var(--text-muted); font-size: 0.8rem; margin-top: 5px;">✨ ${h.features}</div>
-                            </div>
-                            
+                            <div class="hotel-meta-row">📍 Vị trí: ${h.location}</div>
+                            <div class="hotel-meta-row">✨ ${h.features}</div>
                             <div class="hotel-price-row">
                                 <div class="hotel-price">
-                                    <span>Giá dự kiến 2 đêm</span>
+                                    <span>Giá cho ngày đi</span>
                                     ${h.price}
                                 </div>
                             </div>
-
-                            <div class="hotel-actions" style="margin-bottom: 10px;">
+                            <div class="verify-note">${h.note}</div>
+                            <div class="hotel-actions" style="display:flex; gap:10px; margin-top:12px; flex-wrap:wrap;">
+                                <a href="${h.source}" target="_blank" class="action-btn action-btn-select">🔗 Nguồn</a>
+                                <a href="${h.booking}" target="_blank" class="action-btn action-btn-book">🛏️ Xem phòng</a>
                                 <a href="https://www.google.com/maps/search/?api=1&query=${h.map}" target="_blank" class="action-btn action-btn-map">📍 Maps</a>
-                                <a href="https://www.booking.com/searchresults.vi.html?ss=${h.map}" target="_blank" class="action-btn action-btn-book">🖼️ Xem phòng</a>
                             </div>
-                            <button onclick="toggleHotelLocal('${h.id}')" class="action-btn" style="width:100%; font-weight:700; display:block; padding:10px; ${selectedStyle}">${btnText}</button>
                         </div>
                     </div>
                 `;
-                container.innerHTML += cardHtml;
             });
         }
 
-        // Places Filter Logic
         function filterPlaces(category) {
-            activePlacesCategory = category;
-            document.querySelectorAll('#places .filter-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
+            document.querySelectorAll('#places .filter-btn').forEach(btn => btn.classList.remove('active'));
             const activeBtn = Array.from(document.querySelectorAll('#places .filter-btn')).find(btn => btn.getAttribute('onclick').includes(category));
             if (activeBtn) activeBtn.classList.add('active');
 
             const container = document.getElementById('places-container');
             container.innerHTML = '';
-
             let filtered = places;
             if (category !== 'all') {
                 filtered = places.filter(p => p.category === category);
             }
 
-            const currentSelectedPlaces = getSelectedPlaces();
-
             filtered.forEach(p => {
-                const categoryBadge = p.category === 'dining' ? '🍔 Ăn uống' : '🎡 Tham quan';
-                const badgeClass = p.category === 'dining' ? '' : 'fun';
-                
-                const isSelected = currentSelectedPlaces.includes(p.id);
-                const selectedStyle = isSelected ? 'background-color: var(--primary); border-color: var(--primary); color: white;' : '';
-                const btnText = isSelected ? '✓ Đã chọn' : '➕ Thêm vào';
-                
-                const savedSlot = localStorage.getItem(STORAGE_PREFIX + 'place_slot_' + p.id) || 'auto';
-                const slotSelectHtml = `
-                    <div class="slot-select-wrapper" style="margin-top: 10px; margin-bottom: 12px; width: 100%; text-align: left;">
-                        <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 4px; font-weight: 600;">📅 Xếp vào lịch trình:</label>
-                        <select onchange="changePlaceSlot('${p.id}', this.value)" style="width: 100%; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); background-color: var(--bg-body); color: var(--text-main); font-size: 0.85rem; outline: none; border-color: ${isSelected ? 'var(--primary)' : 'var(--border-color)'}; cursor: pointer;">
-                            <option value="auto" ${savedSlot === 'auto' ? 'selected' : ''}>Tự động (Theo gợi ý đi)</option>
-                            <option value="d1_morning" ${savedSlot === 'd1_morning' ? 'selected' : ''}>Ngày 1 - Sáng (08:00 - 11:30)</option>
-                            <option value="d1_lunch" ${savedSlot === 'd1_lunch' ? 'selected' : ''}>Ngày 1 - Trưa (11:30 - 14:00)</option>
-                            <option value="d1_afternoon" ${savedSlot === 'd1_afternoon' ? 'selected' : ''}>Ngày 1 - Chiều (14:00 - 18:00)</option>
-                            <option value="d1_evening" ${savedSlot === 'd1_evening' ? 'selected' : ''}>Ngày 1 - Tối (18:00 - 22:00)</option>
-                            <option value="d2_morning" ${savedSlot === 'd2_morning' ? 'selected' : ''}>Ngày 2 - Sáng (08:00 - 11:30)</option>
-                            <option value="d2_lunch" ${savedSlot === 'd2_lunch' ? 'selected' : ''}>Ngày 2 - Trưa (11:30 - 14:00)</option>
-                            <option value="d2_afternoon" ${savedSlot === 'd2_afternoon' ? 'selected' : ''}>Ngày 2 - Chiều (14:00 - 18:00)</option>
-                            <option value="d2_evening" ${savedSlot === 'd2_evening' ? 'selected' : ''}>Ngày 2 - Tối (18:00 - 22:00)</option>
-                            <option value="d3_morning" ${savedSlot === 'd3_morning' ? 'selected' : ''}>Ngày 3 - Sáng (08:00 - 11:30)</option>
-                            <option value="d3_lunch" ${savedSlot === 'd3_lunch' ? 'selected' : ''}>Ngày 3 - Trưa (11:30 - 14:00)</option>
-                            <option value="d3_afternoon" ${savedSlot === 'd3_afternoon' ? 'selected' : ''}>Ngày 3 - Chiều (14:00 - 18:00)</option>
-                        </select>
-                    </div>
-                `;
+                const badge = p.category === 'food' ? '🍔 Ăn uống' : '🎡 Tham quan';
+                const badgeClass = p.category === 'food' ? '' : 'fun';
 
-                const cardHtml = `
-                    <div class="place-card" style="${isSelected ? 'border-color: var(--primary); box-shadow: var(--shadow-md);' : ''}">
+                container.innerHTML += `
+                    <div class="place-card">
                         <div class="place-img-wrapper">
                             <img src="${p.img}" alt="${p.name}">
-                            <div class="place-category ${badgeClass}">${categoryBadge}</div>
+                            <div class="place-category ${badgeClass}">${badge}</div>
                         </div>
                         <div class="place-info">
                             <div class="place-name">${p.name}</div>
@@ -2197,307 +1183,17 @@
                                 <div>💰 Chi phí dự kiến: <strong>${p.budget}</strong></div>
                             </div>
                             <p class="place-desc">${p.desc}</p>
-                            ${slotSelectHtml}
-                            <div class="place-action" style="display: flex; gap: 10px; margin-top: 15px;">
-                                <a href="https://www.google.com/maps/search/?api=1&query=${p.map}" target="_blank" class="action-btn action-btn-map" style="flex: 1; text-align: center; line-height:22px; display:flex; align-items:center; justify-content:center;">📍 Chỉ đường</a>
-                                <button onclick="togglePlaceLocal('${p.id}')" class="action-btn" style="flex: 1; font-weight:700; ${selectedStyle}">${btnText}</button>
+                            <div class="verify-note">${p.label}</div>
+                            <div class="place-action" style="display:flex; gap:10px; margin-top:15px; flex-wrap:wrap;">
+                                <a href="${p.source}" target="_blank" class="action-btn action-btn-select">🔗 Nguồn</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=${p.map}" target="_blank" class="action-btn action-btn-map">📍 Chỉ đường</a>
                             </div>
                         </div>
                     </div>
                 `;
-                container.innerHTML += cardHtml;
-            });
-        }
-    function toggleItinerary(type) {
-            const itiNight = document.getElementById('itinerary-night');
-            const itiDay = document.getElementById('itinerary-day');
-            const itiCustom = document.getElementById('itinerary-custom');
-            const btnNight = document.getElementById('btn-iti-night');
-            const btnDay = document.getElementById('btn-iti-day');
-            const btnCustom = document.getElementById('btn-iti-custom');
-
-            if (type === 'night') {
-                itiNight.style.display = 'block';
-                itiDay.style.display = 'none';
-                if(itiCustom) itiCustom.style.display = 'none';
-                btnNight.classList.add('active');
-                btnDay.classList.remove('active');
-                if(btnCustom) btnCustom.classList.remove('active');
-            } else if (type === 'day') {
-                itiNight.style.display = 'none';
-                itiDay.style.display = 'block';
-                if(itiCustom) itiCustom.style.display = 'none';
-                btnNight.classList.remove('active');
-                btnDay.classList.add('active');
-                if(btnCustom) btnCustom.classList.remove('active');
-            } else if (type === 'custom') {
-                itiNight.style.display = 'none';
-                itiDay.style.display = 'none';
-                if(itiCustom) {
-                    itiCustom.style.display = 'block';
-                    renderCustomItinerary();
-                }
-                btnNight.classList.remove('active');
-                btnDay.classList.remove('active');
-                if(btnCustom) btnCustom.classList.add('active');
-            }
-        }
-
-        // Dynamic Customized Itinerary List Generator
-        // Dynamic Customized Itinerary List Generator
-        function renderCustomItinerary() {
-            const container = document.getElementById('itinerary-custom');
-            if (!container) return;
-            
-            const transportType = getSelectedTransport();
-            const hotelId = getSelectedHotel();
-            const selectedPlaces = getSelectedPlaces();
-            
-            const selectedHotelObj = hotels.find(h => h.id === hotelId);
-            
-            // If nothing is selected, show nice guidance
-            if (!hotelId && selectedPlaces.length === 0) {
-                container.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px; background: var(--bg-body); border-radius: var(--radius-md); border: 2px dashed var(--border-color); margin-top: 15px;">
-                        <div style="font-size: 3rem; margin-bottom: 15px;">📋</div>
-                        <h4 style="font-weight: 700; margin-bottom: 8px;">Chưa Có Lịch Trình Tự Chọn</h4>
-                        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; max-width: 450px; margin-left: auto; margin-right: auto;">
-                            Lịch trình tự thiết kế dựa trên các Resort và Địa điểm ăn chơi bạn tích chọn. Hiện tại bạn chưa tích chọn mục nào.
-                        </p>
-                        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                            <button class="action-btn" style="padding: 8px 16px; font-size: 0.9rem;" onclick="switchTab('lodging')">🏨 Chọn nơi nghỉ</button>
-                            <button class="action-btn" style="padding: 8px 16px; font-size: 0.9rem;" onclick="switchTab('places')">🦞 Chọn ăn chơi</button>
-                        </div>
-                    </div>
-                `;
-                return;
-            }
-
-            // Group selected places into Days & Slots
-            const groups = {
-                day1: { morning: [], lunch: [], afternoon: [], evening: [] },
-                day2: { morning: [], lunch: [], afternoon: [], evening: [] },
-                day3: { morning: [], lunch: [], afternoon: [], evening: [] }
-            };
-
-            selectedPlaces.forEach(pid => {
-                const pObj = places.find(p => p.id === pid);
-                if (!pObj) return;
-
-                const savedSlot = localStorage.getItem(STORAGE_PREFIX + 'place_slot_' + pid) || 'auto';
-                
-                let dayKey = '';
-                let slotKey = '';
-
-                if (savedSlot !== 'auto') {
-                    const parts = savedSlot.split('_');
-                    dayKey = parts[0] === 'd1' ? 'day1' : (parts[0] === 'd2' ? 'day2' : 'day3');
-                    slotKey = parts[1];
-                } else {
-                    const timingText = pObj.timing || '';
-                    if (timingText.includes('Ngày 1') || timingText.includes('Ng.1')) {
-                        dayKey = 'day1';
-                    } else if (timingText.includes('Ngày 3') || timingText.includes('Ng.3')) {
-                        dayKey = 'day3';
-                    } else {
-                        dayKey = 'day2';
-                    }
-
-                    const lowerText = (pObj.timing + ' ' + pObj.name + ' ' + pObj.features + ' ' + pObj.desc).toLowerCase();
-                    if (lowerText.includes('sáng') || lowerText.includes('ăn sáng') || lowerText.includes('breakfast')) {
-                        slotKey = 'morning';
-                    } else if (lowerText.includes('trưa') || lowerText.includes('ăn trưa') || lowerText.includes('lẩu') || lowerText.includes('bữa trưa') || lowerText.includes('bè nổi')) {
-                        slotKey = 'lunch';
-                    } else if (lowerText.includes('chiều') || lowerText.includes('hoàng hôn') || lowerText.includes('tham quan')) {
-                        slotKey = 'afternoon';
-                    } else if (lowerText.includes('tối') || lowerText.includes('ăn tối') || lowerText.includes('bờ kè') || lowerText.includes('bữa tối')) {
-                        slotKey = 'evening';
-                    } else {
-                        slotKey = pObj.category === 'dining' ? 'evening' : 'afternoon';
-                    }
-                }
-
-                if (dayKey && slotKey && groups[dayKey] && groups[dayKey][slotKey]) {
-                    groups[dayKey][slotKey].push(pObj);
-                }
-            });
-
-            const transportName = transportType === 'limousine' 
-                ? '🚐 Xe Limousine 9 Chỗ Riêng (Có tài xế)' 
-                : '🚗 Xe Tự Lái Ford Everest (Mioto)';
-            const transportDesc = transportType === 'limousine'
-                ? 'Tài xế đón tận nơi tại Quận 8. Di chuyển qua cao tốc, gia đình nghỉ ngơi trên xe.'
-                : 'Nhận xe tự lái tại Quận 8, gia đình chủ động di chuyển qua cao tốc.';
-
-            function renderSlotItems(slotTitle, items, customItemsBefore = [], customItemsAfter = []) {
-                let html = `<div class="timeline-slot-header">${slotTitle}</div>`;
-                
-                let hasAny = customItemsBefore.length > 0 || items.length > 0 || customItemsAfter.length > 0;
-                
-                if (!hasAny) {
-                    html += `
-                        <div class="timeline-item" style="opacity: 0.5; margin-bottom: 10px; padding-bottom: 10px;">
-                            <div class="timeline-badge" style="background-color: var(--border-color); width: 8px; height: 8px; left: -4px;"></div>
-                            <div class="timeline-title" style="font-size: 0.85rem; color: var(--text-muted); font-weight: 500; margin-left: 15px;">Trống • Tự do nghỉ ngơi, tắm biển, thư giãn</div>
-                        </div>
-                    `;
-                    return html;
-                }
-
-                customItemsBefore.forEach(item => {
-                    html += `
-                        <div class="timeline-item" style="margin-bottom: 12px; padding-bottom: 12px;">
-                            <div class="timeline-badge" style="background-color: var(--success); width: 12px; height: 12px; left: -6px; border: 2px solid var(--card-bg);"></div>
-                            <div class="timeline-time" style="font-weight: 700; color: var(--success); font-size: 0.8rem; margin-left: 15px;">${item.time}</div>
-                            <div class="timeline-title" style="font-weight: 700; font-size: 0.95rem; margin-left: 15px; color: var(--text-main);">${item.title}</div>
-                            <div class="timeline-desc" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; margin-left: 15px;">${item.desc}</div>
-                        </div>
-                    `;
-                });
-
-                items.forEach(p => {
-                    html += `
-                        <div class="timeline-item" style="margin-bottom: 12px; padding-bottom: 12px;">
-                            <div class="timeline-badge" style="background-color: var(--primary); width: 12px; height: 12px; left: -6px; border: 2px solid var(--card-bg);"></div>
-                            <div class="timeline-time" style="font-weight: 700; color: var(--primary); font-size: 0.8rem; margin-left: 15px;">⏱️ Khuyên đi: ${p.timing}</div>
-                            <div class="timeline-title" style="font-weight: 700; font-size: 0.95rem; margin-left: 15px; color: var(--text-main);">${p.name}</div>
-                            <div class="timeline-desc" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; margin-left: 15px;">
-                                📍 <em>Vị trí: ${p.location}</em> | 💰 <em>Chi phí: ${p.budget}</em><br>
-                                <span style="display: block; margin-top: 3px;">${p.desc}</span>
-                            </div>
-                        </div>
-                    `;
-                });
-
-                customItemsAfter.forEach(item => {
-                    html += `
-                        <div class="timeline-item" style="margin-bottom: 12px; padding-bottom: 12px;">
-                            <div class="timeline-badge" style="background-color: var(--success); width: 12px; height: 12px; left: -6px; border: 2px solid var(--card-bg);"></div>
-                            <div class="timeline-time" style="font-weight: 700; color: var(--success); font-size: 0.8rem; margin-left: 15px;">${item.time}</div>
-                            <div class="timeline-title" style="font-weight: 700; font-size: 0.95rem; margin-left: 15px; color: var(--text-main);">${item.title}</div>
-                            <div class="timeline-desc" style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; margin-left: 15px;">${item.desc}</div>
-                        </div>
-                    `;
-                });
-
-                return html;
-            }
-
-            let htmlContent = '';
-
-            // --- DAY 1 ---
-            htmlContent += `<div class="timeline-day-header">🌙 Ngày 1: Khởi hành & Trực chỉ Mũi Né</div>`;
-            htmlContent += renderSlotItems("🌅 Sáng (08:00 - 11:30)", groups.day1.morning);
-            htmlContent += renderSlotItems("☀️ Trưa (11:30 - 14:00)", groups.day1.lunch);
-            htmlContent += renderSlotItems("🌇 Chiều (14:00 - 18:00)", groups.day1.afternoon);
-
-            const d1EveningCustomAfter = [
-                {
-                    time: "22:00",
-                    title: "Xuất phát từ TP.HCM",
-                    desc: `Khởi hành đi bằng <strong>${transportName}</strong>.<br>${transportDesc}`
-                }
-            ];
-            if (selectedHotelObj) {
-                d1EveningCustomAfter.push({
-                    time: "Nửa đêm",
-                    title: `Nhận phòng tại ${selectedHotelObj.name}`,
-                    desc: `📍 <em>Vị trí: ${selectedHotelObj.location}</em><br>Nhận phòng nghỉ ngơi lấy sức.`
-                });
-            }
-            htmlContent += renderSlotItems("🌙 Tối (18:00 - Đêm)", groups.day1.evening, [], d1EveningCustomAfter);
-
-            // --- DAY 2 ---
-            htmlContent += `<div class="timeline-day-header">☀️ Ngày 2: Khám phá & Trải nghiệm tự chọn</div>`;
-            const d2MorningBefore = [];
-            if (selectedHotelObj) {
-                d2MorningBefore.push({
-                    time: "07:30",
-                    title: `Ăn sáng tại ${selectedHotelObj.name}`,
-                    desc: "Dùng buffet sáng nạp năng lượng tại resort."
-                });
-            }
-            htmlContent += renderSlotItems("🌅 Sáng (08:00 - 11:30)", groups.day2.morning, d2MorningBefore);
-            htmlContent += renderSlotItems("☀️ Trưa (11:30 - 14:00)", groups.day2.lunch);
-            htmlContent += renderSlotItems("🌇 Chiều (14:00 - 18:00)", groups.day2.afternoon);
-            htmlContent += renderSlotItems("🌙 Tối (18:00 - 22:00)", groups.day2.evening);
-
-            // --- DAY 3 ---
-            htmlContent += `<div class="timeline-day-header">🌊 Ngày 3: Tận hưởng biển & Trở về Sài Gòn</div>`;
-            const d3MorningBefore = [];
-            if (selectedHotelObj) {
-                d3MorningBefore.push({
-                    time: "07:30",
-                    title: `Ăn sáng tại ${selectedHotelObj.name}`,
-                    desc: "Dùng bữa sáng cuối chuyến đi, tự do tắm biển hoặc mua sắm."
-                });
-            }
-            const d3LunchBefore = [];
-            if (selectedHotelObj) {
-                d3LunchBefore.push({
-                    time: "11:30",
-                    title: `Check-out tại ${selectedHotelObj.name}`,
-                    desc: "Làm thủ tục trả phòng tại resort."
-                });
-            }
-            const d3AfternoonAfter = [
-                {
-                    time: "15:00",
-                    title: "Khởi hành về lại TP.HCM",
-                    desc: "Lên xe quay trở về Quận 8. Kết thúc chuyến đi nghỉ dưỡng 3N2Đ."
-                }
-            ];
-            htmlContent += renderSlotItems("🌅 Sáng (08:00 - 11:30)", groups.day3.morning, d3MorningBefore);
-            htmlContent += renderSlotItems("☀️ Trưa (11:30 - 14:00)", groups.day3.lunch, d3LunchBefore);
-            htmlContent += renderSlotItems("🌇 Chiều (14:00 - 18:00)", groups.day3.afternoon, [], d3AfternoonAfter);
-
-            container.innerHTML = htmlContent;
-        }
-
-        // Local Storage Saved Checklist
-        function toggleTaskLocal(taskId) {
-            const checkbox = document.getElementById(taskId);
-            const item = checkbox.closest('.task-item');
-            
-            checkbox.checked = !checkbox.checked;
-            
-            if (checkbox.checked) {
-                item.classList.add('completed');
-            } else {
-                item.classList.remove('completed');
-            }
-            
-            // Save state
-            localStorage.setItem(taskId, checkbox.checked ? 'true' : 'false');
-        }
-
-        // Init checklist from LocalStorage
-        function initChecklist() {
-            document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-                const taskId = checkbox.id;
-                const saved = localStorage.getItem(taskId);
-                const item = checkbox.closest('.task-item');
-                
-                if (saved === 'true') {
-                    checkbox.checked = true;
-                    item.classList.add('completed');
-                } else {
-                    checkbox.checked = false;
-                    item.classList.remove('completed');
-                }
-
-                checkbox.addEventListener('change', (e) => {
-                    if (checkbox.checked) {
-                        item.classList.add('completed');
-                    } else {
-                        item.classList.remove('completed');
-                    }
-                    localStorage.setItem(taskId, checkbox.checked ? 'true' : 'false');
-                });
             });
         }
 
-        // Copy Link Action
         function copyTripLink() {
             const tempInput = document.createElement('input');
             tempInput.value = window.location.href;
@@ -2505,15 +1201,13 @@
             tempInput.select();
             document.execCommand('copy');
             document.body.removeChild(tempInput);
-            alert('Đã sao chép link file kế hoạch này! Bạn có thể dán để gửi qua Zalo/Facebook.');
+            alert('Đã sao chép link kế hoạch Phan Thiết.');
         }
 
-        // Load hotels & checklist on init
         window.onload = function() {
             filterHotels('all');
             filterPlaces('all');
-            initChecklist();
-        }
+        };
     </script>
 </body>
 </html>
